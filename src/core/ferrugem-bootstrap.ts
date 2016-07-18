@@ -1,6 +1,6 @@
 import _IDOM = require("incremental-dom");
 import defineTag = require("./define-tag"); 
-import "dist/core/delegating-import";
+import "./delegating-import";
 declare var System:any;
 let app_html_s = document.querySelectorAll('[app]');
 	let app_html:Element;
