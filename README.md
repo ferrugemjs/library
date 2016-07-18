@@ -12,6 +12,12 @@ Chrome 40+, Firefox 47+, Safari, Opera , IE9+
 #####install
 jspm install npm:ferrugemjs
 
+####search for a starter project ?
+clone
+[skeleton-typescript](https://github.com/ferrugemjs/skeleton-typescript)
+or
+[skeleton-es2015](https://github.com/ferrugemjs/skeleton-es2015)
+
 #####how start
 in your index.html file
 
