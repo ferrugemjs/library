@@ -38,5 +38,7 @@ jspm_packages
 
 #dist dir
 dist/example
+dist/incremental-dom.js
 
-
+#.npmrc
+.npmrc
