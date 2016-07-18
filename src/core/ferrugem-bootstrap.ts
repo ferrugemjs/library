@@ -1,5 +1,6 @@
 import _IDOM = require("incremental-dom");
 import defineTag = require("./define-tag"); 
+import "dist/core/delegating-import";
 declare var System:any;
 let app_html_s = document.querySelectorAll('[app]');
 	let app_html:Element;
@@ -35,6 +36,5 @@ System.import(app_url).then((_init_app:any)=>{
 			, render: _init_app_render[_modname]
 			, controller: _init_app[_app_name]
 		});
-		System.import("dist/core/delegating-import");
 	});
 });
