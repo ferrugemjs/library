@@ -42,12 +42,12 @@ If you want to modify the path of the file app.js just add this information to t
 ###non-intrusive
 your app.js file.
 ```
-class MyBasicApp{
+export class MyBasicApp{
+	private title:string;
     constructor(){
       this.title = "ferrugemjs";
     }
 }
-export default MyBasicApp;
 ```
 Yes, its simple class using only "javascript 2015", without any interference from the library.
 
@@ -61,38 +61,47 @@ your app.html file.
 
 ###reactive
 ```
-class MyBasicApp{
-    constructor(){
-      this.title = "ferrugemjs";
-    }
-    attached(){
-      setTimeout(()=>{
-        this.title = "change by a settimeout";
-        //a reactive update after a time
-        this.refresh();//using the "refresh" method, the only injectable method by the library.
-      },4000);
-    }
+export class HelloWorld{
+  private name:string;	
+  constructor(){
+    this.name = "";
+  }
+  attached():void{
+	  setTimeout(()=>{
+			  this.name = "change by a settimeout";
+			  //a reactive update after a time
+			  //using the "refresh" method, the only injectable method by the library.
+			  this.refresh();
+	  },4000);
+  }
 }
-export default MyBasicApp;
 ```
 
 ###importing other modules
 create your second module in file "hello-world.js"
 
 ```
-class HelloWorld{
+export class HelloWorld{
+  private name:string;	
   constructor(){
     this.name = "";
   }
   //by convention as the "name" attribute is modified the method to "on" + "attribute name" + "Changed" is called.
-  onNameChanged(new_name,old_name){
+  onNameChanged(new_name:string,old_name:string):void{
     this.refresh();
   }
-  showMyName(){
+  showName():void{
     alert(`my name is ${this.name}`);
   }
+  attached():void{
+	setTimeout(()=>{
+			this.name = "change by a settimeout";
+			//a reactive update after a time
+			//using the "refresh" method, the only injectable method by the library.
+			this.refresh();
+	 },4000);
+  }
 }
-export default HelloWorld;
 ```
 
 create your second html module in file "hello-world.html"
@@ -108,7 +117,7 @@ import the hello-word modulo into your app.html
 ```
 <template args="$controller">
     <h1>My First APP with {$controller.title}</h1>
-    <require from="hello-world"></require>
+    <require from="base_app/example/hello-world"></require>
     <hello-world name="C-3PO"></hello-world>   
 </template>
 ```
@@ -117,19 +126,18 @@ you can also give an alias for your module.
 ```
 <template args="$controller">
     <h1>My First APP with {$controller.title}</h1>
-    <require from="hello-world as sea-bienvenido"></require>
+    <require from="base_app/example/hello-world as sea-bienvenido"></require>
     <sea-bienvenido name="C-3PO"></sea-bienvenido>   
 </template>
+
 ```
 
 ###accessing a controller method.
 
 ```
 <template args="$controller">
-    <h1>My First APP with {$controller.title}</h1>
-    <require from="hello-world"></require>
-    <hello-world name="C-3PO"></hello-world>
-    <button click.trigger="$controller.showName()">show my name!</button>
+  <h2>Hello World, {$controller.name}</h2>
+  <button click.trigger="$controller.showName()">show my name!</button>
 </template>
 ```
 
