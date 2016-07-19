@@ -6,10 +6,7 @@ var tsConfig = require("../tsconfig.json").compilerOptions;
 
 gulp.task('compile',function(){
     //console.log(""+destPackagePathAppView);
-    return gulp.src([
-			"./src/**/*.ts"
-            ,"./jspm_packages/npm/event-emitter-lite@1.0.5/*.d.ts"
-        ])
+    return gulp.src(["./src/**/*.ts"])
         .pipe(ts(tsConfig))
         .pipe(uglify())
         .pipe(gulp.dest(tsConfig.outDir));   
