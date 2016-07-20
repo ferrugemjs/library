@@ -1,4 +1,4 @@
-define(["require", "exports", "incremental-dom", 'document-register-element'], function (require, exports, IncrementalDOM) {
+define(["require", "exports", "incremental-dom", 'webcomponents.js/webcomponents.min'], function (require, exports, IncrementalDOM) {
     "use strict";
     function changeAttributeComponentTag(prop, previousValue, newValue) {
         var _onChangedFunction = "on" + prop.replace(/(^\D)/g, function (g0, g1) {
@@ -10,7 +10,7 @@ define(["require", "exports", "incremental-dom", 'document-register-element'], f
         }
     }
     var defineComponent = function (spec) {
-        var prototype = Object.create(HTMLElement.prototype, {
+        var prototypeX = Object.create(HTMLElement.prototype, {
             createdCallback: {
                 value: function () {
                     this.el = this.appendChild(document.createElement('div'));
@@ -25,15 +25,19 @@ define(["require", "exports", "incremental-dom", 'document-register-element'], f
                         this.controller = new spec.controller();
                         this.controller._$el$domref = this.el;
                     }
-                    IncrementalDOM.patch(this.el, spec.render, this.controller);
                 }
             },
+            shouldComponentUpdate: { value: function () {
+                    return true;
+                } },
             attachedCallback: { value: function () {
-                    var i = this.el.attributes.length;
+                    var el = this;
+                    var i = el.attributes.length;
                     while (i--) {
-                        var attr = this.el.attributes[i];
+                        var attr = el.attributes[i];
                         changeAttributeComponentTag.apply(this, [attr.name, attr.value, attr.value]);
                     }
+                    this.controller.refresh();
                     if (this.controller.attached) {
                         this.controller.attached();
                     }
@@ -41,7 +45,7 @@ define(["require", "exports", "incremental-dom", 'document-register-element'], f
             attributeChangedCallback: { value: changeAttributeComponentTag }
         });
         document.registerElement(spec.tag, {
-            prototype: prototype
+            prototype: prototypeX
         });
     };
     return defineComponent;

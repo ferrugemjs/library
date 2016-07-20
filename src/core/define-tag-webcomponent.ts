@@ -1,10 +1,10 @@
-import 'document-register-element' ;
+import 'webcomponents.js/webcomponents.min' ;
 import IncrementalDOM = require("incremental-dom");
 
   interface ISpec{
      render:()=>void;
      tag:string;     
-     controller?:any;
+     controller:any;
   }
 
   function changeAttributeComponentTag(prop:string,previousValue:any,newValue:any){
@@ -22,16 +22,20 @@ import IncrementalDOM = require("incremental-dom");
 
   var defineComponent = function(spec:ISpec){
       //console.log(spec.tag);
-      var prototype = Object.create(HTMLElement.prototype,
+      var prototypeX = Object.create(HTMLElement.prototype,
       {
         createdCallback: {
           value: function() {
+
+
             //let tmpContent = this.innerHTML;
             //this.innerHTML = "";
             
             this.el = this.appendChild(
               document.createElement('div')
             );
+			
+            //this.el = this.createShadowRoot();
             
             //this.el = this;            
             this.controller = {}; 
@@ -39,6 +43,9 @@ import IncrementalDOM = require("incremental-dom");
             //console.log(this.el.content);
 
             //let controller:any = {};
+
+
+
             if(spec.controller){
               if(!spec.controller.prototype.refresh){
                 spec.controller.prototype._$render_from_powerup = spec.render;
@@ -58,7 +65,7 @@ import IncrementalDOM = require("incremental-dom");
               this.controller._$el$domref = this.el;
 
             }
-            IncrementalDOM.patch(this.el, spec.render, this.controller);
+            //IncrementalDOM.patch(this.el, spec.render, this.controller);
             /*
             if (tmpContent && this.el.getElementsByTagName("content").length > 0) {
               this.el.getElementsByTagName("content")[0].innerHTML = tmpContent;
@@ -67,29 +74,31 @@ import IncrementalDOM = require("incremental-dom");
             
           }
         },
-        attachedCallback: {value: function() {          
-          let i:number = this.el.attributes.length;
+        shouldComponentUpdate:{value:function() {
+    		return true;
+  		}},
+        attachedCallback: {value: function() {
+          //console.log(`${spec.tag} attached!`)
+          //console.log(this.attributes);
+          let el = this;
+          let i:number = el.attributes.length;
           while (i--){
-              let attr:{name:string,value:string} = this.el.attributes[i];
+              let attr:{name:string,value:string} = el.attributes[i];
               //console.log(attr.name + '="' + attr.value + '"');
               changeAttributeComponentTag.apply(this,[attr.name,attr.value,attr.value]);
           }          
+          
+          this.controller.refresh();
           if(this.controller.attached){
             this.controller.attached();
-          }
+          }          
           //console.log('attached!');
         }},
         attributeChangedCallback: {value:changeAttributeComponentTag}
       }); 
-      /*     
-      for(var name in spec) {
-        prototype[name] = spec[name];
-      }
-      */
       (<any>document).registerElement(spec.tag, {
-        prototype: prototype
-      });
-      
+        prototype: prototypeX
+      });      
   };
 
  export = defineComponent;

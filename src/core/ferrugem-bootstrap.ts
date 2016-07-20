@@ -1,5 +1,5 @@
 import _IDOM = require("incremental-dom");
-import defineTag = require("./define-tag"); 
+import defineTag = require("./define-tag-webcomponent"); 
 import "./delegating-import";
 declare var System:any;
 let app_html_s = document.querySelectorAll('[app]');

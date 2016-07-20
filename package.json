@@ -28,7 +28,8 @@
       "document-register-element": "npm:document-register-element@^0.5.4",
       "es6-shim": "npm:es6-shim@^0.35.1",
       "incremental-dom": "npm:incremental-dom@^0.4.1",
-      "ts-helpers": "npm:ts-helpers@^1.1.1"
+      "ts-helpers": "npm:ts-helpers@^1.1.1",
+      "webcomponents.js": "npm:webcomponents.js@^0.7.22"
     },
     "devDependencies": {}
   },

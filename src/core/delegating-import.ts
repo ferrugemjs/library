@@ -1,4 +1,4 @@
-import defineTag = require("./define-tag");
+import defineTag = require("./define-tag-webcomponent");
 
 declare var System:any;
 
@@ -49,7 +49,9 @@ class DelegatingSystemImport{
 	private attached(){
 		//console.log(`init the import? ${this.from}`);
 		//console.log(this);
-		this.loadModule(this.from);
+		if(this.from){
+			this.loadModule(this.from);
+		}		
 	}
 	private onFromChanged(p_newfrom:string,p_oldfrom:string):void{
 		//console.log(`this.from:${this.from} ,new: ${p_newfrom} , old: ${p_oldfrom}   `);
