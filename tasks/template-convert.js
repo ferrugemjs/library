@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var replace = require('gulp-replace');
 var superviewsjs = require('gulp-superviewsjs');
 
 var tsConfig = require("../tsconfig.json").compilerOptions;
@@ -9,6 +10,8 @@ gulp.task('template',function(){
     return gulp.src([
         "./src/**/*.html"
     ])
+    .pipe(replace('</require>', ''))
+    .pipe(replace(/<require from="([^"]*)">/g, '<script>registerTag_1.default.add("$1");</script>'))
     .pipe(superviewsjs({mode:"amd"}))
     .pipe(rename({
         extname: ".html.js"

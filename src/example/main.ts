@@ -5,9 +5,12 @@ export class Main{
 
     private foolArray:string[] = ['ops','humm','interesting'];
     constructor(){
-
+        this.foolArray = ['ops','humm','interesting'];
     }
     private showId():void{
+        this.foolArray.forEach((txt:string,inxd:number)=>{
+            this.foolArray[inxd] = txt+" "+ new Date().getSeconds()+ " ";
+        });
     	alert(`NOW with ${this.id} and ${this.title}`);
     	(<any>this).refresh();
     }

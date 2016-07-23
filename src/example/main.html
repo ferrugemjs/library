@@ -2,7 +2,7 @@
  <require from="dist/example/simple-comp as simple-comp-plus"></require>
  <h1 click.trigger="$this.showId()" class="especial">Teste {$this.id}</h1>
  <content></content>
- <simple-comp-plus each="fool in $this.foolArray" texto="{fool}"></simple-comp-plus>
+ <simple-comp-plus each="fool in $this.foolArray" texto="{fool}">{fool}</simple-comp-plus>
 
  <simple-comp-plus texto="opa my friend"></simple-comp-plus>
 </template>
