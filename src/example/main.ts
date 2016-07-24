@@ -8,10 +8,11 @@ export class Main{
         this.foolArray = ['ops','humm','interesting'];
     }
     private showId():void{
-        /*
+        
         this.foolArray.forEach((txt:string,inxd:number)=>{
             this.foolArray[inxd] = txt+" "+ new Date().getSeconds()+ " ";
         });
+        /*
     	alert(`NOW with ${this.id} and ${this.title}`);
         */
         alert(`NOW with ${this.id} and ${this.title}`);
