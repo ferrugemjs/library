@@ -3,20 +3,21 @@ import registerTag from "./register-tag";
 
 declare var System:any;
 
-interface IAfterProps{
+interface IAfterLoad{
 	content:(cb:Function)=>void;
 }
 
-interface IAfterLoad{
-	props:(props:{})=>IAfterProps;
-}
-
 class LoadTag{
-	public load(target:string,tag:string):string{
+	public load(tag:string,target:string,host_vars:string[]):IAfterLoad{
 		let tmpTagReg = registerTag.getRegistred(tag);
-		let tmpIdElement = target;
-		//let tmpIdElement:string = "custom_element_id_"+new Date().getTime();
+		//let tmpIdElement = target;
+		let tmpIdElement:string = "custom_element_id_"+new Date().getTime();
 		//_IDOM.elementVoid("div",null,['id',tmpIdElement]);
+
+		_IDOM.elementOpen("div", tmpIdElement, ['id',tmpIdElement]);
+		_IDOM.elementClose("div");
+
+		let tmpThis = this;
 		if(!tmpTagReg._$controller){
 			
 			//console.log(registerTag.getRegistred(tag));
@@ -33,26 +34,20 @@ class LoadTag{
 				System.import(tmpTagReg.url+".html").then((_sub_comp:any)=>{			
 					let _modname:string = Object.keys(_sub_comp)[0];
 					//console.log(_modname);
-					//let _tag_alias:string = _modname.replace(/([A-Z])/g, function($1:string){return "-"+$1.toLowerCase();});
-					/*
-					defineTag({
-			      		tag:_tagname
-			      		,render:_sub_comp[_modname]
-			      		,controller:_controller[_controllerName]
-			    	});
-			    	*/
-			    	
-			    	//console.log(_controller[_controllerName]);
+					//console.log(_controller[_controllerName]);
 			    	if(!_controller[_controllerName].prototype.refresh){
 		                _controller[_controllerName].prototype._$render_from_powerup = _sub_comp[_modname];
 		                _controller[_controllerName].prototype.refresh =function(){
 		                    //IncrementalDOM.patch(this._$el$domref,this._$render_from_powerup, this);
+			            	//console.log(this);
 			            	if(this._$el$domref){
-			            		_IDOM.patch(document.getElementById(this._$el$domref),this._$render_from_powerup,this);
+			            		_IDOM.patch(document.getElementById(this._$el$domref),function(){
+			            			//console.log(this,registerTag,tmpThis);
+			            			this._$render_from_powerup(this,registerTag,tmpThis);
+			            		}.bind(this));
 		                   	}			            
 		                }
 	              	}
-
 	              	registerTag.config(tmpTagReg.tag,_controller[_controllerName]);
 					
 	              	let instController = new _controller[_controllerName]();
@@ -77,17 +72,11 @@ class LoadTag{
             controlInt._$el$domref = tmpIdElement;
             //_IDOM.elementOpen("div",null,['id',tmpIdElement]);	
 				//_IDOM.text("PRE LOAD SUB-COMP!"+tmpIdElement); 
-				controlInt._$render_from_powerup(controlInt);
+			//	controlInt._$render_from_powerup(controlInt);
 			//_IDOM.elementClose("div");
 		  	//controlInt._$render_from_powerup(controlInt); 
-		  	
+		  	controlInt.refresh();
 		}
-		return "";
-	}
-	public props(props:{}):IAfterProps{
-		//adiciona props ao controller antes do start
-		//set todas as props e invoca os metodos on+attr+changed
-		console.log(props);
 		return this;
 	}
 	public content(cb:Function):void{		

@@ -15,7 +15,12 @@
   <body>    
     <div app="dist/example/main"></div>
     <script>
-      System.import("dist/core/ferrugem-bootstrap");
+      System.config({
+        map:{
+          "ferrugemjs":"dist/core/ferrugem-bootstrap"
+        }
+      });
+      System.import("ferrugemjs");
     </script>
   </body>
 </html>
