@@ -4,10 +4,11 @@ interface ITagRegister{
 	tag:string;
 	url:string;
 	_$controller?:any;
+	loading?:boolean;
 }
 
 class RegisterTag{
-	private internal_dictionary:{[tag: string]:{url:string,_$controller?:any}}
+	private internal_dictionary:{[tag: string]:{url:string,loading?:boolean,_$controller?:any}}
 	constructor(){
 		this.internal_dictionary = {};
 	}	
@@ -16,10 +17,17 @@ class RegisterTag{
 			tag:tag
 			,url:this.internal_dictionary[tag].url
 			,_$controller:this.internal_dictionary[tag]._$controller
+			,loading:this.internal_dictionary[tag].loading
 		};
 	}
-	public config(tag:string,_$controller:any):void{
-		this.internal_dictionary[tag]._$controller = _$controller;
+	public config(tag:string,_controller:any):void{
+		//console.log(this.internal_dictionary[tag]);
+		this.internal_dictionary[tag].loading = false;
+		this.internal_dictionary[tag]._$controller = _controller;		
+		//console.log(this.internal_dictionary[tag]);
+	}
+	public setLoading(tag:string):void{
+		this.internal_dictionary[tag].loading = true;
 	}
 	public add(p_resource_url:string):void{		
 		let tmptag:ITagRegister = this.getTagFromUrl(p_resource_url);
@@ -30,7 +38,7 @@ class RegisterTag{
 				System.import(p_resource_url);				
 			}else{
 				//separation of alias name
-				this.internal_dictionary[tmptag.tag] = {url:tmptag.url};
+				this.internal_dictionary[tmptag.tag] = {url:tmptag.url,loading:false};
 			}
 		}
 	}

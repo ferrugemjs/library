@@ -15,7 +15,7 @@ export class SimpleComp{
 		(<any>this).refresh();
 	}
 	private onTextoChanged():void{
-		console.log(`my texto change to: ${this.texto} `);
+		console.log(`my texto changed to: ${this.texto} `);
 		(<any>this).refresh();
 	}
 }

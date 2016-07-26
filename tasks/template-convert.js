@@ -16,6 +16,9 @@ gulp.task('template',function(){
     .pipe(superviewsjs({mode:"amd"}))
     .pipe(replace(/elementOpen\(("\w+?-[^"]+")([^)]+)\)/g,'_$ferrugemLoad.load($1$2).content(function(){'))
     .pipe(replace(/elementClose\("\w+?-+\w.+\)+?/g,'});'))
+    .pipe(replace('elementClose("content")',''))
+    .pipe(replace('elementOpen("content")','this.content();'))
+    
     //.pipe(replace(/elementClose\("\w+?-+\w.+\)+?/g,'elementClose("div")'))    
     //.pipe(replace(/elementOpen\(("\w+?-[^"]+")([^)]+)\)/g,'elementOpen("div"$2);_$ferrugemLoad.load($1$2);'))
     //.pipe(replace(/elementOpen(\("\w+?-+\w.+\)+?)/g,'elementOpen$1;_$ferrugemLoad.load$1;'))

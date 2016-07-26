@@ -7,19 +7,14 @@ export class Main{
     constructor(){
         this.foolArray = ['ops','humm','interesting'];
     }
-    private showId():void{
-        
+    private showId():void{        
         this.foolArray.forEach((txt:string,inxd:number)=>{
             this.foolArray[inxd] = txt+" "+ new Date().getSeconds()+ " ";
         });
-        /*
-    	alert(`NOW with ${this.id} and ${this.title}`);
-        */
         alert(`NOW with ${this.id} and ${this.title}`);
     	(<any>this).refresh();
     }
-    private attached():void{
-    	
+    private attached():void{    	
     	//console.log(`IM attached with ${this.id} and ${this.title} `);
     }
 
