@@ -24,10 +24,7 @@
       "dist": "dist/core"
     },
     "dependencies": {
-      "css": "github:systemjs/plugin-css@^0.1.23",
-      "es6-shim": "npm:es6-shim@^0.35.1",
-      "incremental-dom": "npm:incremental-dom@^0.4.1",
-      "ts-helpers": "npm:ts-helpers@^1.1.1"
+      "incremental-dom": "npm:incremental-dom@^0.4.1"
     },
     "devDependencies": {}
   },
