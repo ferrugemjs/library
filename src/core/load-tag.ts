@@ -20,7 +20,7 @@ class LoadTag{
 		this.moduleWait = [];
 	}
 	private resolveModules():void{
-		console.log(`resolve ${this.moduleWait.length}`);
+		//console.log(`resolve ${this.moduleWait.length}`);
 		this.moduleWait.forEach((mod:IModuleConfig)=>{
 			this.initModule(mod);			
 		});
