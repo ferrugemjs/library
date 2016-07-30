@@ -8,7 +8,7 @@ gulp.task('compile',function(){
     //console.log(""+destPackagePathAppView);
     return gulp.src(["./src/**/*.ts"])
         .pipe(ts(tsConfig))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest(tsConfig.outDir));   
 });
 

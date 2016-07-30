@@ -19,3 +19,8 @@ export class Main{
     }
 
 }
+/*
+ <require from="dist/example/simple-comp as simple-comp-plus"></require>
+ <simple-comp-plus each="fool in $this.foolArray" texto="{fool}">{fool}</simple-comp-plus>
+ <simple-comp-plus texto="opa my friend humm"></simple-comp-plus>
+ */

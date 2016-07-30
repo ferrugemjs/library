@@ -1,1 +1,89 @@
-define(["require","exports","incremental-dom","./register-tag"],function(t,e,o,r){"use strict";var n=function(){function t(){this.moduleWait=[]}return t.prototype.resolveModules=function(){var t=this;this.moduleWait.forEach(function(e){t.initModule(e)})},t.prototype.initModule=function(t){var e=r["default"].getRegistred(t.tag),o=new e._$controller;o._$el$domref=t.target,o.refresh(),o.attached&&o.attached(),this.changeProps(o,t.host_vars)},t.prototype.load=function(t,e,n){var i=r["default"].getRegistred(t),a="custom_element_id_"+(new Date).getTime();if(o.elementOpen("div",a,["id",a]),o.elementClose("div"),i&&i._$controller)this.moduleWait.push({tag:i.tag,target:a,host_vars:n,loaded:!0});else if(this.moduleWait.push({tag:i.tag,target:a,host_vars:n}),!i.loading){var s=this;r["default"].setLoading(i.tag),System["import"](i.url).then(function(t){var e=Object.keys(t)[0];r["default"].config(i.tag,t[e]),System["import"](i.url+".html").then(function(n){var i=Object.keys(n)[0];t[e].prototype.refresh||(t[e].prototype.content=function(){},t[e].prototype._$render_from_powerup=n[i],t[e].prototype.refresh=function(){this._$el$domref&&o.patch(document.getElementById(this._$el$domref),function(){this._$render_from_powerup(this,r["default"],s)}.bind(this))}),s.resolveModules()})})}return this},t.prototype.content=function(t){var e=this.moduleWait.length-1;this.moduleWait[e].loaded&&this.initModule(this.moduleWait.pop())},t.prototype.changeProps=function(t,e){if(e&&e.length>0)for(var o=e.length,r=0;r<o/2;++r){var n=e[r],i=e[r+1],a="on"+n.replace(/(^\D)/g,function(t,e){return t.toUpperCase()})+"Changed",s=t[n];t[n]=i,t[a]&&t[a](i,s)}},t}();Object.defineProperty(e,"__esModule",{value:!0}),e["default"]=new n});
+define(["require", "exports", "incremental-dom", "./register-tag"], function (require, exports, _IDOM, register_tag_1) {
+    "use strict";
+    var LoadTag = (function () {
+        function LoadTag() {
+            this.moduleWait = [];
+        }
+        LoadTag.prototype.resolveModules = function () {
+            var _this = this;
+            this.moduleWait.forEach(function (mod) {
+                _this.initModule(mod);
+            });
+        };
+        LoadTag.prototype.initModule = function (mod) {
+            var tmpTagReg = register_tag_1.default.getRegistred(mod.tag);
+            var controlInt = new tmpTagReg._$controller();
+            controlInt._$el$domref = mod.target;
+            controlInt.refresh();
+            if (controlInt.attached) {
+                controlInt.attached();
+            }
+            ;
+            this.changeProps(controlInt, mod.host_vars);
+        };
+        LoadTag.prototype.load = function (tag, target, host_vars) {
+            var tmpTagReg = register_tag_1.default.getRegistred(tag);
+            var tmpIdElement = "custom_element_id_" + new Date().getTime();
+            _IDOM.elementOpen("div", tmpIdElement, ['id', tmpIdElement]);
+            _IDOM.elementClose("div");
+            if (tmpTagReg && tmpTagReg._$controller) {
+                this.moduleWait.push({ tag: tmpTagReg.tag, target: tmpIdElement, host_vars: host_vars, loaded: true });
+            }
+            else {
+                this.moduleWait.push({ tag: tmpTagReg.tag, target: tmpIdElement, host_vars: host_vars });
+                if (!tmpTagReg.loading) {
+                    var tmpThis_1 = this;
+                    register_tag_1.default.setLoading(tmpTagReg.tag);
+                    System.import(tmpTagReg.url).then(function (_controller) {
+                        var _controllerName = Object.keys(_controller)[0];
+                        register_tag_1.default.config(tmpTagReg.tag, _controller[_controllerName]);
+                        System.import(tmpTagReg.url + ".html").then(function (_sub_comp) {
+                            var _modname = Object.keys(_sub_comp)[0];
+                            if (!_controller[_controllerName].prototype.refresh) {
+                                _controller[_controllerName].prototype.content = function () {
+                                };
+                                _controller[_controllerName].prototype._$render_from_powerup = _sub_comp[_modname];
+                                _controller[_controllerName].prototype.refresh = function () {
+                                    if (this._$el$domref) {
+                                        _IDOM.patch(document.getElementById(this._$el$domref), function () {
+                                            this._$render_from_powerup(this, register_tag_1.default, tmpThis_1);
+                                        }.bind(this));
+                                    }
+                                };
+                            }
+                            tmpThis_1.resolveModules();
+                        });
+                    });
+                }
+            }
+            return this;
+        };
+        LoadTag.prototype.content = function (cb) {
+            var lastModule = this.moduleWait.length - 1;
+            if (this.moduleWait[lastModule].loaded) {
+                this.initModule(this.moduleWait.pop());
+            }
+        };
+        LoadTag.prototype.changeProps = function (tag_controller, host_vars) {
+            if (host_vars && host_vars.length > 0) {
+                var host_vars_count = host_vars.length;
+                for (var i = 0; i < host_vars_count / 2; ++i) {
+                    var prop = host_vars[i];
+                    var newValue = host_vars[i + 1];
+                    var _onChangedFunction = "on" + prop.replace(/(^\D)/g, function (g0, g1) {
+                        return g0.toUpperCase();
+                    }) + "Changed";
+                    var oldValue = tag_controller[prop];
+                    tag_controller[prop] = newValue;
+                    if (tag_controller[_onChangedFunction]) {
+                        tag_controller[_onChangedFunction](newValue, oldValue);
+                    }
+                }
+                ;
+            }
+        };
+        return LoadTag;
+    }());
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.default = new LoadTag();
+});
