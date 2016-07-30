@@ -49,7 +49,7 @@ export class MyBasicApp{
     }
 }
 ```
-Yes, its simple class using only "javascript 2015", without any interference from the library.
+Yes, its simple class using only "typescript" or "javascript 2015", without any interference from the library.
 
 ###simple
 your app.html file.
@@ -67,12 +67,10 @@ export class HelloWorld{
     this.name = "";
   }
   attached():void{
-	  setTimeout(()=>{
-			  this.name = "change by a settimeout";
-			  //a reactive update after a time
-			  //using the "refresh" method, the only injectable method by the library.
-			  this.refresh();
-	  },4000);
+	this.name = "changed after attached event";
+	//a reactive update after attached event
+	//using the "refresh" method, the only injectable method by the library.
+	this.refresh();
   }
 }
 ```
@@ -94,12 +92,10 @@ export class HelloWorld{
     alert(`my name is ${this.name}`);
   }
   attached():void{
-	setTimeout(()=>{
-			this.name = "change by a settimeout";
-			//a reactive update after a time
-			//using the "refresh" method, the only injectable method by the library.
-			this.refresh();
-	 },4000);
+	this.name = "changed after attached event";
+	//a reactive update after attached event
+	//using the "refresh" method, the only injectable method by the library.
+	this.refresh();
   }
 }
 ```
