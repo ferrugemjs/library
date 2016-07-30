@@ -48,7 +48,7 @@ class LoadTag{
 		});
 		*/
 	}
-	public load(tag:string,target:string,host_vars:string[]):IAfterLoad{
+	public load(tag:string,target:string,host_vars:string[],extra_attr:string,extra_attr_value?:string):IAfterLoad{
 		//console.log(tag);
 		//console.log(host_vars);
 		let tmpTagReg = registerTag.getRegistred(tag);
@@ -58,12 +58,22 @@ class LoadTag{
 		//console.log(tmpTagReg);
 		//this.actualModule = 
 		//this.actualModule = {tag:tmpTagReg.tag,target:tmpIdElement,host_vars:host_vars};
+		
+		if(extra_attr){
+			if(!host_vars){
+				host_vars = [];
+			};
+			host_vars.push(extra_attr);
+			host_vars.push(extra_attr_value);
+		};
+		let tmpObjModule:IModuleConfig = {tag:tmpTagReg.tag,target:tmpIdElement,host_vars:host_vars};
 		if(tmpTagReg && tmpTagReg._$controller){
 			//console.log("loaded!");
 			//this.actualModule.loaded = true;
-			this.moduleWait.push({tag:tmpTagReg.tag,target:tmpIdElement,host_vars:host_vars,loaded:true});
+			tmpObjModule.loaded = true;
+			this.moduleWait.push(tmpObjModule);
 		}else{
-			this.moduleWait.push({tag:tmpTagReg.tag,target:tmpIdElement,host_vars:host_vars});
+			this.moduleWait.push(tmpObjModule);
 			if(!tmpTagReg.loading){
 				//console.log(`loading ... ${tmpTagReg.tag}`);
 				let tmpThis = this;

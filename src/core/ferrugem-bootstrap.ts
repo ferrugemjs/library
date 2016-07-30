@@ -23,5 +23,5 @@ if(!app_uid){
 registerTag.add(app_url+" as init-app-tag");
 
 _IDOM.patch(document.getElementById(app_uid),()=>{
-	loadTag.load('init-app-tag',app_uid,[]);
+	loadTag.load('init-app-tag',app_uid,[],null);
 },{});
