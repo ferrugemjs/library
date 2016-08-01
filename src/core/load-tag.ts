@@ -14,6 +14,18 @@ interface IModuleConfig{
 	loaded?:boolean;
 	content?:Function;
 }
+
+class GenericComponentRefresh{
+	private _$el$domref: any;
+	refresh():void{
+		if (this._$el$domref) {
+			_IDOM.patch(document.getElementById(this._$el$domref), function() {
+				this._$render_from_powerup(this, registerTag, loadTag);
+			}.bind(this));
+		}
+	}
+}
+
 class LoadTag{
 	private moduleWait:IModuleConfig[];
 	constructor(){
@@ -90,16 +102,9 @@ class LoadTag{
 				    		_controller[_controllerName].prototype.content = function(){
 				    			//console.log(this._$content);
 				    			//this._$content();
-				    		};
-				    		
-			                _controller[_controllerName].prototype._$render_from_powerup = _sub_comp[_modname];
-			                _controller[_controllerName].prototype.refresh =function(){
-			                   if(this._$el$domref){
-				            		_IDOM.patch(document.getElementById(this._$el$domref),function(){
-				            			this._$render_from_powerup(this,registerTag,tmpThis);
-				            		}.bind(this));
-			                   	}			            
-			                }
+				    		};				    		
+			                _controller[_controllerName].prototype._$render_from_powerup = _sub_comp[_modname];			                
+							_controller[_controllerName].prototype.refresh = GenericComponentRefresh.prototype.refresh;	
 		              	}
 		              	tmpThis.resolveModules();
 		            });
@@ -138,11 +143,13 @@ class LoadTag{
 				if(tag_controller[_onChangedFunction]){
 					tag_controller[_onChangedFunction](newValue);
 				}else{
-                                  tag_controller[prop] = newValue;
-                                }
+                   	tag_controller[prop] = newValue;
+                }
 			};	        
 		}
 	}
 }
 
-export default new LoadTag();
+let loadTag: LoadTag = new LoadTag();
+
+export default loadTag;
