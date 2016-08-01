@@ -84,8 +84,9 @@ export class HelloWorld{
   constructor(){
     this.name = "";
   }
-  //by convention as the "name" attribute is modified the method to "on" + "attribute name" + "Changed" is called.
-  onNameChanged(new_name:string,old_name:string):void{
+  //by convention as the "name" attribute is modified the method "set" + "attribute name" is called.
+  setName(new_name:string):void{
+    this.name = new_name;
     this.refresh();
   }
   showName():void{
@@ -143,7 +144,7 @@ you can also give an alias for your module.
 The natural way in which the object is created in javascript.
 #####attached:
 By implementing the method your module will be prompted for it once the html is in "DOM".
-#####on+attribute name+Changed:
+#####set+attribute name:
 By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
 
 
