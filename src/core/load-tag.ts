@@ -132,14 +132,14 @@ class LoadTag{
 				//console.log(host_vars[i],host_vars[i+1]);
 				let prop:string = host_vars[i];
 				let newValue:any = host_vars[i+1];
-				let _onChangedFunction:string = "on"+prop.replace(/(^\D)/g,function(g0,g1){
+				let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
 					return g0.toUpperCase();
-				})+"Changed";
-				let oldValue:any = tag_controller[prop];
-				tag_controller[prop] = newValue;
+				});
 				if(tag_controller[_onChangedFunction]){
-					tag_controller[_onChangedFunction](newValue,oldValue);
-				}
+					tag_controller[_onChangedFunction](newValue);
+				}else{
+                                  tag_controller[prop] = newValue;
+                                }
 			};	        
 		}
 	}
