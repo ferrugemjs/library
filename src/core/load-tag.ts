@@ -60,7 +60,7 @@ class LoadTag{
 		});
 		*/
 	}
-	public load(tag:string,target:string,host_vars:string[],extra_attr:string,extra_attr_value?:string):IAfterLoad{
+	public load(tag:string,target:string,host_vars:string[],...extra_attr:string[]):IAfterLoad{
 		//console.log(tag);
 		//console.log(host_vars);
 		let tmpTagReg = registerTag.getRegistred(tag);
@@ -75,8 +75,9 @@ class LoadTag{
 			if(!host_vars){
 				host_vars = [];
 			};
-			host_vars.push(extra_attr);
-			host_vars.push(extra_attr_value);
+			extra_attr.forEach((key)=>{
+				host_vars.push(key);			
+			});
 		};
 		let tmpObjModule:IModuleConfig = {tag:tmpTagReg.tag,target:tmpIdElement,host_vars:host_vars};
 		if(tmpTagReg && tmpTagReg._$controller){
@@ -129,9 +130,9 @@ class LoadTag{
 	}
 	private changeProps(tag_controller:any,host_vars:string[]):void{
 		//console.log(host_vars);
-		if(host_vars && host_vars.length > 0){
+		if(host_vars && host_vars.length > 1){
 			let host_vars_count:number = host_vars.length;
-			for(let i:number = 0;i < host_vars_count/2;++i){
+			for(let i:number = 0;i < host_vars_count;i+=2){
 				//console.log(i);
 				//console.log(host_vars[i]);
 				//console.log(host_vars[i],host_vars[i+1]);
