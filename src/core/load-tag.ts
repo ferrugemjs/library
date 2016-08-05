@@ -11,7 +11,6 @@ interface IModuleConfig{
 	tag:string;
 	target:string;
 	host_vars:string[];
-	loaded?:boolean;
 	content?:Function;
 }
 
@@ -19,46 +18,40 @@ class GenericComponentRefresh{
 	private _$el$domref: any;
 	refresh():void{
 		if (this._$el$domref) {
-			_IDOM.patch(document.getElementById(this._$el$domref), function() {
-				this._$render_from_powerup(this, registerTag, loadTag);
-			}.bind(this));
+			if(document.getElementById(this._$el$domref)){
+				_IDOM.patch(document.getElementById(this._$el$domref), function() {
+					this._$render_from_powerup(this, registerTag, loadTag);
+				}.bind(this));
+			}else{
+				if(this.removed){
+					this.removed();
+					let $this = this;
+					setTimeout(()=>{
+						$this=null;
+					});
+				}
+			}
 		}
+	}
+	private removed():void{
+
 	}
 }
 
 class LoadTag{
-	private moduleWait:IModuleConfig[];
-	constructor(){
-		this.moduleWait = [];
-	}
-	private resolveModules():void{
-		//console.log(`resolve ${this.moduleWait.length}`);
-		this.moduleWait.forEach((mod:IModuleConfig)=>{
-			this.initModule(mod);			
-		});
-		//this.moduleWait = [];
-	}
+	constructor(){}
 	private initModule(mod:IModuleConfig):void{
-		let tmpTagReg = registerTag.getRegistred(mod.tag);
-        let controlInt = new tmpTagReg._$controller();            
-        controlInt._$el$domref = mod.target;
-        //controlInt._$content = mod.content;
-	  	controlInt.refresh();
-		if(controlInt.attached){
-			controlInt.attached();
-		};
-		this.changeProps(controlInt,mod.host_vars);
-
-		/*
-		this.moduleWait.every((mod_item:IModuleConfig,indx:number)=>{
-			if(mod.target===mod_item.target){
-				console.log(`${mod_item.target} - ${mod.target} - ${indx}`);
-				//this.moduleWait.splice(indx,1);
-				return false;
+		if(document.getElementById(mod.target)){
+			let tmpTagReg = registerTag.getRegistred(mod.tag);
+	        let controlInt = new tmpTagReg._$controller();            
+	        controlInt._$el$domref = mod.target;
+	        //controlInt._$content = mod.content;        
+		  	controlInt.refresh();
+			if(controlInt.attached){
+				controlInt.attached();
 			};
-			return true;
-		});
-		*/
+			this.changeProps(controlInt,mod.host_vars);
+		}
 	}
 	public load(tag:string,target:string,host_vars:string[],...extra_attr:string[]):IAfterLoad{
 		//console.log(tag);
@@ -83,10 +76,8 @@ class LoadTag{
 		if(tmpTagReg && tmpTagReg._$controller){
 			//console.log("loaded!");
 			//this.actualModule.loaded = true;
-			tmpObjModule.loaded = true;
-			this.moduleWait.push(tmpObjModule);
+			this.initModule(tmpObjModule);
 		}else{
-			this.moduleWait.push(tmpObjModule);
 			if(!tmpTagReg.loading){
 				//console.log(`loading ... ${tmpTagReg.tag}`);
 				let tmpThis = this;
@@ -107,7 +98,7 @@ class LoadTag{
 			                _controller[_controllerName].prototype._$render_from_powerup = _sub_comp[_modname];			                
 							_controller[_controllerName].prototype.refresh = GenericComponentRefresh.prototype.refresh;	
 		              	}
-		              	tmpThis.resolveModules();
+		              	tmpThis.initModule(tmpObjModule);
 		            });
 				});
 			}
@@ -118,15 +109,6 @@ class LoadTag{
 		//injeta content na bind do patch do incremental .bind({content:cb})
 		//chama o metodo refresh da instancia
 		//chama o metodo attached da instancia		
-		//console.log('cb');
-		//console.log(this.actualModule);
-		let lastModule:number = this.moduleWait.length-1;
-		//this.moduleWait[lastModule].content = cb;
-
-		if(this.moduleWait[lastModule].loaded){
-			this.initModule(this.moduleWait.pop());
-		}		
-		
 	}
 	private changeProps(tag_controller:any,host_vars:string[]):void{
 		//console.log(host_vars);
