@@ -58,7 +58,7 @@ class LoadTag{
 		//console.log(host_vars);
 		let tmpTagReg = registerTag.getRegistred(tag);
 		let tmpIdElement:string = "custom_element_id_"+new Date().getTime();		
-		_IDOM.elementOpen("div", tmpIdElement, ['id',tmpIdElement]);
+		_IDOM.elementOpen("div", tmpIdElement, ['id',tmpIdElement,'class',tmpTagReg.tag]);
 		_IDOM.elementClose("div");
 		//console.log(tmpTagReg);
 		//this.actualModule = 
@@ -78,7 +78,7 @@ class LoadTag{
 			//this.actualModule.loaded = true;
 			this.initModule(tmpObjModule);
 		}else{
-			if(!tmpTagReg.loading){
+			//if(!tmpTagReg.loading){
 				//console.log(`loading ... ${tmpTagReg.tag}`);
 				let tmpThis = this;
 				registerTag.setLoading(tmpTagReg.tag);
@@ -101,7 +101,7 @@ class LoadTag{
 		              	tmpThis.initModule(tmpObjModule);
 		            });
 				});
-			}
+			//}
 		}
 		return this;
 	}
