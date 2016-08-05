@@ -23,8 +23,8 @@ class GenericComponentRefresh{
 					this._$render_from_powerup(this, registerTag, loadTag);
 				}.bind(this));
 			}else{
-				if(this.removed){
-					this.removed();
+				if((<any>this).detached){
+					(<any>this).detached();
 					let $this = this;
 					setTimeout(()=>{
 						$this=null;
@@ -32,9 +32,6 @@ class GenericComponentRefresh{
 				}
 			}
 		}
-	}
-	private removed():void{
-
 	}
 }
 

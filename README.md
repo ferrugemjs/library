@@ -144,6 +144,10 @@ you can also give an alias for your module.
 The natural way in which the object is created in javascript.
 #####attached:
 By implementing the method your module will be prompted for it once the html is in "DOM".
+
+#####detached:
+By implementing the method your module will be prompted for it once your object is detached from "DOM".
+
 #####set+attribute name:
 By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
 
