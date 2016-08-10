@@ -150,8 +150,3 @@ By implementing the method your module will be prompted for it once your object 
 
 #####set+attribute name:
 By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
-
-
-
-
-
