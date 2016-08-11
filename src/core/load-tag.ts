@@ -53,8 +53,13 @@ class LoadTag{
 	public load(tag:string,target:string,host_vars:string[],...extra_attr:string[]):IAfterLoad{
 		//console.log(tag);
 		//console.log(host_vars);
+		console.log(target);
 		let tmpTagReg = registerTag.getRegistred(tag);
-		let tmpIdElement:string = "custom_element_id_"+new Date().getTime();		
+		let tmpIdElement: string = "custom_element_id_" + new Date().getTime();		
+		
+		if (!target || target === "nokey") {
+			tmpIdElement = target;
+		};
 		_IDOM.elementOpen("div", tmpIdElement, ['id',tmpIdElement,'class',tmpTagReg.tag]);
 		_IDOM.elementClose("div");
 		//console.log(tmpTagReg);
