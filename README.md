@@ -19,7 +19,7 @@ clone
 or
 [skeleton-es2015](https://github.com/ferrugemjs/skeleton-es2015)
 
-#####how start
+#####how to start
 in your index.html file
 
 ```
