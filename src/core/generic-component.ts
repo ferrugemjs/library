@@ -6,7 +6,7 @@ interface IModuleConfig{
 	host_vars:string[];
 }
 
-class AuxClass{
+export class AuxClass{
 	public changeProps(host_vars:string[]):void{
 		//console.log(host_vars);
 		if(host_vars && host_vars.length > 1){
@@ -28,7 +28,21 @@ class AuxClass{
 			};	        
 		}
 	}
-
+	public configComponent(tag: string, target: string, host_vars: string[], ...extra_attr: string[]): GenericComponent {
+		//console.log(tag);
+		//console.log(host_vars);
+		//console.log(target);			
+		if (extra_attr) {
+			if (!host_vars) {
+				host_vars = [];
+			};
+			extra_attr.forEach((key) => {
+				host_vars.push(key);
+			});
+		};
+		(<any>this)._$el$domref = { tag: tag, target: target, host_vars: host_vars };
+		return <any>this;
+	}
 }
 
 export class GenericComponent{
@@ -69,21 +83,6 @@ export class GenericComponent{
 
 			
 		}
-		return this;
-	}
-	public configComponent(tag:string,target:string,host_vars:string[],...extra_attr:string[]):GenericComponent{
-		//console.log(tag);
-		//console.log(host_vars);
-		//console.log(target);			
-		if(extra_attr){
-			if(!host_vars){
-				host_vars = [];
-			};
-			extra_attr.forEach((key)=>{
-				host_vars.push(key);			
-			});
-		};
-		this._$el$domref = {tag:tag,target:target,host_vars:host_vars};
 		return this;
 	}
 }

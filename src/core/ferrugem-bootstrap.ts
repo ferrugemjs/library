@@ -24,4 +24,4 @@ System.import(app_url+".html").then((_mod_init_app:any)=>{
 	_controller_.refresh();
 });
 
-export {GenericComponent} from "./generic-component";
+export {GenericComponent,AuxClass} from "./generic-component";
