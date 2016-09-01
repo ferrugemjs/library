@@ -14,13 +14,22 @@
   </head>
   <body>    
     <div app="dist/example/main"></div>
+    <div id="example"></div>
     <script>
       System.config({
         map:{
           "ferrugemjs":"dist/core/ferrugem-bootstrap"
         }
       });
+      //"ferrugemjs":"dist/core/ferrugem-bootstrap"
       System.import("ferrugemjs");
+      //System.import("ferrugemjs/ferrugem-bootstrap");
+      //System.import("dist/example/main2");
+      /*
+      System.import("dist/example/simple-comp.html").then(function(_mod_temp){
+        console.log(_mod_temp);
+      });
+      */
     </script>
   </body>
 </html>

@@ -23,9 +23,7 @@
     "directories": {
       "dist": "dist/core"
     },
-    "dependencies": {
-      "incremental-dom": "npm:incremental-dom@^0.4.1"
-    },
+    "dependencies": {},
     "devDependencies": {}
   },
   "devDependencies": {

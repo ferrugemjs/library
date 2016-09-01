@@ -1,8 +1,4 @@
-import _IDOM = require("incremental-dom");
-import registerTag from "./register-tag";
-import loadTag from "./load-tag";
 declare var System:any;
-
 let app_html_s = document.querySelectorAll('[app]');
 let app_html:Element;
 
@@ -20,8 +16,12 @@ if(!app_uid){
 	app_html.setAttribute("id",app_uid);
 };
 
-registerTag.add(app_url+" as init-app-tag");
+System.import(app_url+".html").then((_mod_init_app:any)=>{
+	let _controllerName:string = Object.keys(_mod_init_app)[0];
+	//console.log(_mod_init_app);
+	let _controller_ = new _mod_init_app[_controllerName]();
+	_controller_.configComponent('init-app-tag',app_uid,[],null);
+	_controller_.refresh();
+});
 
-_IDOM.patch(document.getElementById(app_uid),()=>{
-	loadTag.load('init-app-tag',app_uid,[],null);
-},{});
+export {GenericComponent} from "./generic-component";
