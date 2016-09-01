@@ -43,7 +43,7 @@ If you want to modify the path of the file app.js just add this information to t
 your app.js file.
 ```
 export class MyBasicApp{
-	private title:string;
+    private title:string;
     constructor(){
       this.title = "ferrugemjs";
     }
@@ -113,8 +113,8 @@ import the hello-word modulo into your app.html
 
 ```
 <template args="$controller">
+    <require from="./example/hello-world"></require>
     <h1>My First APP with {$controller.title}</h1>
-    <require from="base_app/example/hello-world"></require>
     <hello-world name="C-3PO"></hello-world>   
 </template>
 ```
@@ -122,8 +122,21 @@ you can also give an alias for your module.
 
 ```
 <template args="$controller">
+    <require from="./example/hello-world as sea-bienvenido"></require>
     <h1>My First APP with {$controller.title}</h1>
-    <require from="base_app/example/hello-world as sea-bienvenido"></require>
+    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
+</template>
+
+```
+
+
+you can also import a css file for your module. 
+
+```
+<template args="$controller">
+    <require from="./hello-world.css!"></require>
+    <require from="./example/hello-world as sea-bienvenido"></require>
+    <h1>My First APP with {$controller.title}</h1>
     <sea-bienvenido name="C-3PO"></sea-bienvenido>   
 </template>
 
