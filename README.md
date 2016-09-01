@@ -16,8 +16,6 @@ jspm install npm:ferrugemjs
 ####search for a starter project ?
 clone
 [skeleton-typescript](https://github.com/ferrugemjs/skeleton-typescript)
-or
-[skeleton-es2015](https://github.com/ferrugemjs/skeleton-es2015)
 
 #####how to start
 in your index.html file
