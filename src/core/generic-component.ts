@@ -45,7 +45,7 @@ export class AuxClass{
 	}
 }
 
-let unique_id_ui_component_store:number = 0;
+let unique_id_ui_component_store:number = new Date().getMilliseconds();
 
 export class GenericComponent{
 	public _$el$domref: IModuleConfig;
@@ -63,7 +63,7 @@ export class GenericComponent{
 					(<any>$this).render.call($this,$this);
 				}.bind(this));
 			}else if(this._$el$domref.target){
-				let tmpIdElement: string = "custom_element_id_" + new Date().getTime()+'_'+(unique_id_ui_component_store++);
+				let tmpIdElement: string = "custom_element_id_"+(unique_id_ui_component_store++);
 				this._$el$domref.target = tmpIdElement;
 				_IDOM.elementOpen("div", this._$el$domref.target, ['id',this._$el$domref.target,'class',this._$el$domref.tag]);
 					(<any>this).render.call(this,this);
