@@ -1,5 +1,9 @@
 import {AuxClass} from "./generic-component";
 declare var System:any;
+
+
+//console.log('staterde!!!');
+
 let app_html_s = document.querySelectorAll('[app]');
 let app_html:Element;
 

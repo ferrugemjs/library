@@ -45,6 +45,8 @@ export class AuxClass{
 	}
 }
 
+let unique_id_ui_component_store:number = 0;
+
 export class GenericComponent{
 	public _$el$domref: IModuleConfig;
 	private _alredy_load_module :boolean;
@@ -61,7 +63,7 @@ export class GenericComponent{
 					(<any>$this).render.call($this,$this);
 				}.bind(this));
 			}else if(this._$el$domref.target){
-				let tmpIdElement: string = "custom_element_id_" + new Date().getTime();
+				let tmpIdElement: string = "custom_element_id_" + new Date().getTime()+'_'+(unique_id_ui_component_store++);
 				this._$el$domref.target = tmpIdElement;
 				_IDOM.elementOpen("div", this._$el$domref.target, ['id',this._$el$domref.target,'class',this._$el$domref.tag]);
 					(<any>this).render.call(this,this);
