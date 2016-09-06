@@ -57,14 +57,15 @@ export class GenericComponent{
 	public refresh():GenericComponent{
 		if (this._$el$domref) {
 			if(document.getElementById(this._$el$domref.target)){
-				let $this = this;
-				_IDOM.patch(document.getElementById(this._$el$domref.target), function() {
-					//this._$render_from_powerup(this, registerTag, loadTag);
-					(<any>$this).render.call($this,$this);
-				}.bind(this));
+				_IDOM.patch(document.getElementById(this._$el$domref.target), (<any>this).render.bind(this),this);
+				if(!this._alredy_load_module && (<any>this).attached){
+					this._alredy_load_module = true;
+					(<any>this).attached();
+				}	
 			}else if(this._$el$domref.target){
 				let tmpIdElement: string = "custom_element_id_"+(unique_id_ui_component_store++);
 				this._$el$domref.target = tmpIdElement;
+				console.log(tmpIdElement);
 				_IDOM.elementOpen("div", this._$el$domref.target, ['id',this._$el$domref.target,'class',this._$el$domref.tag]);
 					(<any>this).render.call(this,this);
 				_IDOM.elementClose("div");

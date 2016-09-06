@@ -14,7 +14,8 @@ export class Main{
         alert(`NOW with ${this.id} and ${this.title}`);
     	(<any>this).refresh();
     }
-    private attached():void{    	
+    private attached():void{    
+        console.log('main attached!');	
     	//console.log(`IM attached with ${this.id} and ${this.title} `);
     }
 
