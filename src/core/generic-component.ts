@@ -65,7 +65,7 @@ export class GenericComponent{
 			}else if(this._$el$domref.target){
 				let tmpIdElement: string = "custom_element_id_"+(unique_id_ui_component_store++);
 				this._$el$domref.target = tmpIdElement;
-				console.log(tmpIdElement);
+				//console.log(tmpIdElement);
 				_IDOM.elementOpen("div", this._$el$domref.target, ['id',this._$el$domref.target,'class',this._$el$domref.tag]);
 					(<any>this).render.call(this,this);
 				_IDOM.elementClose("div");
