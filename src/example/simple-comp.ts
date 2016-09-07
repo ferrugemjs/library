@@ -9,8 +9,8 @@ export class SimpleComp{
 		//(<any>this).refresh();
 	}
 	private setTexto(texto:string):void{
-		//console.log(` from  '${this.texto}' to '${texto}' `);
-		this.texto = texto;		
+		console.log(` from  '${this.texto}' to '${texto}' `);
+		this.texto = texto;
 		//console.log(this);
 		(<any>this).refresh();
 	}

@@ -40,6 +40,7 @@ export class AuxClass{
 				host_vars.push(key);
 			});
 		};
+		//console.log(host_vars);
 		(<any>this)._$el$domref = { tag: tag, target: target, host_vars: host_vars };
 		return <any>this;
 	}
@@ -72,7 +73,8 @@ export class GenericComponent{
 				if(!this._alredy_load_module && (<any>this).attached){
 					this._alredy_load_module = true;
 					(<any>this).attached();
-					AuxClass.prototype.changeProps.call(this,this._$el$domref);
+					//console.log('hora de mudar ne!!!');
+					AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
 				}
 			}else{
 				if((<any>this).detached){
