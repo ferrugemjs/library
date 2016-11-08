@@ -3,6 +3,8 @@
 ###A simple library, reactive, conventional and non-intrusive!
 **FerrugemJS** is inspired by the [Aurelia](http://aurelia.io/) and [React](https://facebook.github.io/react/) using [Incremental DOM](http://google.github.io/incremental-dom/) with [superviewjs](https://github.com/davidjamesstone/superviews.js) as template language.
 
+####No jquery required, only 2kB!
+
 [![NPM](https://nodei.co/npm/ferrugemjs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ferrugemjs/)
 
 ####Browser Support
@@ -35,7 +37,7 @@ FerrugemJS will look for the first page element with the attribute "app" to star
 Just create app.js files and app.html in the same directory of the index.html page.
 If you want to modify the path of the file app.js just add this information to the app attribute as below:
 ```
-<div app="other_path/other_init_app_file"></div>
+<div app="other_path/init_app_file"></div>
 ```
 
 ###non-intrusive
