@@ -110,7 +110,7 @@ create your second html module in file "hello-world.html"
 </template>
 ```
 
-import the hello-word modulo into your app.html
+import the hello-word module into your app.html
 
 ```
 <template args="$controller">
