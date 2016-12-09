@@ -1,6 +1,6 @@
 {
   "name": "ferrugemjs",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "A reactive library.",
   "main": false,
   "scripts": {
@@ -20,7 +20,7 @@
   "jspm": {
     "registry": "npm",
     "main": "ferrugem-bootstrap",
-    "jspmPackage":true,
+    "jspmPackage": true,
     "format": "amd",
     "directories": {
       "dist": "dist/core"
