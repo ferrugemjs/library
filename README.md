@@ -55,8 +55,8 @@ Yes, its simple class using only "typescript" or "javascript 2015", without any 
 ###simple
 your app.html file.
 ```
-<template args="$controller">
-    <h1>My First APP with {$controller.title}</h1>
+<template args="$my_controller_alias">
+    <h1>My First APP with {$my_controller_alias.title}</h1>
 </template>
 ```
 
@@ -105,26 +105,26 @@ export class HelloWorld{
 create your second html module in file "hello-world.html"
 
 ```
-<template args="$controller">
-  <h2>Hello World, {$controller.name}</h2>
+<template args="$this">
+  <h2>Hello World, {$this.name}</h2>
 </template>
 ```
 
 import the hello-word module into your app.html
 
 ```
-<template args="$controller">
+<template args="$my_controller_alias">
     <require from="./example/hello-world"></require>
-    <h1>My First APP with {$controller.title}</h1>
+    <h1>My First APP with {$my_controller_alias.title}</h1>
     <hello-world name="C-3PO"></hello-world>   
 </template>
 ```
 you can also give an alias for your module. 
 
 ```
-<template args="$controller">
+<template args="$my_controller_alias">
     <require from="./example/hello-world as sea-bienvenido"></require>
-    <h1>My First APP with {$controller.title}</h1>
+    <h1>My First APP with {$my_controller_alias.title}</h1>
     <sea-bienvenido name="C-3PO"></sea-bienvenido>   
 </template>
 
@@ -134,10 +134,10 @@ you can also give an alias for your module.
 you can also import a css file for your module. 
 
 ```
-<template args="$controller">
+<template args="$this">
     <require from="./hello-world.css!"></require>
     <require from="./example/hello-world as sea-bienvenido"></require>
-    <h1>My First APP with {$controller.title}</h1>
+    <h1>My First APP with {$this.title}</h1>
     <sea-bienvenido name="C-3PO"></sea-bienvenido>   
 </template>
 
@@ -145,14 +145,14 @@ you can also import a css file for your module.
 or embed a style tag. 
 
 ```
-<template args="$controller">
+<template args="$this">
     <style>
     	.especial-tag{
 	
 	}
     </style>
     <require from="./example/hello-world as sea-bienvenido"></require>
-    <h1 class="especial-tag">My First APP with {$controller.title}</h1>
+    <h1 class="especial-tag">My First APP with {$this.title}</h1>
     <sea-bienvenido name="C-3PO"></sea-bienvenido>   
 </template>
 
@@ -161,9 +161,9 @@ or embed a style tag.
 ###accessing a controller method.
 
 ```
-<template args="$controller">
-  <h2>Hello World, {$controller.name}</h2>
-  <button click.trigger="$controller.showName()">show my name!</button>
+<template args="$my_controller_alias">
+  <h2>Hello World, {$my_controller_alias.name}</h2>
+  <button click.trigger="$my_controller_alias.showName()">show my name!</button>
 </template>
 ```
 
