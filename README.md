@@ -147,9 +147,9 @@ or embed a style tag.
 ```
 <template args="$this">
     <style>
-    	.especial-tag{
-	
-	}
+    .especial-tag{
+    	background-color:red;
+    }
     </style>
     <require from="./example/hello-world as sea-bienvenido"></require>
     <h1 class="especial-tag">My First APP with {$this.title}</h1>
