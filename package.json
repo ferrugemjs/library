@@ -18,16 +18,16 @@
     "url": "https://github.com/ferrugemjs/library"
   },
   "jspm": {
-    "main": "ferrugem-bootstrap",
-    "format": "amd",
-    "jspmPackage": true,
     "registry": "npm",
+    "main": "ferrugem-bootstrap",
+    "jspmPackage":true,
+    "format": "amd",
     "directories": {
       "dist": "dist/core"
     },
     "dependencies": {
       "css": "github:systemjs/plugin-css@^0.1.27",
-      "incremental-dom": "npm:incremental-dom@^0.4.1"
+      "incremental-dom": "^0.4.1"
     },
     "devDependencies": {}
   },
