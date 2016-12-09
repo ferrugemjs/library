@@ -142,6 +142,21 @@ you can also import a css file for your module.
 </template>
 
 ```
+or embed a style tag. 
+
+```
+<template args="$controller">
+    <style>
+    	.especial-tag{
+	
+	}
+    </style>
+    <require from="./example/hello-world as sea-bienvenido"></require>
+    <h1 class="especial-tag">My First APP with {$controller.title}</h1>
+    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
+</template>
+
+```
 
 ###accessing a controller method.
 
