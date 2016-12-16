@@ -9,7 +9,8 @@
     "watch": "gulp watch",
     "compile": "gulp compile",
     "convert": "gulp template",
-    "postinstall": "jspm install"
+    "postinstall": "jspm install",
+    "build": "gulp build"
   },
   "author": "ferrugemjs",
   "license": "ISC",

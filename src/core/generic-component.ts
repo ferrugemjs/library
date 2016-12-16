@@ -51,8 +51,17 @@ let unique_id_ui_component_store:number = new Date().getMilliseconds();
 export class GenericComponent{
 	public _$el$domref: IModuleConfig;
 	private _alredy_load_module :boolean;
+	private _$content:Function;
 
-	public content():GenericComponent{
+	public content($content?:Function):GenericComponent{
+
+		if($content){
+			console.log('setting content');
+			this._$content = $content;
+		}else if(this._$content){
+			console.log('calling the content');
+			this._$content();
+		}
 		return this;
 	}
 	public refresh():GenericComponent{

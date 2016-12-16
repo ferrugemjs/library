@@ -5,7 +5,12 @@ var ts = require('gulp-typescript');
 var tsConfig = require("../tsconfig.json").compilerOptions;
 
 gulp.task('compile',function(){
-    //console.log(""+destPackagePathAppView);
+    return gulp.src(["./src/**/*.ts"])
+        .pipe(ts(tsConfig))
+        .pipe(gulp.dest(tsConfig.outDir));   
+});
+
+gulp.task('build',function(){
     return gulp.src(["./src/**/*.ts"])
         .pipe(ts(tsConfig))
         .pipe(uglify())
