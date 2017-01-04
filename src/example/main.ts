@@ -18,6 +18,9 @@ export class Main{
         console.log('main attached!');	
     	//console.log(`IM attached with ${this.id} and ${this.title} `);
     }
+    private showAlert():void{
+        alert('show cara!!!!');        
+    }
 
 }
 /*

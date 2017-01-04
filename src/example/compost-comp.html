@@ -1,16 +1,19 @@
 <template name="compostComp" args="$this">
 	<style>
-		.the-power-is-mine{
+		.the-power-is-mine2{
 			border:4px solid yellow;
 			background-color:green;
 		}
 	</style>
  	<require from="./sub-comp"></require>	
 	<div class="the-power-is-mine">
-		<h3>IM A COMPOST ELEMENT</h3>
+		<h3>IM A COMPOST ELEMENT {$this.especialname}</h3>
 	</div>	
 	<h5>before</h5>		
 	<content><strong>hahahahah</strong></content>	
 	<h5>after</h5>
+	<span>{$this.calculado}</span>
+	<!--
 	<sub-comp name="luke" nameComp="vader"></sub-comp>
+	-->
 </template>

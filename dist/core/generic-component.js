@@ -1,1 +1,104 @@
-define(["require","exports","incremental-dom"],function(t,e,i){"use strict";var n=function(){function t(){}return t.prototype.changeProps=function(t){if(t&&t.length>1)for(var e=t.length,i=0;i<e;i+=2){var n=t[i],r=t[i+1],o="set"+n.replace(/(^\D)/g,function(t,e){return t.toUpperCase()});this[o]?this[o](r):this[n]=r}},t.prototype.configComponent=function(t,e,i){for(var n=[],r=3;r<arguments.length;r++)n[r-3]=arguments[r];return n&&(i||(i=[]),n.forEach(function(t){i.push(t)})),this._$el$domref={tag:t,target:e,host_vars:i},this},t}();e.AuxClass=n;var r=(new Date).getMilliseconds(),o=function(){function t(){}return t.prototype.content=function(t){return t?this._$content$_=t:this._$content$_&&this._$content$_(),this},t.prototype.refresh=function(){if(this._$el$domref)if(document.getElementById(this._$el$domref.target))i.patch(document.getElementById(this._$el$domref.target),this.render.bind(this),this),!this._alredy_load_module&&this.attached&&(this._alredy_load_module=!0,this.attached());else if(this._$el$domref.target){var t="custom_element_id_"+r++;this._$el$domref.target=t,i.elementOpen("div",this._$el$domref.target,["id",this._$el$domref.target,"class",this._$el$domref.tag]),this.render.call(this,this),i.elementClose("div"),!this._alredy_load_module&&this.attached&&(this._alredy_load_module=!0,this.attached(),n.prototype.changeProps.call(this,this._$el$domref.host_vars))}else if(this.detached){this.detached();var e=this;setTimeout(function(){e=null})}return this},t}();e.GenericComponent=o});
+define(["require", "exports", "incremental-dom"], function (require, exports, _IDOM) {
+    "use strict";
+    var AuxClass = (function () {
+        function AuxClass() {
+        }
+        AuxClass.prototype.changeProps = function (host_vars) {
+            if (host_vars && host_vars.length > 1) {
+                var host_vars_count = host_vars.length;
+                for (var i = 0; i < host_vars_count; i += 2) {
+                    var prop = host_vars[i];
+                    var newValue = host_vars[i + 1];
+                    var _onChangedFunction = "set" + prop.replace(/(^\D)/g, function (g0, g1) {
+                        return g0.toUpperCase();
+                    });
+                    if (prop.indexOf(".") > -1) {
+                        console.log(prop);
+                        eval("this." + prop + "='" + newValue + "'");
+                        newValue();
+                    }
+                    else if (this[_onChangedFunction]) {
+                        this[_onChangedFunction](newValue);
+                    }
+                    else {
+                        this[prop] = newValue;
+                    }
+                }
+                ;
+            }
+        };
+        AuxClass.prototype.configComponent = function (tag, target, host_vars) {
+            var extra_attr = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                extra_attr[_i - 3] = arguments[_i];
+            }
+            if (extra_attr) {
+                if (!host_vars) {
+                    host_vars = [];
+                }
+                ;
+                extra_attr.forEach(function (key) {
+                    host_vars.push(key);
+                });
+            }
+            ;
+            this._$el$domref = { tag: tag, target: target, host_vars: host_vars };
+            return this;
+        };
+        return AuxClass;
+    }());
+    exports.AuxClass = AuxClass;
+    var unique_id_ui_component_store = new Date().getMilliseconds();
+    var GenericComponent = (function () {
+        function GenericComponent() {
+        }
+        GenericComponent.prototype.content = function ($content$) {
+            if ($content$) {
+                this._$content$_ = $content$;
+            }
+            else if (this._$content$_) {
+                this._$content$_();
+            }
+            return this;
+        };
+        GenericComponent.prototype.refresh = function () {
+            if (this._$el$domref) {
+                console.log(this._$el$domref.host_vars);
+                if (document.getElementById(this._$el$domref.target)) {
+                    AuxClass.prototype.changeProps.call(this, this._$el$domref.host_vars);
+                    delete this._$el$domref.host_vars;
+                    _IDOM.patch(document.getElementById(this._$el$domref.target), this.render.bind(this), this);
+                    if (!this._alredy_load_module && this.attached) {
+                        this._alredy_load_module = true;
+                        this.attached();
+                    }
+                }
+                else if (this._$el$domref.target) {
+                    AuxClass.prototype.changeProps.call(this, this._$el$domref.host_vars);
+                    delete this._$el$domref.host_vars;
+                    var tmpIdElement = "custom_element_id_" + (unique_id_ui_component_store++);
+                    this._$el$domref.target = tmpIdElement;
+                    _IDOM.elementOpen("div", this._$el$domref.target, ['id', this._$el$domref.target, 'class', this._$el$domref.tag]);
+                    this.render.call(this, this);
+                    _IDOM.elementClose("div");
+                    if (!this._alredy_load_module && this.attached) {
+                        this._alredy_load_module = true;
+                        this.attached();
+                    }
+                }
+                else {
+                    if (this.detached) {
+                        this.detached();
+                        var $this_1 = this;
+                        setTimeout(function () {
+                            $this_1 = null;
+                        });
+                    }
+                }
+            }
+            return this;
+        };
+        return GenericComponent;
+    }());
+    exports.GenericComponent = GenericComponent;
+});

@@ -20,7 +20,12 @@ export class AuxClass{
 				let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
 					return g0.toUpperCase();
 				});
-				if(this[_onChangedFunction]){
+
+				if(prop.indexOf(".") > -1){
+					//console.log(prop);
+					eval(`this.${prop}='${newValue}'`);
+					//newValue();
+				}else if(this[_onChangedFunction]){
 					this[_onChangedFunction](newValue);
 				}else{
                    	this[prop] = newValue;
@@ -63,13 +68,24 @@ export class GenericComponent{
 	}
 	public refresh():GenericComponent{
 		if (this._$el$domref) {
+			console.log(this._$el$domref.host_vars);
 			if(document.getElementById(this._$el$domref.target)){
+
+				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
+
+				delete this._$el$domref.host_vars;
+
 				_IDOM.patch(document.getElementById(this._$el$domref.target), (<any>this).render.bind(this),this);
 				if(!this._alredy_load_module && (<any>this).attached){
 					this._alredy_load_module = true;
 					(<any>this).attached();
 				}	
 			}else if(this._$el$domref.target){
+
+				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
+
+				delete this._$el$domref.host_vars;
+
 				let tmpIdElement: string = "custom_element_id_"+(unique_id_ui_component_store++);
 				this._$el$domref.target = tmpIdElement;
 				//console.log(tmpIdElement);
@@ -80,7 +96,7 @@ export class GenericComponent{
 					this._alredy_load_module = true;
 					(<any>this).attached();
 					//console.log('hora de mudar ne!!!');
-					AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
+					//AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
 				}
 			}else{
 				if((<any>this).detached){
