@@ -13,9 +13,7 @@ define(["require", "exports", "incremental-dom"], function (require, exports, _I
                         return g0.toUpperCase();
                     });
                     if (prop.indexOf(".") > -1) {
-                        console.log(prop);
                         eval("this." + prop + "='" + newValue + "'");
-                        newValue();
                     }
                     else if (this[_onChangedFunction]) {
                         this[_onChangedFunction](newValue);
@@ -28,20 +26,7 @@ define(["require", "exports", "incremental-dom"], function (require, exports, _I
             }
         };
         AuxClass.prototype.configComponent = function (tag, target, host_vars) {
-            var extra_attr = [];
-            for (var _i = 3; _i < arguments.length; _i++) {
-                extra_attr[_i - 3] = arguments[_i];
-            }
-            if (extra_attr) {
-                if (!host_vars) {
-                    host_vars = [];
-                }
-                ;
-                extra_attr.forEach(function (key) {
-                    host_vars.push(key);
-                });
-            }
-            ;
+            console.log(host_vars);
             this._$el$domref = { tag: tag, target: target, host_vars: host_vars };
             return this;
         };

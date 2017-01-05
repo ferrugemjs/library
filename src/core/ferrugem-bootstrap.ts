@@ -25,7 +25,7 @@ System.import(app_url+".html").then((_mod_init_app:any)=>{
 	let _controllerName:string = Object.keys(_mod_init_app)[0];
 	//console.log(_mod_init_app);
 	let _controller_ = new _mod_init_app[_controllerName]();
-	AuxClass.prototype.configComponent.call(_controller_,'init-app-tag', app_uid, [], null);
+	AuxClass.prototype.configComponent.call(_controller_,'init-app-tag', app_uid, {});
 	_controller_.refresh();
 });
 

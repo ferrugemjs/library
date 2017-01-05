@@ -33,19 +33,9 @@ export class AuxClass{
 			};	        
 		}
 	}
-	public configComponent(tag: string, target: string, host_vars: string[], ...extra_attr: string[]): GenericComponent {
+	public configComponent(tag: string, target: string, host_vars:{}): GenericComponent {
 		//console.log(tag);
-		//console.log(host_vars);
-		//console.log(target);			
-		if (extra_attr) {
-			if (!host_vars) {
-				host_vars = [];
-			};
-			extra_attr.forEach((key) => {
-				host_vars.push(key);
-			});
-		};
-		//console.log(host_vars);
+		console.log(host_vars);
 		(<any>this)._$el$domref = { tag: tag, target: target, host_vars: host_vars };
 		return <any>this;
 	}
@@ -69,6 +59,7 @@ export class GenericComponent{
 	public refresh():GenericComponent{
 		if (this._$el$domref) {
 			console.log(this._$el$domref.host_vars);
+			
 			if(document.getElementById(this._$el$domref.target)){
 
 				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);

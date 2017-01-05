@@ -20,7 +20,7 @@ define(["require", "exports", "./generic-component", "./generic-component"], fun
     System.import(app_url + ".html").then(function (_mod_init_app) {
         var _controllerName = Object.keys(_mod_init_app)[0];
         var _controller_ = new _mod_init_app[_controllerName]();
-        generic_component_1.AuxClass.prototype.configComponent.call(_controller_, 'init-app-tag', app_uid, [], null);
+        generic_component_1.AuxClass.prototype.configComponent.call(_controller_, 'init-app-tag', app_uid, {});
         _controller_.refresh();
     });
     exports.GenericComponent = generic_component_2.GenericComponent;
