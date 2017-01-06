@@ -4,22 +4,26 @@ define(["require", "exports", "incremental-dom"], function (require, exports, _I
         function AuxClass() {
         }
         AuxClass.prototype.changeProps = function (host_vars) {
-            if (host_vars && host_vars.length > 1) {
-                var host_vars_count = host_vars.length;
-                for (var i = 0; i < host_vars_count; i += 2) {
-                    var prop = host_vars[i];
-                    var newValue = host_vars[i + 1];
-                    var _onChangedFunction = "set" + prop.replace(/(^\D)/g, function (g0, g1) {
-                        return g0.toUpperCase();
+            if (host_vars) {
+                for (var propOrign in host_vars) {
+                    var prop = propOrign.toLowerCase().replace(/-(.)/g, function (match, group1) {
+                        return group1.toUpperCase();
                     });
+                    var newValue = host_vars[propOrign];
                     if (prop.indexOf(".") > -1) {
+                        console.log(prop);
                         eval("this." + prop + "='" + newValue + "'");
                     }
-                    else if (this[_onChangedFunction]) {
-                        this[_onChangedFunction](newValue);
-                    }
                     else {
-                        this[prop] = newValue;
+                        var _onChangedFunction = "set" + prop.replace(/(^\D)/g, function (g0, g1) {
+                            return g0.toUpperCase();
+                        });
+                        if (this[_onChangedFunction]) {
+                            this[_onChangedFunction](newValue);
+                        }
+                        else {
+                            this[prop] = newValue;
+                        }
                     }
                 }
                 ;

@@ -9,26 +9,28 @@ interface IModuleConfig{
 export class AuxClass{
 	public changeProps(host_vars:string[]):void{
 		//console.log(host_vars);
-		if(host_vars && host_vars.length > 1){
-			let host_vars_count:number = host_vars.length;
-			for(let i:number = 0;i < host_vars_count;i+=2){
-				//console.log(i);
-				//console.log(host_vars[i]);
-				//console.log(host_vars[i],host_vars[i+1]);
-				let prop:string = host_vars[i];
-				let newValue:any = host_vars[i+1];
-				let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
-					return g0.toUpperCase();
-				});
-
+		if(host_vars){			
+			for(let propOrign in host_vars){
+				let prop:string = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
+        				return group1.toUpperCase();
+    			});
+				let newValue:any = host_vars[propOrign];
 				if(prop.indexOf(".") > -1){
 					//console.log(prop);
+					
+					console.log(prop);
 					eval(`this.${prop}='${newValue}'`);
 					//newValue();
-				}else if(this[_onChangedFunction]){
-					this[_onChangedFunction](newValue);
 				}else{
-                   	this[prop] = newValue;
+					//newValue = host_vars[prop];
+					let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
+						return g0.toUpperCase();
+					});
+					if(this[_onChangedFunction]){						
+						this[_onChangedFunction](newValue);
+					}else{						
+                   		this[prop] = newValue;
+                   	}
                 }
 			};	        
 		}
