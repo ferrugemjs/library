@@ -19,7 +19,9 @@ export class CompostComp{
 	}
 	private triggerFn():void{
 		if(this.myfnext){
+			this.especialname += "-"+new Date().getTime();
 			this.myfnext();
+			this.refresh();
 		}
 	}
 }

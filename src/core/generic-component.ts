@@ -3,30 +3,25 @@ import _IDOM = require("incremental-dom");
 interface IModuleConfig{
 	tag:string;
 	target:string;
-	host_vars:string[];
+	host_vars:{};
+	static_vars:{};
 }
 
 export class AuxClass{
 	public changeProps(host_vars:string[]):void{
-		//console.log(host_vars);
 		if(host_vars){			
 			for(let propOrign in host_vars){
 				let prop:string = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
         				return group1.toUpperCase();
     			});
 				let newValue:any = host_vars[propOrign];
-				if(prop.indexOf(".") > -1){
-					console.log(prop);					
-
+				if(prop.indexOf(".") > -1){										
 					let prop_inst_ref:Function =  null;
-                    eval("prop_inst_ref = this." + prop );
-                    //eval(`this.${prop}='${newValue}'`);
+                    eval("prop_inst_ref = this." + prop );                    
                     if(prop_inst_ref){
                         prop_inst_ref(newValue);
-                    }
-					//newValue();
-				}else{
-					//newValue = host_vars[prop];
+                    }					
+				}else{					
 					let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
 						return g0.toUpperCase();
 					});
@@ -39,15 +34,11 @@ export class AuxClass{
 			};	        
 		}
 	}
-	public configComponent(tag: string, target: string, host_vars:{}): GenericComponent {
-		//console.log(tag);
-		console.log(host_vars);
-		(<any>this)._$el$domref = { tag: tag, target: target, host_vars: host_vars };
+	public configComponent(tag: string, target: string, host_vars:{},static_vars:{}): GenericComponent {
+		(<any>this)._$el$domref = { tag: tag, target: target, host_vars: host_vars ,static_vars: static_vars};
 		return <any>this;
 	}
 }
-
-let unique_id_ui_component_store:number = new Date().getMilliseconds();
 
 export class GenericComponent{
 	public _$el$domref: IModuleConfig;
@@ -63,36 +54,24 @@ export class GenericComponent{
 		return this;
 	}
 	public refresh():GenericComponent{
-		if (this._$el$domref) {
-			console.log(this._$el$domref.host_vars);
-			
+		if (this._$el$domref) {					
 			if(document.getElementById(this._$el$domref.target)){
-
 				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
-
 				delete this._$el$domref.host_vars;
-
 				_IDOM.patch(document.getElementById(this._$el$domref.target), (<any>this).render.bind(this),this);
 				if(!this._alredy_load_module && (<any>this).attached){
 					this._alredy_load_module = true;
 					(<any>this).attached();
 				}	
 			}else if(this._$el$domref.target){
-
 				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
-
 				delete this._$el$domref.host_vars;
-
-				let tmpIdElement: string = "custom_element_id_"+(unique_id_ui_component_store++);
-				this._$el$domref.target = tmpIdElement;
-				//console.log(tmpIdElement);
 				_IDOM.elementOpen("div", this._$el$domref.target, ['id',this._$el$domref.target,'class',this._$el$domref.tag]);
 					(<any>this).render.call(this,this);
 				_IDOM.elementClose("div");
 				if(!this._alredy_load_module && (<any>this).attached){
 					this._alredy_load_module = true;
 					(<any>this).attached();
-					//console.log('hora de mudar ne!!!');
 					//AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
 				}
 			}else{
@@ -103,9 +82,7 @@ export class GenericComponent{
 						$this=null;
 					});
 				}
-			}
-
-			
+			}	
 		}
 		return this;
 	}

@@ -1,4 +1,4 @@
-<template name="compostComp" args="$this">
+<template>
 	<style>
 		.the-power-is-mine2{
 			border:4px solid yellow;
@@ -9,13 +9,15 @@
  	<require from="./sub-comp"></require>	
  	-->
 	<div class="the-power-is-mine">
-		<h3>IM A COMPOST ELEMENT {$this.especialname}</h3>
+		<h3>IM A COMPOST ELEMENT {especialname}</h3>
 	</div>	
-	<h5 alt="{$this.calculado}">before</h5>		
+	<h5 alt="{calculado}">before</h5>	
+
 	<content></content>	
-	<h5 click.trigger="$this.triggerFn">after</h5>
-	<span onclick="{$this.triggerFn.bind($this)}">{$this.calculado}</span>
+	
+	<h5 click.trigger="triggerFn">after</h5>
 	<!--
+	<span onclick="{$this.triggerFn.bind($this)}">{calculado}</span>
 	<sub-comp name="luke" nameComp="vader"></sub-comp>
 	-->
 </template>
