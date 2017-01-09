@@ -1,11 +1,47 @@
 <template name="Main" args="$this">
 	<require from="./compost-comp"></require>
-	<span>voltei teste</span>
+	<span onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</span>
 	
-	<compost-comp especialname="humm modificado" calculado="{10+5}" on-event-msg.a="{$this.id}">
+	<compost-comp especialname="humm modificado" calculado="{10+5}" on-event-msg.a="$this.showAlert">
 		<span>whats???</span>
 	</compost-comp>
+
+	<if condition="!$this.foolArray.length">
+		<span>ok pode passar</span>
+	</if>
 	
+	
+	<for each="item in $this.foolArray">
+		<span> - {item} - </span>
+	</for>
+
+	<for each="item,my$indx in $this.foolArray">
+		<span> {my$indx} : {item} - </span>
+	</for>
+
+
+	<c if="!@foolArray.length">
+		<span>ok pode passar</span>
+	</c>
+
+
+	<c each="item,my$indx in foolArray">
+		<span> ${my$indx} : ${item} - </span>
+	</c>
+
+	<c if="!foolArray.length">
+		<span>ok pode passar</span>
+	<c elseif="2 != 3">
+
+	<c else>
+
+	</c>
+
+
+
+
+	
+
 	<!--
 	<require from="./simple-comp as simple-comp-plus"></require>
 	<h1>MAIN!!!</h1>
@@ -15,7 +51,7 @@
 	<compost-comp>
 		<span><simple-comp-plus texto="Component dentro de component"></simple-comp-plus></span>
 	</compost-comp>
-	 <h1 click.trigger="$this.showId()" class="especial">Teste {$this.id}</h1>
+	 <h1 click.trigger="$this.showId" class="especial">Teste {$this.id}</h1>
 	 <h3>total do loop:{$this.foolArray.length}</h3>
 	 <simple-comp-plus each="fool in $this.foolArray" texto="{fool}">{fool}</simple-comp-plus>
 	 <h2 style="color:blue">avulso</h2>

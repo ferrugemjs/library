@@ -5,14 +5,16 @@
 			background-color:green;
 		}
 	</style>
+	<!--
  	<require from="./sub-comp"></require>	
+ 	-->
 	<div class="the-power-is-mine">
 		<h3>IM A COMPOST ELEMENT {$this.especialname}</h3>
 	</div>	
 	<h5 alt="{$this.calculado}">before</h5>		
 	<content></content>	
-	<h5>after</h5>
-	<span>{$this.calculado}</span>
+	<h5 click.trigger="$this.triggerFn">after</h5>
+	<span onclick="{$this.triggerFn.bind($this)}">{$this.calculado}</span>
 	<!--
 	<sub-comp name="luke" nameComp="vader"></sub-comp>
 	-->

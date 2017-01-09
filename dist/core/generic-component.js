@@ -12,7 +12,11 @@ define(["require", "exports", "incremental-dom"], function (require, exports, _I
                     var newValue = host_vars[propOrign];
                     if (prop.indexOf(".") > -1) {
                         console.log(prop);
-                        eval("this." + prop + "='" + newValue + "'");
+                        var prop_inst_ref = null;
+                        eval("prop_inst_ref = this." + prop);
+                        if (prop_inst_ref) {
+                            prop_inst_ref(newValue);
+                        }
                     }
                     else {
                         var _onChangedFunction = "set" + prop.replace(/(^\D)/g, function (g0, g1) {

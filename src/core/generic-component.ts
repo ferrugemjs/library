@@ -16,10 +16,14 @@ export class AuxClass{
     			});
 				let newValue:any = host_vars[propOrign];
 				if(prop.indexOf(".") > -1){
-					//console.log(prop);
-					
-					console.log(prop);
-					eval(`this.${prop}='${newValue}'`);
+					console.log(prop);					
+
+					let prop_inst_ref:Function =  null;
+                    eval("prop_inst_ref = this." + prop );
+                    //eval(`this.${prop}='${newValue}'`);
+                    if(prop_inst_ref){
+                        prop_inst_ref(newValue);
+                    }
 					//newValue();
 				}else{
 					//newValue = host_vars[prop];
