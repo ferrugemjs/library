@@ -1,5 +1,22 @@
-<template args="$this">
+<template class="custom-class-css">
+	<style type="text/css">
+		.custom-class-css{
+			background-color:#facada;
+			border:4px dotted #babaca;
+		}
+	</style>
 	<h5>OPs IM a sub-comp</h5>
-	<p>{$this.name}</p>
-	<span>{$this.nameComp}</span>
+	<p>		
+		<input value.bind="this.name" value="${this.name}" type="text" value="okokok"/>
+		${this.name}
+	</p>
+	<p>			
+		<select value.bind="this.nameComp" value="${this.nameComp}">
+			<for each="opt in this.options">
+				<option selected="${opt===this.nameComp?true:false}" value="${opt}">${opt}</option>
+			</for>
+		</select>
+		<span>${this.nameComp}</span>
+	</p>
+
 </template>

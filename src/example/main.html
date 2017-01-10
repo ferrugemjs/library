@@ -1,19 +1,19 @@
 <template>
 	<require from="./compost-comp"></require>
-	<span onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</span>
+	<p onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>
 	
 
 	
-	<if condition="!foolArray.length">
-		<span>ok pode passar</span>
+	<if condition="this.foolArray.length">
+		<span click.trigger="this.showAlert">ok pode passar</span>
 	</if>
 		
-	<for each="item in foolArray">
-		<span> - {item} - </span>
+	<for each="item in this.foolArray">
+		<p> - ${item} - </p>
 	</for>
 
-	<for each="item,my$indx in foolArray">
-		<span> {my$indx} : {item} - </span>
+	<for each="item,my$indx in this.foolArray">
+		<span> ${my$indx} : ${item} - </span>
 	</for>
 	
 	<!--
@@ -31,7 +31,7 @@
 	 <h2 style="color:blue">avulso</h2>
 	 <simple-comp-plus texto="!!!elemento avulso!!!"></simple-comp-plus>
 	 -->
-	<compost-comp especialname="humm modificado" calculado="{10+5}" on-event-msg.a="showAlert">
+	<compost-comp especialname="humm modificado" calculado="${10+5}" on-event-msg.a="this.showAlert">
 		<span>whats???</span>
 	</compost-comp>
 </template>

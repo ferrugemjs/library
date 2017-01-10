@@ -4,7 +4,7 @@ interface IModuleConfig{
 	tag:string;
 	target:string;
 	host_vars:{};
-	static_vars:{};
+	static_vars:{className?:string,id?:string};
 }
 
 export class AuxClass{
@@ -35,11 +35,19 @@ export class AuxClass{
 		}
 	}
 	public configComponent(tag: string, target: string, host_vars:{},static_vars:{}): GenericComponent {
-		(<any>this)._$el$domref = { tag: tag, target: target, host_vars: host_vars ,static_vars: static_vars};
+		let tmpNewProps:IModuleConfig = { tag: tag, target: target, host_vars: host_vars ,static_vars: static_vars||{}};
+		if((<any>this)._$el$domref && (<any>this)._$el$domref.static_vars){
+			tmpNewProps.static_vars.id = (<any>this)._$el$domref.static_vars.id;
+			tmpNewProps.static_vars.className = (<any>this)._$el$domref.static_vars.className;
+		}
+		//let className:string = (<any>this)._$el$domref.static_vars.className;
+		(<any>this)._$el$domref = tmpNewProps;
+		//(<any>this)._$el$domref.static_vars.className = className;
+		//console.log((<any>this)._$el$domref);
 		return <any>this;
 	}
 }
-
+let uid_generated:number = new Date().getTime()+1298;
 export class GenericComponent{
 	public _$el$domref: IModuleConfig;
 	private _alredy_load_module :boolean;
@@ -54,8 +62,18 @@ export class GenericComponent{
 		return this;
 	}
 	public refresh():GenericComponent{
-		if (this._$el$domref) {					
+		let nextuid:string = 'uid_'+(uid_generated++);
+
+		if (this._$el$domref) {	
+			if(!this._$el$domref.static_vars){
+				this._$el$domref.static_vars = {};
+				
+			}
+			this._$el$domref.static_vars.id = this._$el$domref.static_vars.id||nextuid;
+			
+			
 			if(document.getElementById(this._$el$domref.target)){
+				//alredy has the target in dom
 				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
 				delete this._$el$domref.host_vars;
 				_IDOM.patch(document.getElementById(this._$el$domref.target), (<any>this).render.bind(this),this);
@@ -64,9 +82,17 @@ export class GenericComponent{
 					(<any>this).attached();
 				}	
 			}else if(this._$el$domref.target){
+				//first loader in dom
 				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
 				delete this._$el$domref.host_vars;
-				_IDOM.elementOpen("div", this._$el$domref.target, ['id',this._$el$domref.target,'class',this._$el$domref.tag]);
+				
+				let className:string = this._$el$domref.tag;
+				if(this._$el$domref.static_vars.className){
+					className = this._$el$domref.static_vars.className;
+				};			
+				
+				this._$el$domref.target = this._$el$domref.static_vars.id;
+				_IDOM.elementOpen("div", this._$el$domref.static_vars.id, ['id',this._$el$domref.static_vars.id,'class',className]);
 					(<any>this).render.call(this,this);
 				_IDOM.elementClose("div");
 				if(!this._alredy_load_module && (<any>this).attached){

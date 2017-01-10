@@ -1,21 +1,24 @@
 <template>
+	<require from="./sub-comp"></require>
 	<style>
-		.the-power-is-mine2{
+		.compost-comp{
 			border:4px solid yellow;
 			background-color:green;
 		}
+		.compost-comp > .custom-class-css{
+			padding:10px;
+		}
 	</style>
-	<!--
- 	<require from="./sub-comp"></require>	
- 	-->
-	<div class="the-power-is-mine">
-		<h3>IM A COMPOST ELEMENT {especialname}</h3>
+	<div class="hipertext">
+		<h3>IM A COMPOST ELEMENT ${this.especialname}</h3>
 	</div>	
-	<h5 alt="{calculado}">before</h5>	
+	<h5 alt="{this.calculado}">before</h5>	
 
 	<content></content>	
 	
-	<h5 click.trigger="triggerFn">after</h5>
+	<h5 click.trigger="this.triggerFn">after</h5>
+
+	<sub-comp name="luke" name-comp="x9"></sub-comp>
 	<!--
 	<span onclick="{$this.triggerFn.bind($this)}">{calculado}</span>
 	<sub-comp name="luke" nameComp="vader"></sub-comp>
