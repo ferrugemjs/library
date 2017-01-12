@@ -20,10 +20,9 @@ jspm install npm:ferrugemjs
 clone
 [skeleton-typescript](https://github.com/ferrugemjs/skeleton-typescript)
 
+####initialization
 
-####Do it yourself and see why FerrugemJS is a simple, reactive, conventional and non-intrusive library.
-
-in your index.html file
+index.html file
 
 ```
   <body>    
@@ -33,17 +32,18 @@ in your index.html file
     </script>
   </body>
 ```
-
-###conventional
 FerrugemJS will look for the first page element with the attribute "app" to start the application and if not found it, will use the tag "body".
-Just create app.js files and app.html in the same directory of the index.html page.
-If you want to modify the path of the file app.js just add this information to the app attribute as below:
+Just create app.ts files and app.html in the same directory of the index.html page.
+If you want to modify the path of the init file just add this information to the app attribute as below:
 ```
 <div app="other_path/init_app_file"></div>
 ```
+####modules,custom tag
+To create a module witch will be a custom tag do you need two files, ex: "module-a.ts" and "module-a.html".
+By convention FerrugemJS know that "module-a.ts" is a controller file and "module-a.html" is the view of it and you can easily import it into your main app html file or into other module and use as a component with a custom tag.
 
-###non-intrusive
-your app.ts file.
+ex: 
+"app.ts" file.
 ```
 export class MyBasicApp{
     private title:string;
@@ -52,30 +52,13 @@ export class MyBasicApp{
     }
 }
 ```
-Yes, its simple class using only "typescript" or "javascript 2015", without any interference from the library.
+Yes, its a simple class using only "typescript" or "javascript 2015", without any interference from the library.
 
-###simple
-your app.html file.
+"app.html" file.
 ```
 <template>
     <h1>My First APP with ${this.title}</h1>
 </template>
-```
-
-###reactive
-```
-export class HelloWorld{
-  private name:string;	
-  constructor(){
-    this.name = "";
-  }
-  attached():void{
-	this.name = "changed after attached event";
-	//a reactive update after attached event
-	//using the "refresh" method, the only injectable method by the library.
-	this.refresh();
-  }
-}
 ```
 
 ###module lifecycle
@@ -88,6 +71,32 @@ By implementing the method your module will be prompted for it once your object 
 
 *set+attribute name:
 By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
+
+###one-way data binding
+
+When you set the "value.bind" in a input component it will change the "name" attribute in controller when the user change its value.
+
+```
+<template>
+  <h2>Hello World, ${this.name}</h2>
+  <input value.bind="this.name"/>
+</template>
+```
+
+###manual reactivity
+```
+export class HelloWorld{
+  private name:string;	
+  constructor(){
+    this.name = "";
+  }
+  anyMethod():void{	
+	//a reactive update after 'anyMethod' is calling
+	this.refresh();
+  }
+}
+```
+
 
 ###template stuffs
 
