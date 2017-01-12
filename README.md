@@ -135,8 +135,14 @@ for each
 
 ```
 <template>
-  <h2>Hello World, ${this.name}</h2>
-  <button click.trigger="showName">show my name!</button>
+ <ul>
+  <for each="item in this.itens">
+   <li>${item.name}</li>
+  </for>
+  <for each="item,$index in this.itens">
+   <li>${$index} - ${item.name}</li>
+  </for>
+ </ul>
 </template>
 ```
 
