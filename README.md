@@ -1,7 +1,7 @@
 #FerrugemJS
 ![Ferrugem Logo](/assets/img/ferrugemjs.png) 
 ###A simple library, reactive, conventional and non-intrusive!
-**FerrugemJS** is inspired by [Aurelia](http://aurelia.io/) and [React](https://facebook.github.io/react/) using [Incremental DOM](http://google.github.io/incremental-dom/) with template.
+**FerrugemJS** is inspired by [Aurelia](http://aurelia.io/) and [React](https://facebook.github.io/react/) using [Incremental DOM](http://google.github.io/incremental-dom/) with a html template engine.
 
 ####No jquery required, only 2kB!
 
@@ -91,9 +91,7 @@ By implementing the method with the module attribute in CamelCase format your mo
 
 ###template stuffs
 
-Template methods
-
-*If,elseif,else
+if,elseif,else
 
 ```
 <template>
@@ -124,7 +122,7 @@ Template methods
 </template>
 ```
 
-*For Each
+for each
 
 ```
 <template>
@@ -133,7 +131,7 @@ Template methods
 </template>
 ```
 
-how to import the hello-word module into your app.html
+import other module
 
 ```
 <template>
@@ -142,7 +140,7 @@ how to import the hello-word module into your app.html
     <hello-world name="C-3PO"></hello-world>   
 </template>
 ```
-how to give an alias for your module. 
+give an alias in module import statement. 
 
 ```
 <template>
@@ -153,7 +151,7 @@ how to give an alias for your module.
 
 ```
 
-how to import a css file for your module. 
+import a css file. 
 
 ```
 <template>
@@ -164,7 +162,7 @@ how to import a css file for your module.
 </template>
 
 ```
-how to embed a style tag. 
+embed a style tag. 
 
 ```
 <template>
@@ -180,7 +178,7 @@ how to embed a style tag.
 
 ```
 
-how to change the the module css className
+change the the css className 
 
 ```
 <template class="my-custom-classname">
@@ -198,7 +196,6 @@ how to access a controller method.
 
 ```
 <template>
-  <h2>Hello World, ${this.name}</h2>
   <button click.trigger="showName">show my name!</button>
 </template>
 ```
