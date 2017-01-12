@@ -15,12 +15,9 @@ export class AuxClass{
         				return group1.toUpperCase();
     			});
 				let newValue:any = host_vars[propOrign];
-				if(prop.indexOf(".") > -1){										
-					let prop_inst_ref:Function =  null;
-                    eval("prop_inst_ref = this." + prop );                    
-                    if(prop_inst_ref){
-                        prop_inst_ref(newValue);
-                    }					
+				if(prop.indexOf(".") > -1){		
+                    let prop_splited:string[] = prop.split(".");
+                    this[prop_splited[0]][prop_splited[1]](newValue);		
 				}else{					
 					let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
 						return g0.toUpperCase();
@@ -35,10 +32,11 @@ export class AuxClass{
 		}
 	}
 	public configComponent(tag: string, target: string, host_vars:{},static_vars:{}): GenericComponent {
+		//console.log(this["$className$ref_style_name$"]);
 		let tmpNewProps:IModuleConfig = { tag: tag, target: target, host_vars: host_vars ,static_vars: static_vars||{}};
 		if((<any>this)._$el$domref && (<any>this)._$el$domref.static_vars){
 			tmpNewProps.static_vars.id = (<any>this)._$el$domref.static_vars.id;
-			tmpNewProps.static_vars.className = (<any>this)._$el$domref.static_vars.className;
+			//tmpNewProps.static_vars.className = this["$className$ref_style_name$"];
 		}
 		//let className:string = (<any>this)._$el$domref.static_vars.className;
 		(<any>this)._$el$domref = tmpNewProps;
@@ -86,11 +84,12 @@ export class GenericComponent{
 				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
 				delete this._$el$domref.host_vars;
 				
-				let className:string = this._$el$domref.tag;
+				let className:string = this["$className$ref_style_name$"]||this._$el$domref.tag;
+				/*
 				if(this._$el$domref.static_vars.className){
 					className = this._$el$domref.static_vars.className;
 				};			
-				
+				*/
 				this._$el$domref.target = this._$el$domref.static_vars.id;
 				_IDOM.elementOpen("div", this._$el$domref.static_vars.id, ['id',this._$el$domref.static_vars.id,'class',className]);
 					(<any>this).render.call(this,this);

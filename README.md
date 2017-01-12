@@ -158,7 +158,64 @@ or embed a style tag.
 
 ```
 
+you can custom the component className
+
+```
+<template class="my-custom-classname">
+    <style>
+    .my-custom-classname{
+      background-color:red;
+    }
+    </style>
+    <h3>My element with a custom className</h3>
+</template>
+
+```
+
 ###accessing a controller method.
+
+```
+<template>
+  <h2>Hello World, ${this.name}</h2>
+  <button click.trigger="showName">show my name!</button>
+</template>
+```
+
+
+###Template methods
+
+####If,elseif,else
+
+```
+<template>
+  <if condition="this.name==='test'">
+    <span>name is test</span>
+  </if>
+
+  <if condition="this.name==='test'">
+    <span>name is test</span>
+  <else>
+    <span>I dont know you!</span>
+  </if>
+
+  <if condition="this.name==='test'">
+    <span>name is test</span>
+  <elseif condition="this.name==='test2'">
+    <span>ok, you are test2</span>
+  </if>
+
+  <if condition="this.name==='test'">
+    <span>name is test</span>
+  <elseif condition="this.name==='test2'">
+    <span>ok, you are test2</span>
+  <else>
+    <span>I dont know you!</span>  
+  </if>
+
+</template>
+```
+
+####For Each
 
 ```
 <template>
