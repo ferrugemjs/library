@@ -1,7 +1,7 @@
 #FerrugemJS
 ![Ferrugem Logo](/assets/img/ferrugemjs.png) 
 ###A simple library, reactive, conventional and non-intrusive!
-**FerrugemJS** is inspired by [Aurelia](http://aurelia.io/) and [React](https://facebook.github.io/react/) using [Incremental DOM](http://google.github.io/incremental-dom/) with [superviewjs](https://github.com/davidjamesstone/superviews.js) as template language.
+**FerrugemJS** is inspired by [Aurelia](http://aurelia.io/) and [React](https://facebook.github.io/react/) using [Incremental DOM](http://google.github.io/incremental-dom/) with a html template engine.
 
 ####No jquery required, only 2kB!
 
@@ -16,12 +16,13 @@ Latest ✔ | Latest ✔ | 9+ ✔ | Latest ✔ | 6.1+ ✔ | Latest ✔ |
 #####install
 jspm install npm:ferrugemjs
 
-####search for a starter project ?
+#####how to start:
 clone
 [skeleton-typescript](https://github.com/ferrugemjs/skeleton-typescript)
 
-#####how to start
-in your index.html file
+####initialization
+
+index.html file
 
 ```
   <body>    
@@ -31,17 +32,18 @@ in your index.html file
     </script>
   </body>
 ```
-
-###conventional
 FerrugemJS will look for the first page element with the attribute "app" to start the application and if not found it, will use the tag "body".
-Just create app.js files and app.html in the same directory of the index.html page.
-If you want to modify the path of the file app.js just add this information to the app attribute as below:
+Just create app.ts files and app.html in the same directory of the index.html page.
+If you want to modify the path of the init file just add this information to the app attribute as below:
 ```
 <div app="other_path/init_app_file"></div>
 ```
+####modules,custom tag
+To create a module witch will be a custom tag do you need two files, ex: "module-a.ts" and "module-a.html".
+By convention FerrugemJS know that "module-a.ts" is a controller file and "module-a.html" is the view of it and you can easily import it into your main app html file or into other module and use as a component with a custom tag.
 
-###non-intrusive
-your app.js file.
+ex: 
+"app.ts" file.
 ```
 export class MyBasicApp{
     private title:string;
@@ -50,141 +52,55 @@ export class MyBasicApp{
     }
 }
 ```
-Yes, its simple class using only "typescript" or "javascript 2015", without any interference from the library.
+Yes, its a simple class using only "typescript" or "javascript 2015", without any interference from the library.
 
-###simple
-your app.html file.
+"app.html" file.
 ```
 <template>
     <h1>My First APP with ${this.title}</h1>
 </template>
 ```
 
-###reactive
+###module lifecycle
+
+*attached:
+By implementing the method your module will be prompted for it once the html is in "DOM".
+
+*detached:
+By implementing the method your module will be prompted for it once your object is detached from "DOM".
+
+*set+attribute name:
+By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
+
+###one-way data binding
+
+When you set the "value.bind" in a input component it will change the "name" attribute in controller when the user change its value.
+
+```
+<template>
+  <h2>Hello World, ${this.name}</h2>
+  <input value.bind="this.name"/>
+</template>
+```
+
+###manual reactivity
 ```
 export class HelloWorld{
   private name:string;	
   constructor(){
     this.name = "";
   }
-  attached():void{
-	this.name = "changed after attached event";
-	//a reactive update after attached event
-	//using the "refresh" method, the only injectable method by the library.
+  anyMethod():void{	
+	//a reactive update after 'anyMethod' is calling
 	this.refresh();
   }
 }
 ```
 
-###importing other modules
-create your second module in file "hello-world.js"
 
-```
-export class HelloWorld{
-  private name:string;	
-  constructor(){
-    this.name = "";
-  }
-  //by convention as the "name" attribute is modified the method "set" + "attribute name" is called.
-  setName(new_name:string):void{
-    this.name = new_name;
-    this.refresh();
-  }
-  showName():void{
-    alert(`my name is ${this.name}`);
-  }
-  attached():void{
-	this.name = "changed after attached event";
-	//a reactive update after attached event
-	//using the "refresh" method, the only injectable method by the library.
-	this.refresh();
-  }
-}
-```
+###template stuffs
 
-create your second html module in file "hello-world.html"
-
-```
-<template>
-  <h2>Hello World, ${this.name}</h2>
-</template>
-```
-
-import the hello-word module into your app.html
-
-```
-<template>
-    <require from="./example/hello-world"></require>
-    <h1>My First APP with ${this.title}</h1>
-    <hello-world name="C-3PO"></hello-world>   
-</template>
-```
-you can also give an alias for your module. 
-
-```
-<template>
-    <require from="./example/hello-world as sea-bienvenido"></require>
-    <h1>My First APP with ${this.title}</h1>
-    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
-</template>
-
-```
-
-
-you can also import a css file for your module. 
-
-```
-<template>
-    <require from="./hello-world.css!"></require>
-    <require from="./example/hello-world as sea-bienvenido"></require>
-    <h1>My First APP with ${this.title}</h1>
-    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
-</template>
-
-```
-or embed a style tag. 
-
-```
-<template>
-    <style>
-    .especial-tag{
-    	background-color:red;
-    }
-    </style>
-    <require from="./example/hello-world as sea-bienvenido"></require>
-    <h1 class="especial-tag">My First APP with ${this.title}</h1>
-    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
-</template>
-
-```
-
-you can custom the component className
-
-```
-<template class="my-custom-classname">
-    <style>
-    .my-custom-classname{
-      background-color:red;
-    }
-    </style>
-    <h3>My element with a custom className</h3>
-</template>
-
-```
-
-###accessing a controller method.
-
-```
-<template>
-  <h2>Hello World, ${this.name}</h2>
-  <button click.trigger="showName">show my name!</button>
-</template>
-```
-
-
-###Template methods
-
-####If,elseif,else
+if,elseif,else
 
 ```
 <template>
@@ -215,24 +131,86 @@ you can custom the component className
 </template>
 ```
 
-####For Each
+for each
 
 ```
 <template>
-  <h2>Hello World, ${this.name}</h2>
-  <button click.trigger="showName">show my name!</button>
+ <ul>
+  <for each="item in this.itens">
+   <li>${item.name}</li>
+  </for>
+  <for each="item,$index in this.itens">
+   <li>${$index} - ${item.name}</li>
+  </for>
+ </ul>
 </template>
 ```
 
-###module lifecycle
+import other module
 
-#####constructor:
-The natural way in which the object is created in javascript.
-#####attached:
-By implementing the method your module will be prompted for it once the html is in "DOM".
+```
+<template>
+    <require from="./example/hello-world"></require>
+    <h1>My First APP with ${this.title}</h1>
+    <hello-world name="C-3PO"></hello-world>   
+</template>
+```
+give an alias in module import statement. 
 
-#####detached:
-By implementing the method your module will be prompted for it once your object is detached from "DOM".
+```
+<template>
+    <require from="./example/hello-world as sea-bienvenido"></require>
+    <h1>My First APP with ${this.title}</h1>
+    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
+</template>
 
-#####set+attribute name:
-By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
+```
+
+import a css file. 
+
+```
+<template>
+    <require from="./hello-world.css!"></require>
+    <require from="./example/hello-world as sea-bienvenido"></require>
+    <h1>My First APP with ${this.title}</h1>
+    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
+</template>
+
+```
+embed a style tag. 
+
+```
+<template>
+    <style>
+    .especial-tag{
+    	background-color:red;
+    }
+    </style>
+    <require from="./example/hello-world as sea-bienvenido"></require>
+    <h1 class="especial-tag">My First APP with ${this.title}</h1>
+    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
+</template>
+
+```
+
+change the the css className 
+
+```
+<template class="my-custom-classname">
+    <style>
+    .my-custom-classname{
+      background-color:red;
+    }
+    </style>
+    <h3>My element with a custom className</h3>
+</template>
+
+```
+
+how to access a controller method.
+
+```
+<template>
+  <button click.trigger="showName">show my name!</button>
+</template>
+```
