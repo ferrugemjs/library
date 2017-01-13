@@ -13,10 +13,10 @@
 --- | --- | --- | --- | --- | --- |
 Latest ✔ | Latest ✔ | 9+ ✔ | Latest ✔ | 6.1+ ✔ | Latest ✔ |
 
-#####install
+####install
 jspm install npm:ferrugemjs
 
-#####how to start:
+####how to start:
 clone
 [skeleton-typescript](https://github.com/ferrugemjs/skeleton-typescript)
 
@@ -38,8 +38,8 @@ If you want to modify the path of the init file just add this information to the
 ```
 <div app="other_path/init_app_file"></div>
 ```
-####modules,custom tag
-To create a module witch will be a custom tag do you need two files, ex: "module-a.ts" and "module-a.html".
+####modules & custom tags
+To create a module witch will be a custom tag do you need two files with same name(ex: "module-a.ts" and "module-a.html").
 By convention FerrugemJS know that "module-a.ts" is a controller file and "module-a.html" is the view of it and you can easily import it into your main app html file or into other module and use as a component with a custom tag.
 
 ex: 
@@ -207,10 +207,28 @@ change the the css className
 
 ```
 
-how to access a controller method.
+associete a controller method to DOM event.
 
 ```
 <template>
-  <button click.trigger="showName">show my name!</button>
+  <button click.trigger="this.showName">show my name!</button>
+</template>
+```
+
+associete a controller method to DOM event with extra paramaters.
+
+```
+<template>
+  <button click.trigger="this.showName('test')">show my name!</button>
+</template>
+```
+
+
+associete a controller method to a custom element event.
+
+```
+<template>
+  <require from="./test-comp"></require>
+  <test-comp on-change-name.subscribe="this.showName"></test-comp>
 </template>
 ```
