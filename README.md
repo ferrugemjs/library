@@ -90,13 +90,19 @@ export class HelloWorld{
   constructor(){
     this.name = "";
   }
-  anyMethod():void{	
+  anyMethod(event):void{	
 	//a reactive update after 'anyMethod' is calling
+	this.name = event.target.value;
 	this.refresh();
   }
 }
 ```
-
+```
+<template>
+  <h2>Hello World, ${this.name}</h2>
+  <input value="${this.name}" change.trigger="this.anyMethod"/>
+</template>
+```
 
 ###template stuffs
 
