@@ -5,9 +5,12 @@
 			border:4px dotted #babaca;
 		}
 	</style>
-	<h5>OPs IM a sub-comp ${this.name}</h5>
+	<if condition="this.visible">
+		<h5>OPs IM a sub-comp ${this.name}</h5>
+	</if>
+
 	<p>
-		<label>My Content HERE!!!</label>
+		<label click.trigger="this.setVisible((this.name)?true:false)">My Content HERE!!!</label>
 		<content></content>
 	</p>
 	<p>		

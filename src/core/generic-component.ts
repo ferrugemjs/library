@@ -13,13 +13,13 @@ interface IModuleConfig{
 }
 
 export class AuxClass{
-	public changeProps(host_vars:{},static_vars:{}):void{
-		if(host_vars){			
-			for(let propOrign in host_vars){
+	public changeAttrs(attrs_vars:{}):void{
+		if(attrs_vars){		
+			for(let propOrign in attrs_vars){
 				let prop:string = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
         				return group1.toUpperCase();
     			});
-				let newValue:any = host_vars[propOrign];
+				let newValue:any = attrs_vars[propOrign];
 				if(prop.indexOf(".") > -1){		
                     let prop_splited:string[] = prop.split(".");
                     this[prop_splited[0]][prop_splited[1]](newValue);		
@@ -35,27 +35,10 @@ export class AuxClass{
                 }
 			};	        
 		}
-		if(static_vars){
-			for(let propOrign in static_vars){
-				let prop:string = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
-        				return group1.toUpperCase();
-    			});
-				let newValue:any = static_vars[propOrign];
-				if(prop.indexOf(".") > -1){		
-                    let prop_splited:string[] = prop.split(".");
-                    this[prop_splited[0]][prop_splited[1]](newValue);		
-				}else{					
-					let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
-						return g0.toUpperCase();
-					});
-					if(this[_onChangedFunction]){						
-						this[_onChangedFunction](newValue);
-					}else{						
-                   		this[prop] = newValue;
-                   	}
-                }
-			};
-		}
+	}
+	public changeProps(host_vars:{},static_vars:{}):void{
+		AuxClass.prototype.changeAttrs.call(this,host_vars);
+		AuxClass.prototype.changeAttrs.call(this,static_vars);
 	}
 	public compose(path:string,host_vars:{},static_vars:{},contentfn:Function):void{
 		let nextuid:string = 'uid_'+(uid_generated++);
@@ -76,7 +59,8 @@ export class AuxClass{
 			//console.log(instMod["$className$ref_style_name$"]);
 			document.getElementById(instMod._$el$domref.target).className = instMod["$className$ref_style_name$"];
 			//_IDOM.patch(document.getElementById(instMod._$el$domref.target), contentfn.bind(instMod),instMod);
-			delete instMod._$el$domref.static_vars;	    	
+			delete instMod._$el$domref.static_vars;
+			delete instMod._$el$domref.host_vars;	    	
 		});
 		//console.log(path,host_vars);
 	}
@@ -121,7 +105,7 @@ export class GenericComponent{
 			
 			if(document.getElementById(this._$el$domref.target)){
 				//alredy has the target in dom
-				console.log(this._$el$domref.static_vars);
+				//console.log(this._$el$domref.static_vars);
 				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars,this._$el$domref.static_vars);
 				delete this._$el$domref.host_vars;
 				_IDOM.patch(document.getElementById(this._$el$domref.target), (<any>this).render.bind(this),this);
