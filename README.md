@@ -249,6 +249,7 @@ composition.
 
 to access a camelCase method or attribute from template (use slashes '-').
 
+```
 <template>
   <require from="./test-comp"></require>
   <test-comp full-name="test"></test-comp>
