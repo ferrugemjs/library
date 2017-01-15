@@ -232,3 +232,20 @@ associete a controller method to a custom element event.
   <test-comp on-change-name.subscribe="this.showName"></test-comp>
 </template>
 ```
+
+composition.
+
+```
+<template>
+  <compose view="path_to_dinamic_module/module_to_loader"></compose>
+</template>
+```
+
+to access a camelCase method or attribute from template (use slashes '-').
+
+<template>
+  <require from="./test-comp"></require>
+  <test-comp full-name="test"></test-comp>
+</template>
+```
+

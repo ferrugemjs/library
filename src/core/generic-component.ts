@@ -1,5 +1,10 @@
 import _IDOM = require("incremental-dom");
 
+
+declare let System:{import:(path:string)=>{
+	then:(mod:any)=>void
+}};
+
 interface IModuleConfig{
 	tag:string;
 	target:string;
@@ -8,7 +13,7 @@ interface IModuleConfig{
 }
 
 export class AuxClass{
-	public changeProps(host_vars:string[]):void{
+	public changeProps(host_vars:{},static_vars:{}):void{
 		if(host_vars){			
 			for(let propOrign in host_vars){
 				let prop:string = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
@@ -30,6 +35,50 @@ export class AuxClass{
                 }
 			};	        
 		}
+		if(static_vars){
+			for(let propOrign in static_vars){
+				let prop:string = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
+        				return group1.toUpperCase();
+    			});
+				let newValue:any = static_vars[propOrign];
+				if(prop.indexOf(".") > -1){		
+                    let prop_splited:string[] = prop.split(".");
+                    this[prop_splited[0]][prop_splited[1]](newValue);		
+				}else{					
+					let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
+						return g0.toUpperCase();
+					});
+					if(this[_onChangedFunction]){						
+						this[_onChangedFunction](newValue);
+					}else{						
+                   		this[prop] = newValue;
+                   	}
+                }
+			};
+		}
+	}
+	public compose(path:string,host_vars:{},static_vars:{},contentfn:Function):void{
+		let nextuid:string = 'uid_'+(uid_generated++);
+
+		let className:string = "nonefound";
+		_IDOM.elementOpen("div", nextuid, ['id',nextuid,'class',className]);
+			//(<any>this).render.call(this,this);
+		_IDOM.elementClose("div");
+
+		System.import(path+".html").then((mod:any)=>{
+			let instMod = new mod.default();
+			//instMod.
+			AuxClass.prototype.configComponent.call(instMod,"compose",nextuid,host_vars,static_vars);
+			instMod.content(contentfn);
+			//instMod.content().refresh();
+
+			instMod.refresh();
+			//console.log(instMod["$className$ref_style_name$"]);
+			document.getElementById(instMod._$el$domref.target).className = instMod["$className$ref_style_name$"];
+			//_IDOM.patch(document.getElementById(instMod._$el$domref.target), contentfn.bind(instMod),instMod);
+			delete instMod._$el$domref.static_vars;	    	
+		});
+		//console.log(path,host_vars);
 	}
 	public configComponent(tag: string, target: string, host_vars:{},static_vars:{}): GenericComponent {
 		//console.log(this["$className$ref_style_name$"]);
@@ -72,7 +121,8 @@ export class GenericComponent{
 			
 			if(document.getElementById(this._$el$domref.target)){
 				//alredy has the target in dom
-				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
+				console.log(this._$el$domref.static_vars);
+				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars,this._$el$domref.static_vars);
 				delete this._$el$domref.host_vars;
 				_IDOM.patch(document.getElementById(this._$el$domref.target), (<any>this).render.bind(this),this);
 				if(!this._alredy_load_module && (<any>this).attached){
@@ -81,7 +131,7 @@ export class GenericComponent{
 				}	
 			}else if(this._$el$domref.target){
 				//first loader in dom
-				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars);
+				AuxClass.prototype.changeProps.call(this,this._$el$domref.host_vars,this._$el$domref.static_vars);
 				delete this._$el$domref.host_vars;
 				
 				let className:string = this["$className$ref_style_name$"]||this._$el$domref.tag;
@@ -90,7 +140,7 @@ export class GenericComponent{
 					className = this._$el$domref.static_vars.className;
 				};			
 				*/
-				this._$el$domref.target = this._$el$domref.static_vars.id;
+				this._$el$domref.target = this._$el$domref.static_vars.id;				
 				_IDOM.elementOpen("div", this._$el$domref.static_vars.id, ['id',this._$el$domref.static_vars.id,'class',className]);
 					(<any>this).render.call(this,this);
 				_IDOM.elementClose("div");

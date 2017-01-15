@@ -1,5 +1,7 @@
 <template>
-	<require from="./sub-comp"></require>
+	<!--
+		<require from="./sub-comp"></require>
+	-->	
 	<style>
 		.compost-comp{
 			border:4px solid yellow;
@@ -17,8 +19,13 @@
 	<content></content>	
 	
 	<h5 click.trigger="this.triggerFn">after</h5>
-
-	<sub-comp name="luke" name-comp="x9"></sub-comp>
+	<compose view="dist/example/sub-comp" name="luke" name-comp="x9">
+		<span>segura esse limao!!!</span>
+	</compose>
+	<!--
+		<sub-comp name="luke" name-comp="x9"></sub-comp>
+	-->
+	
 	<!--
 	<span onclick="{$this.triggerFn.bind($this)}">{calculado}</span>
 	<sub-comp name="luke" nameComp="vader"></sub-comp>
