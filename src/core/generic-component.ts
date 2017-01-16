@@ -43,15 +43,15 @@ export class AuxClass{
 	public compose(path:string,host_vars:{},static_vars:{},contentfn:Function):void{
 		let nextuid:string = 'uid_'+(uid_generated++);
 
-		let className:string = "nonefound";
-		_IDOM.elementOpen("div", nextuid, ['id',nextuid,'class',className]);
+		let className:string = "none-found";
+		_IDOM.elementOpen("div", nextuid, ['is','compose-view','id',nextuid,'class',className]);
 			//(<any>this).render.call(this,this);
 		_IDOM.elementClose("div");
 
 		System.import(path+".html").then((mod:any)=>{
 			let instMod = new mod.default();
 			//instMod.
-			AuxClass.prototype.configComponent.call(instMod,"compose",nextuid,host_vars,static_vars);
+			AuxClass.prototype.configComponent.call(instMod,"compose-view",nextuid,host_vars,static_vars);
 			instMod.content(contentfn);
 			//instMod.content().refresh();
 
@@ -125,9 +125,9 @@ export class GenericComponent{
 				};			
 				*/
 				this._$el$domref.target = this._$el$domref.static_vars.id;				
-				_IDOM.elementOpen("div", this._$el$domref.static_vars.id, ['id',this._$el$domref.static_vars.id,'class',className]);
+				_IDOM.elementOpen('div', this._$el$domref.static_vars.id, ['is',this._$el$domref.tag,'id',this._$el$domref.static_vars.id,'class',className]);
 					(<any>this).render.call(this,this);
-				_IDOM.elementClose("div");
+				_IDOM.elementClose('div');
 				if(!this._alredy_load_module && (<any>this).attached){
 					this._alredy_load_module = true;
 					(<any>this).attached();
