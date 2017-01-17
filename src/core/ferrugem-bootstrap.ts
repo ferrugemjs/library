@@ -22,9 +22,9 @@ if(!app_uid){
 };
 
 System.import(app_url+".html").then((_mod_init_app:any)=>{
-	let _controllerName:string = Object.keys(_mod_init_app)[0];
-	//console.log(_mod_init_app);
-	let _controller_ = new _mod_init_app[_controllerName]();
+	let _controller_ = new _mod_init_app.default();
+	let _tmp_class_name:string = app_html.className?app_html.className+" ":"";
+	app_html.className =  _tmp_class_name+_mod_init_app.default.prototype["$className$ref_style_name$"];
 	AuxClass.prototype.configComponent.call(_controller_,'init-app-tag', app_uid, {});
 	_controller_.refresh();
 });

@@ -12,6 +12,8 @@ interface IModuleConfig{
 	static_vars:{className?:string,id?:string};
 }
 
+let uid_generated:number = new Date().getTime()+1298;
+
 export class AuxClass{
 	public changeAttrs(attrs_vars:{}):void{
 		if(attrs_vars){		
@@ -44,9 +46,9 @@ export class AuxClass{
 		let nextuid:string = 'uid_'+(uid_generated++);
 
 		let className:string = "none-found";
-		_IDOM.elementOpen("div", nextuid, ['is','compose-view','id',nextuid,'class',className]);
+		_IDOM.elementOpen("compose-view", nextuid, ['is','compose-view','view',path,'id',nextuid,'class',className]);
 			//(<any>this).render.call(this,this);
-		_IDOM.elementClose("div");
+		_IDOM.elementClose("compose-view");
 
 		System.import(path+".html").then((mod:any)=>{
 			let instMod = new mod.default();
@@ -78,7 +80,6 @@ export class AuxClass{
 		return <any>this;
 	}
 }
-let uid_generated:number = new Date().getTime()+1298;
 export class GenericComponent{
 	public _$el$domref: IModuleConfig;
 	private _alredy_load_module :boolean;
@@ -125,9 +126,9 @@ export class GenericComponent{
 				};			
 				*/
 				this._$el$domref.target = this._$el$domref.static_vars.id;				
-				_IDOM.elementOpen('div', this._$el$domref.static_vars.id, ['is',this._$el$domref.tag,'id',this._$el$domref.static_vars.id,'class',className]);
+				_IDOM.elementOpen(this._$el$domref.tag, this._$el$domref.static_vars.id, ['is',this._$el$domref.tag,'id',this._$el$domref.static_vars.id,'class',className]);
 					(<any>this).render.call(this,this);
-				_IDOM.elementClose('div');
+				_IDOM.elementClose(this._$el$domref.tag);
 				if(!this._alredy_load_module && (<any>this).attached){
 					this._alredy_load_module = true;
 					(<any>this).attached();

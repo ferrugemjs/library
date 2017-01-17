@@ -18,8 +18,9 @@ define(["require", "exports", "./generic-component", "./generic-component"], fun
     }
     ;
     System.import(app_url + ".html").then(function (_mod_init_app) {
-        var _controllerName = Object.keys(_mod_init_app)[0];
-        var _controller_ = new _mod_init_app[_controllerName]();
+        var _controller_ = new _mod_init_app.default();
+        var _tmp_class_name = app_html.className ? app_html.className + " " : "";
+        app_html.className = _tmp_class_name + _mod_init_app.default.prototype["$className$ref_style_name$"];
         generic_component_1.AuxClass.prototype.configComponent.call(_controller_, 'init-app-tag', app_uid, {});
         _controller_.refresh();
     });

@@ -1,7 +1,7 @@
-<template class="poxaveio" name="simpleComp" args="$this">
+<template class="poxaveio">
 	<div>
-		<h2 click.trigger="$this.setTexto('muito doido veio-'+new Date().getSeconds())">IM A SIMPLE COMPS</h2>
-		<p>texto_contr:{$this.texto}</p>
+		<h2 click.trigger="this.setTexto('muito doido veio-'+new Date().getSeconds())">IM A SIMPLE COMPS</h2>
+		<p>texto_contr:${this.texto}</p>
 		<content></content>	
 	</div>
 </template>

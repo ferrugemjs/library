@@ -1,5 +1,6 @@
 define(["require", "exports", "incremental-dom"], function (require, exports, _IDOM) {
     "use strict";
+    var uid_generated = new Date().getTime() + 1298;
     var AuxClass = (function () {
         function AuxClass() {
         }
@@ -36,8 +37,8 @@ define(["require", "exports", "incremental-dom"], function (require, exports, _I
         AuxClass.prototype.compose = function (path, host_vars, static_vars, contentfn) {
             var nextuid = 'uid_' + (uid_generated++);
             var className = "none-found";
-            _IDOM.elementOpen("div", nextuid, ['is', 'compose-view', 'id', nextuid, 'class', className]);
-            _IDOM.elementClose("div");
+            _IDOM.elementOpen("compose-view", nextuid, ['is', 'compose-view', 'view', path, 'id', nextuid, 'class', className]);
+            _IDOM.elementClose("compose-view");
             System.import(path + ".html").then(function (mod) {
                 var instMod = new mod.default();
                 AuxClass.prototype.configComponent.call(instMod, "compose-view", nextuid, host_vars, static_vars);
@@ -59,7 +60,6 @@ define(["require", "exports", "incremental-dom"], function (require, exports, _I
         return AuxClass;
     }());
     exports.AuxClass = AuxClass;
-    var uid_generated = new Date().getTime() + 1298;
     var GenericComponent = (function () {
         function GenericComponent() {
         }
@@ -93,9 +93,9 @@ define(["require", "exports", "incremental-dom"], function (require, exports, _I
                     delete this._$el$domref.host_vars;
                     var className = this["$className$ref_style_name$"] || this._$el$domref.tag;
                     this._$el$domref.target = this._$el$domref.static_vars.id;
-                    _IDOM.elementOpen('div', this._$el$domref.static_vars.id, ['is', this._$el$domref.tag, 'id', this._$el$domref.static_vars.id, 'class', className]);
+                    _IDOM.elementOpen(this._$el$domref.tag, this._$el$domref.static_vars.id, ['is', this._$el$domref.tag, 'id', this._$el$domref.static_vars.id, 'class', className]);
                     this.render.call(this, this);
-                    _IDOM.elementClose('div');
+                    _IDOM.elementClose(this._$el$domref.tag);
                     if (!this._alredy_load_module && this.attached) {
                         this._alredy_load_module = true;
                         this.attached();
