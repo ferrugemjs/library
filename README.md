@@ -256,3 +256,12 @@ to access a camelCase method or attribute from template (use slashes '-').
 </template>
 ```
 
+import other library/script.
+
+```
+<template>
+  <require from="moment" type="library"></require>
+  <span>${moment().format('DD/MM/YYYY')}</span>
+</template>
+```
+

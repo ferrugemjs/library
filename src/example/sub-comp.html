@@ -1,4 +1,5 @@
 <template class="custom-class-css">
+    <require from="moment as moment" type="library"></require>
 	<style type="text/css">
 		.custom-class-css{
 			background-color:#facada;
@@ -20,7 +21,8 @@
 	</p>
 	<p>		
 		<input value.bind="this.name" value="${this.name}" type="text" value="okokok"/>
-		${this.name}
+		<span>name : ${this.name}, born at ${moment(this.born).add(this.name.length,'Q').format('DD/MM/YYYY')}</span>
+		
 	</p>
 	<p>			
 		<select value.bind="this.nameComp" value="${this.nameComp}">
