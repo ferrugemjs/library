@@ -19,6 +19,7 @@
     "url": "https://github.com/ferrugemjs/library"
   },
   "jspm": {
+    "jspmPackage":true,
     "registry": "npm",
     "main": "ferrugem-bootstrap",
     "format": "amd",
@@ -26,8 +27,8 @@
       "dist": "dist/core"
     },
     "dependencies": {
-      "css": "github:systemjs/plugin-css@^0.1.27",
-      "incremental-dom": "^0.4.1"
+      "css": "github:systemjs/plugin-css@^0.1.32",
+      "incremental-dom": "^0.5.1"
     },
     "devDependencies": {}
   },
@@ -35,7 +36,7 @@
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.3.1",
-    "gulp-ferrugemjs": "0.0.16",
+    "gulp-ferrugemjs": "0.0.17",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-typescript": "^2.11.0",

@@ -1,14 +1,8 @@
 <template class="init-app">
 	<require from="./my-css-test.css!"></require>
-	<require from="./compost-comp"></require>
+	<require from="./compost-comp as compost-alias"></require>
 	<p onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>
-	
-
-	
-	<if condition="this.foolArray.length">
-		<span click.trigger="this.showAlert">ok pode passar</span>
-	</if>
-		
+			
 	<for each="item in this.foolArray">
 		<p> - ${item} - </p>
 	</for>
@@ -32,7 +26,7 @@
 	 <h2 style="color:blue">avulso</h2>
 	 <simple-comp-plus texto="!!!elemento avulso!!!"></simple-comp-plus>
 	 -->
-	<compost-comp especialname="humm modificado" calculado="${10+5}" on-event-msg.a="this.showAlert">
+	<compost-alias especialname="humm modificado" calculado="${10+5}" on-event-msg.a="this.showAlert">
 		<span>whats???</span>
-	</compost-comp>
+	</compost-alias>
 </template>

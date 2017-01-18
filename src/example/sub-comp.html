@@ -5,9 +5,14 @@
 			border:4px dotted #babaca;
 		}
 	</style>
-	<if condition="this.visible">
-		<h5>OPs IM a sub-comp ${this.name}</h5>
+	<if condition="this.name && this.name==='if'">
+		<span>IF - ${this.name} - ${this.nameComp}</span>
+	<elseif condition="this.name && this.name==='elseif'">
+		<span>ELSEIF - ${this.name} - ${this.nameComp}</span>
+	<else>
+		<span>ELSE - ${this.name} - ${this.nameComp}</span>
 	</if>
+
 
 	<p>
 		<label click.trigger="this.setVisible((this.name)?true:false)">My Content HERE!!!</label>
