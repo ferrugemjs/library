@@ -1,5 +1,5 @@
 <template class="custom-class-css">
-    <require from="moment as moment" type="library"></require>
+    <require from="./format-dates as libformat" type="library"></require>
 	<style type="text/css">
 		.custom-class-css{
 			background-color:#facada;
@@ -21,7 +21,7 @@
 	</p>
 	<p>		
 		<input value.bind="this.name" value="${this.name}" type="text" value="okokok"/>
-		<span>name : ${this.name}, born at ${moment(this.born).add(this.name.length,'Q').format('DD/MM/YYYY')}</span>
+		<span>name : ${this.name}, born at ${libformat.default.set(this.born).add(this.name.length * 10).format('mm/dd/YYYY')}</span>
 		
 	</p>
 	<p>			

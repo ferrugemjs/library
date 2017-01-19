@@ -19,7 +19,7 @@
     "url": "https://github.com/ferrugemjs/library"
   },
   "jspm": {
-    "jspmPackage": true,
+    "jspmPackage":true,
     "registry": "npm",
     "main": "ferrugem-bootstrap",
     "format": "amd",
@@ -28,8 +28,7 @@
     },
     "dependencies": {
       "css": "github:systemjs/plugin-css@^0.1.32",
-      "incremental-dom": "^0.5.1",
-      "moment": "^2.17.1"
+      "incremental-dom": "^0.5.1"
     },
     "devDependencies": {}
   },

@@ -10,7 +10,6 @@ System.config({
   map: {
     "css": "github:systemjs/plugin-css@0.1.32",
     "incremental-dom": "npm:incremental-dom@0.5.1",
-    "moment": "npm:moment@2.17.1",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
     },
