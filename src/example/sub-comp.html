@@ -20,12 +20,12 @@
 		<content></content>
 	</p>
 	<p>		
-		<input value.bind="this.name" value="${this.name}" type="text" value="okokok"/>
+		<input change.bind="this.name" value="${this.name}" type="text" value="okokok"/>
 		<span>name : ${this.name}, born at ${libformat.default.set(this.born).add(this.name.length * 10).format('mm/dd/YYYY')}</span>
 		
 	</p>
 	<p>			
-		<select value.bind="this.nameComp" value="${this.nameComp}">
+		<select change.bind="this.nameComp" value="${this.nameComp}">
 			<for each="opt in this.options">
 				<option selected="${opt===this.nameComp?true:false}" value="${opt}">${opt}</option>
 			</for>

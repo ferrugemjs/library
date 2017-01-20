@@ -79,29 +79,40 @@ When you set the "value.bind" in a input component it will change the "name" att
 ``` html
 <template>
   <h2>Hello World, ${this.name}</h2>
-  <input value.bind="this.name"/>
+  <input value="${this.name}"/>
 </template>
 ```
 
-###manual reactivity
+###event binding
+
+``` html
+<template>
+  <h2>Hello World, ${this.name}</h2>
+  <input keyup.bind="this.name"/>
+</template>
+```
+
+###manual event reactivity
+
+``` html
+<template>
+  <h2>Hello World, ${this.name}</h2>
+  <input change.trigger="this.manualChangeMethod"/>
+</template>
+```
+
 ``` typescript
 export class HelloWorld{
   private name:string;	
   constructor(){
     this.name = "";
   }
-  anyMethod(event):void{	
+  manualChangeMethod(event):void{	
 	//a reactive update after 'anyMethod' is calling
 	this.name = event.target.value;
 	this.refresh();
   }
 }
-```
-``` html
-<template>
-  <h2>Hello World, ${this.name}</h2>
-  <input value="${this.name}" change.trigger="this.anyMethod"/>
-</template>
 ```
 
 ###template stuffs
