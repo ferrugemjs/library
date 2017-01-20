@@ -24,7 +24,7 @@ clone
 
 index.html file
 
-```
+``` html
   <body>    
     <div app></div>
     <script>
@@ -35,7 +35,7 @@ index.html file
 FerrugemJS will look for the first page element with the attribute "app" to start the application and if not found it, will use the tag "body".
 Just create app.ts files and app.html in the same directory of the index.html page.
 If you want to modify the path of the init file just add this information to the app attribute as below:
-```
+``` html
 <div app="other_path/init_app_file"></div>
 ```
 ####modules & custom tags
@@ -44,7 +44,7 @@ By convention FerrugemJS know that "module-a.ts" is a controller file and "modul
 
 ex: 
 "app.ts" file.
-```
+``` typescript
 export class MyBasicApp{
     private title:string;
     constructor(){
@@ -55,7 +55,7 @@ export class MyBasicApp{
 Yes, its a simple class using only "typescript" or "javascript 2015", without any interference from the library.
 
 "app.html" file.
-```
+``` html
 <template>
     <h1>My First APP with ${this.title}</h1>
 </template>
@@ -76,7 +76,7 @@ By implementing the method with the module attribute in CamelCase format your mo
 
 When you set the "value.bind" in a input component it will change the "name" attribute in controller when the user change its value.
 
-```
+``` html
 <template>
   <h2>Hello World, ${this.name}</h2>
   <input value.bind="this.name"/>
@@ -84,7 +84,7 @@ When you set the "value.bind" in a input component it will change the "name" att
 ```
 
 ###manual reactivity
-```
+``` typescript
 export class HelloWorld{
   private name:string;	
   constructor(){
@@ -97,7 +97,7 @@ export class HelloWorld{
   }
 }
 ```
-```
+``` html
 <template>
   <h2>Hello World, ${this.name}</h2>
   <input value="${this.name}" change.trigger="this.anyMethod"/>
@@ -108,7 +108,7 @@ export class HelloWorld{
 
 if,elseif,else
 
-```
+``` html
 <template>
   <if condition="this.name==='test'">
     <span>name is test</span>
@@ -139,7 +139,7 @@ if,elseif,else
 
 for each
 
-```
+``` html
 <template>
  <ul>
   <for each="item in this.itens">
@@ -154,7 +154,7 @@ for each
 
 import other module
 
-```
+``` html
 <template>
     <require from="./example/hello-world"></require>
     <h1>My First APP with ${this.title}</h1>
@@ -163,7 +163,7 @@ import other module
 ```
 give an alias in module import statement. 
 
-```
+``` html
 <template>
     <require from="./example/hello-world as sea-bienvenido"></require>
     <h1>My First APP with ${this.title}</h1>
@@ -174,7 +174,7 @@ give an alias in module import statement.
 
 import a css file. 
 
-```
+``` html
 <template>
     <require from="./hello-world.css!"></require>
     <require from="./example/hello-world as sea-bienvenido"></require>
@@ -185,7 +185,7 @@ import a css file.
 ```
 embed a style tag. 
 
-```
+``` html
 <template>
     <style>
     .especial-tag{
@@ -201,7 +201,7 @@ embed a style tag.
 
 change the the css className 
 
-```
+``` html
 <template class="my-custom-classname">
     <style>
     .my-custom-classname{
@@ -215,7 +215,7 @@ change the the css className
 
 associete a controller method to DOM event.
 
-```
+``` html
 <template>
   <button click.trigger="this.showName">show my name!</button>
 </template>
@@ -223,7 +223,7 @@ associete a controller method to DOM event.
 
 associete a controller method to DOM event with extra paramaters.
 
-```
+``` html
 <template>
   <button click.trigger="this.showName('test')">show my name!</button>
 </template>
@@ -232,7 +232,7 @@ associete a controller method to DOM event with extra paramaters.
 
 associete a controller method to a custom element event.
 
-```
+``` html
 <template>
   <require from="./test-comp"></require>
   <test-comp on-change-name.subscribe="this.showName"></test-comp>
@@ -241,7 +241,7 @@ associete a controller method to a custom element event.
 
 composition.
 
-```
+``` html
 <template>
   <compose view="path_to_dinamic_module/module_to_loader"></compose>
 </template>
@@ -249,7 +249,7 @@ composition.
 
 to access a camelCase method or attribute from template (use slashes '-').
 
-```
+``` html
 <template>
   <require from="./test-comp"></require>
   <test-comp full-name="test"></test-comp>
@@ -258,7 +258,7 @@ to access a camelCase method or attribute from template (use slashes '-').
 
 import other library/script.
 
-```
+``` html
 <template>
   <require from="moment" type="library"></require>
   <span>${moment().format('DD/MM/YYYY')}</span>
