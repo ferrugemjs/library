@@ -1,32 +1,16 @@
-<template class="init-app">
+<template class="init-app" xmlns:ui="ui-vendor">
 	<require from="./my-css-test.css!"></require>
 	<require from="./compost-comp as compost-alias"></require>
-	<p onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>
-			
+	<p onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>	
 	<for each="item in this.foolArray">
 		<p> - ${item} - </p>
 	</for>
-
 	<for each="item,my$indx in this.foolArray">
 		<span> ${my$indx} : ${item} - </span>
 	</for>
-	
-	<!--
-	<require from="./simple-comp as simple-comp-plus"></require>
-	<h1>MAIN!!!</h1>
-	<compost-comp>
-		<span>whats???</span>
-	</compost-comp>
-	<compost-comp>
-		<span><simple-comp-plus texto="Component dentro de component"></simple-comp-plus></span>
-	</compost-comp>
-	 <h1 click.trigger="$this.showId" class="especial">Teste {$this.id}</h1>
-	 <h3>total do loop:{$this.foolArray.length}</h3>
-	 <simple-comp-plus each="fool in $this.foolArray" texto="{fool}">{fool}</simple-comp-plus>
-	 <h2 style="color:blue">avulso</h2>
-	 <simple-comp-plus texto="!!!elemento avulso!!!"></simple-comp-plus>
-	 -->
 	<compost-alias especialname="humm modificado" calculado="${10+5}" on-event-msg.a="this.showAlert">
 		<span>whats???</span>
 	</compost-alias>
+	<ui:vendor-test expe="1999"></ui:vendor-test>
+	<ui:vendor-sub-comp></ui:vendor-sub-comp>
 </template>

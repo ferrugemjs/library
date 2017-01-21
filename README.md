@@ -74,7 +74,7 @@ By implementing the method with the module attribute in CamelCase format your mo
 
 ###one-way data binding
 
-When you set the "value.bind" in a input component it will change the "name" attribute in controller when the user change its value.
+When you set the 'value="${value.bind}"' in a input component it will set "value" attribute in element after a controller refresh.
 
 ``` html
 <template>
@@ -84,6 +84,8 @@ When you set the "value.bind" in a input component it will change the "name" att
 ```
 
 ###event binding
+
+When you set the "keyup.bind" in a input component it will change the "name" attribute in controller after a keyup event.
 
 ``` html
 <template>
@@ -273,6 +275,15 @@ import other library/script.
 <template>
   <require from="moment" type="library"></require>
   <span>${moment().format('DD/MM/YYYY')}</span>
+</template>
+```
+
+import other ui library as a xml namespace.
+
+``` xml
+<template xmlns:ui="ui-vendor">
+  <span>using a ui library</span>
+  <ui:progress-bar></ui:progress-bar>
 </template>
 ```
 
