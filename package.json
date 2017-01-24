@@ -20,6 +20,7 @@
   },
   "jspm": {
     "registry": "npm",
+    "jspmPackage": true,
     "main": "ferrugem-bootstrap",
     "format": "amd",
     "directories": {
