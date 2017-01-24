@@ -26,4 +26,10 @@ export class CompostComp{
 			this.refresh();
 		}
 	}
+	private getNewId():void{
+		let nid = new Date().getSeconds();
+		console.log(this.id,nid,this["id33"]);
+		this.id = nid;
+		this.refresh();
+	}
 }
