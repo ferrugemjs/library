@@ -212,7 +212,7 @@ embed a style tag.
 
 ```
 
-change the the css className 
+change the css className 
 
 ``` html
 <template class="my-custom-classname">
