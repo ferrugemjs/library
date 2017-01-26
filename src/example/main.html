@@ -1,6 +1,7 @@
-<template class="init-app" xmlns:ui="ui-vendor">
+<template class="init-app">
 	<require from="./my-css-test.css!"></require>
-	<require from="./compost-comp as compost-alias"></require>
+	<require from="ui-vendor as ui" type="namespace"></require>
+<require from="./compost-comp as compost-alias"></require>
 	<p id="myunique_p" onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>	
 	<for each="item in this.foolArray">
 		<p> - ${item} - </p>

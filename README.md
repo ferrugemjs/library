@@ -273,15 +273,16 @@ import other library/script.
 
 ``` html
 <template>
-  <require from="moment" type="library"></require>
+  <require from="moment" type="script"></require>
   <span>${moment().format('DD/MM/YYYY')}</span>
 </template>
 ```
 
-import other ui library as a xml namespace.
+import other ui library as a namespace.
 
 ``` xml
-<template xmlns:ui="ui-vendor">
+<template>
+  <require from="ui-vendor as ui" type="namespace"></require>	
   <span>using a ui library</span>
   <ui:progress-bar></ui:progress-bar>
 </template>

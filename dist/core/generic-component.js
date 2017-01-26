@@ -1,1 +1,128 @@
-define(["require","exports","incremental-dom"],function(e,t,s){"use strict";var i=(new Date).getTime()+1298,r=function(){function e(){}return e.prototype.changeAttrs=function(e,t){if(e)for(var s in e){var i=t&&("is"===s||"id"===s);if(!i){var r=s.toLowerCase().replace(/-(.)/g,function(e,t){return t.toUpperCase()}),o=e[s];if(r.indexOf(".")>-1){var a=r.split(".");this[a[0]][a[1]](o)}else{var n="set"+r.replace(/(^\D)/g,function(e,t){return e.toUpperCase()});this[n]?this[n](o):this[r]=o}}}},e.prototype.changeProps=function(t,s){e.prototype.changeAttrs.call(this,s,!0),e.prototype.changeAttrs.call(this,t)},e.prototype.compose=function(t,r,o,a){var n="uid_"+i++,l="none-found";s.elementOpen("compose-view",n,["is","compose-view","view",t,"id",n,"class",l]),s.elementClose("compose-view"),System["import"](t+".html").then(function(t){var s=new t["default"];e.prototype.configComponent.call(s,"compose-view",n,r,o),s.content(a),s.refresh(),document.getElementById(s._$el$domref.target).className=s.$className$ref_style_name$,delete s._$el$domref.static_vars,delete s._$el$domref.host_vars})},e.prototype.configComponent=function(e,t,s,i){var r=i?i.id:"";r&&(delete i.id,s.id=r);var o={tag:e,target:t,host_vars:s,static_vars:i||{}};return this._$el$domref&&this._$el$domref.static_vars,this._$el$domref=o,this},e}();t.AuxClass=r;var o=function(){function e(){}return e.prototype.content=function(e){return e?this._$content$_=e:this._$content$_&&this._$content$_(),this},e.prototype.refresh=function(){var e="uid_"+i++;if(this._$el$domref)if(this._$el$domref.static_vars||(this._$el$domref.static_vars={}),document.getElementById(this._$el$domref.target))r.prototype.changeProps.call(this,this._$el$domref.host_vars,this._$el$domref.static_vars),s.patch(document.getElementById(this._$el$domref.target),this.render.bind(this),this),!this._alredy_load_module&&this.attached&&(this._alredy_load_module=!0,this.attached()),delete this._$el$domref.host_vars,delete this._$el$domref.static_vars;else if(this._$el$domref.target){this._$el$domref.static_vars.id=this._$el$domref.static_vars.id||e,r.prototype.changeProps.call(this,this._$el$domref.host_vars,this._$el$domref.static_vars);var t=this.$className$ref_style_name$||this._$el$domref.tag;this._$el$domref.target=this._$el$domref.static_vars.id,s.elementOpen(this._$el$domref.tag,this._$el$domref.static_vars.id,["is",this._$el$domref.tag,"id",this._$el$domref.static_vars.id,"class",t]),this.render.call(this,this),s.elementClose(this._$el$domref.tag),!this._alredy_load_module&&this.attached&&(this._alredy_load_module=!0,this.attached()),delete this._$el$domref.host_vars,delete this._$el$domref.static_vars}else if(this.detached){this.detached();var o=this;setTimeout(function(){o=null})}return this},e}();t.GenericComponent=o});
+define(["require", "exports", "incremental-dom"], function (require, exports, _IDOM) {
+    "use strict";
+    var uid_generated = new Date().getTime() + 1298;
+    var AuxClass = (function () {
+        function AuxClass() {
+        }
+        AuxClass.prototype.changeAttrs = function (attrs_vars, isStatics) {
+            if (attrs_vars) {
+                for (var propOrign in attrs_vars) {
+                    var notAccepted = isStatics && (propOrign === "is" || propOrign === "id");
+                    if (!notAccepted) {
+                        var prop = propOrign.toLowerCase().replace(/-(.)/g, function (match, group1) {
+                            return group1.toUpperCase();
+                        });
+                        var newValue = attrs_vars[propOrign];
+                        if (prop.indexOf(".") > -1) {
+                            var prop_splited = prop.split(".");
+                            this[prop_splited[0]][prop_splited[1]](newValue);
+                        }
+                        else {
+                            var _onChangedFunction = "set" + prop.replace(/(^\D)/g, function (g0, g1) {
+                                return g0.toUpperCase();
+                            });
+                            if (this[_onChangedFunction]) {
+                                this[_onChangedFunction](newValue);
+                            }
+                            else {
+                                this[prop] = newValue;
+                            }
+                        }
+                    }
+                }
+                ;
+            }
+        };
+        AuxClass.prototype.changeProps = function (host_vars, static_vars) {
+            AuxClass.prototype.changeAttrs.call(this, static_vars, true);
+            AuxClass.prototype.changeAttrs.call(this, host_vars);
+        };
+        AuxClass.prototype.compose = function (path, host_vars, static_vars, contentfn) {
+            var nextuid = 'uid_' + (uid_generated++);
+            var className = "none-found";
+            _IDOM.elementOpen("compose-view", nextuid, ['is', 'compose-view', 'view', path, 'id', nextuid, 'class', className]);
+            _IDOM.elementClose("compose-view");
+            System.import(path + ".html").then(function (mod) {
+                var instMod = new mod.default();
+                AuxClass.prototype.configComponent.call(instMod, "compose-view", nextuid, host_vars, static_vars);
+                instMod.content(contentfn);
+                instMod.refresh();
+                document.getElementById(instMod._$el$domref.target).className = instMod["$className$ref_style_name$"];
+                delete instMod._$el$domref.static_vars;
+                delete instMod._$el$domref.host_vars;
+            });
+        };
+        AuxClass.prototype.configComponent = function (tag, target, host_vars, static_vars) {
+            var tmpId = static_vars ? static_vars.id : "";
+            if (tmpId) {
+                delete static_vars.id;
+                host_vars["id"] = tmpId;
+            }
+            var tmpNewProps = { tag: tag, target: target, host_vars: host_vars, static_vars: static_vars || {} };
+            if (this._$el$domref && this._$el$domref.static_vars) {
+            }
+            this._$el$domref = tmpNewProps;
+            return this;
+        };
+        return AuxClass;
+    }());
+    exports.AuxClass = AuxClass;
+    var GenericComponent = (function () {
+        function GenericComponent() {
+        }
+        GenericComponent.prototype.content = function ($content$) {
+            if ($content$) {
+                this._$content$_ = $content$;
+            }
+            else if (this._$content$_) {
+                this._$content$_();
+            }
+            return this;
+        };
+        GenericComponent.prototype.refresh = function () {
+            var nextuid = 'uid_' + (uid_generated++);
+            if (this._$el$domref) {
+                if (!this._$el$domref.static_vars) {
+                    this._$el$domref.static_vars = {};
+                }
+                if (document.getElementById(this._$el$domref.target)) {
+                    AuxClass.prototype.changeProps.call(this, this._$el$domref.host_vars, this._$el$domref.static_vars);
+                    _IDOM.patch(document.getElementById(this._$el$domref.target), this.render.bind(this), this);
+                    if (!this._alredy_load_module && this.attached) {
+                        this._alredy_load_module = true;
+                        this.attached();
+                    }
+                    delete this._$el$domref.host_vars;
+                    delete this._$el$domref.static_vars;
+                }
+                else if (this._$el$domref.target) {
+                    this._$el$domref.static_vars.id = this._$el$domref.static_vars.id || nextuid;
+                    AuxClass.prototype.changeProps.call(this, this._$el$domref.host_vars, this._$el$domref.static_vars);
+                    var className = this["$className$ref_style_name$"] || this._$el$domref.tag;
+                    this._$el$domref.target = this._$el$domref.static_vars.id;
+                    _IDOM.elementOpen(this._$el$domref.tag, this._$el$domref.static_vars.id, ['is', this._$el$domref.tag, 'id', this._$el$domref.static_vars.id, 'class', className]);
+                    this.render.call(this, this);
+                    _IDOM.elementClose(this._$el$domref.tag);
+                    if (!this._alredy_load_module && this.attached) {
+                        this._alredy_load_module = true;
+                        this.attached();
+                    }
+                    delete this._$el$domref.host_vars;
+                    delete this._$el$domref.static_vars;
+                }
+                else {
+                    if (this.detached) {
+                        this.detached();
+                        var $this_1 = this;
+                        setTimeout(function () {
+                            $this_1 = null;
+                        });
+                    }
+                }
+            }
+            return this;
+        };
+        return GenericComponent;
+    }());
+    exports.GenericComponent = GenericComponent;
+});

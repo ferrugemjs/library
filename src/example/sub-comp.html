@@ -1,5 +1,5 @@
 <template class="custom-class-css">
-    <require from="./format-dates as libformat" type="library"></require>
+    <require from="./format-dates as libformat" type="script"></require>
 	<style type="text/css">
 		.custom-class-css{
 			background-color:#facada;
@@ -20,7 +20,7 @@
 		<content></content>
 	</p>
 	<p>		
-		<input change.bind="this.name" value="${this.name}" type="text" value="okokok"/>
+		<input keyup.bind="this.name" value="${this.name}" type="text" value="okokok"/>
 		<span>name : ${this.name}, born at ${libformat.default.set(this.born).add(this.name.length * 10).format('mm/dd/YYYY')}</span>
 		
 	</p>
