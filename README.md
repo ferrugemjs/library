@@ -13,6 +13,9 @@
 --- | --- | --- | --- | --- | --- |
 Latest ✔ | Latest ✔ | 9+ ✔ | Latest ✔ | 6.1+ ✔ | Latest ✔ |
 
+####examples
+https://ferrugemjs.github.io/examples/index.html
+
 ####install
 jspm install npm:ferrugemjs
 
