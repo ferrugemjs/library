@@ -19,9 +19,16 @@
 	<content></content>	
 	
 	<h5 click.trigger="this.triggerFn">after</h5>
-	<compose view="dist/example/sub-comp" name="luke" name-comp="x9">
+	<!--
+	<compose view="dist/example/sub-comp" key:id="${'key_'+this.id}" name="luke" name-comp="x9">
 		<span>segura esse limao!!!</span>
 	</compose>
+	-->
+	<if condition="this.id > 30">
+		<compose view="dist/example/sub-comp" key:id="kju_juyyy">
+			<span>com key estatico</span>
+		</compose>
+	</if>
 	<!--
 		<sub-comp name="luke" name-comp="x9"></sub-comp>
 	-->

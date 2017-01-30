@@ -4,6 +4,7 @@ export class SubComp{
 	private options:string[];
 	private visible:boolean;
 	private born:Date;
+	private refresh:Function;
 	constructor(){
 		this.name = "my name";
 		this.nameComp = "my father name";
@@ -20,5 +21,8 @@ export class SubComp{
 	private setVisible(on:boolean){
 		this.visible = !on;
 		this.refresh();
+	}
+	private detached():void{
+		console.log('sub-comp out of dom!');
 	}
 }

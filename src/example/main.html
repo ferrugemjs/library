@@ -2,16 +2,20 @@
 	<require from="./my-css-test.css!"></require>
 	<require from="ui-vendor as ui" type="namespace"></require>
 <require from="./compost-comp as compost-alias"></require>
-	<p id="myunique_p" onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>	
+	<p id="myunique_p" onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>
+	<span click.trigger="this.refresh">${this.count++}</span>
+	<p id="myunique_p2" click.trigger="this.refresh">refresh all</p>	
 	<for each="item in this.foolArray">
 		<p> - ${item} - </p>
 	</for>
 	<for each="item,my$indx in this.foolArray">
 		<span> ${my$indx} : ${item} - </span>
 	</for>
-	<compost-alias id="1234" especialname="humm modificado" calculado="${10+5}" on-event-msg.a="this.showAlert">
-		<span>whats???</span>
-	</compost-alias>
+	<if condition="this.count < 3">
+		<compost-alias key:id="respect_me_1234" id="1234" especialname="humm modificado" calculado="${10+5}" on-event-msg.a="this.showAlert">
+			<span>whats???</span>
+		</compost-alias>		
+	</if>
 	<ui:vendor-test expe="1999"></ui:vendor-test>
 	<ui:vendor-sub-comp></ui:vendor-sub-comp>
 </template>

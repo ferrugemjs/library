@@ -5,6 +5,7 @@ export class CompostComp{
 	private myfnext:Function;
 	private onEventMsg:{a:Function};
 	private id:number;
+	private refresh:Function;
 	constructor(){
 		this.especialname = "humm-default";
 		this.onEventMsg={a:(fnext:Function)=>{
@@ -17,7 +18,11 @@ export class CompostComp{
 		console.log(n);
 	}
 	private attached():void{
-		console.log(this.onEventMsg);
+		//console.log(this.onEventMsg);
+	}
+	private detached():void{
+		console.log('compost-comp out of dom!');
+		this.myfnext = null;
 	}
 	private triggerFn():void{
 		if(this.myfnext){

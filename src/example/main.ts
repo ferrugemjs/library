@@ -2,9 +2,10 @@ export class Main{
 	
     private id:number=new Date().getTime();
     private title:string="default!";
-
     private foolArray:string[] = ['ops','humm','interesting'];
+    private count:number;
     constructor(){
+        this.count=0;
         this.foolArray = ['ops','humm','interesting'];
     }
     private showId():void{        
