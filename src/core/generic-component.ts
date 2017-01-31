@@ -66,7 +66,7 @@ export class FerrugemJSFactory{
 		//lookup for old inst
 		if(_key && inst_watched[_key]){
 			//console.log('1',inst_watched[_key]);
-			return inst_watched[_key];
+			return <any>inst_watched[_key];
 		}
 		//save the new inst in watched insts
 		if(_key && !inst_watched[_key]){
@@ -78,7 +78,7 @@ export class FerrugemJSFactory{
 			this.changeAttrs.call(inst_watched[_key],config.staticVars);
 
 			//console.log('2',inst_watched[_key]);
-			return inst_watched[_key];
+			return <any>inst_watched[_key];
 		}
 		//only a temp class
 		let _inst_ = new config.classFactory();

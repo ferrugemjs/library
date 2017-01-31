@@ -1,1 +1,132 @@
-define(["require","exports","incremental-dom"],function(t,e,a){"use strict";var r={},s=(new Date).getTime()+1298;a.notifications.nodesDeleted=function(t){t.forEach(function(t){t.id&&r[t.id]&&r[t.id].detached&&r[t.id].detached(),t.id&&r[t.id]&&(r[t.id]=null,delete r[t.id])})};var n=function(){function t(){}return t.prototype.build=function(e){var a="";if(e.hostVars&&e.hostVars["key:id"]?(a=e.hostVars["key:id"],delete e.hostVars["key:id"]):e.staticVars&&e.staticVars["key:id"]&&(a=e.staticVars["key:id"],delete e.staticVars["key:id"]),e.classFactory.prototype.refresh||(e.classFactory.prototype.refresh=t.prototype.refresh),e.classFactory.prototype.content||(e.classFactory.prototype.content=t.prototype.content),a&&r[a])return r[a];if(a&&!r[a])return r[a]=new e.classFactory,r[a]._$target$_=e.target,r[a]._$key$_=a,r[a]._$tagName$_=e.tagName,this.changeAttrs.call(r[a],e.hostVars),this.changeAttrs.call(r[a],e.staticVars),r[a];var s=new e.classFactory;return s._$target$_=e.target,s._$tagName$_=e.tagName,this.changeAttrs.call(s,e.hostVars),this.changeAttrs.call(s,e.staticVars),s},t.prototype.content=function(t){return t?this._$content$_=t:this._$content$_&&this._$content$_(),this},t.prototype.changeAttrs=function(t,e){if(t)for(var a in t){var r=e&&("is"===a||"id"===a);if(!r){var s=a.toLowerCase().replace(/-(.)/g,function(t,e){return e.toUpperCase()}),n=t[a];if(s.indexOf(".")>-1){var o=s.split(".");this[o[0]][o[1]](n)}else{var i="set"+s.replace(/(^\D)/g,function(t,e){return t.toUpperCase()});this[i]?this[i](n):this[s]=n}}}},t.prototype.refresh=function(){var t=this;if(t._$target$_&&document.getElementById(t._$target$_))a.patch(document.getElementById(t._$target$_),t.render.bind(t),t),!t._$loaded$_&&t.attached&&(t._$loaded$_=!0,t.attached(),document.getElementById(t._$target$_).className=t._$style_name$_||t._$tag_name$_);else{t._$target$_=t._$target$_?t._$target$_:"uid_"+s++;var e=t._$style_name$_||t._$tag_name$_;a.elementOpen(t._$tag_name$_,t._$key$_?t._$key$_:null,["is",t._$tag_name$_,"id",t._$target$_,"class",e]),t.render.call(t,t),a.elementClose(t._$tag_name$_),!t._$loaded$_&&t.attached&&(t._$loaded$_=!0,t.attached())}},t.prototype.compose=function(t,e,a,r,s){var n=this;System["import"](t+".html").then(function(t){n.build({classFactory:t["default"],hostVars:a,staticVars:r,target:e,tagName:"compose-view"}).content(s).refresh()})},t}();e.FerrugemJSFactory=n,Object.defineProperty(e,"__esModule",{value:!0}),e["default"]=new n});
+define(["require", "exports", "incremental-dom"], function (require, exports, _IDOM) {
+    "use strict";
+    var inst_watched = {};
+    var uid_generated = new Date().getTime() + 1298;
+    _IDOM.notifications.nodesDeleted = function (nodes) {
+        nodes.forEach(function (node) {
+            if (node.id && inst_watched[node.id] && inst_watched[node.id].detached) {
+                inst_watched[node.id].detached();
+            }
+            if (node.id && inst_watched[node.id]) {
+                inst_watched[node.id] = null;
+                delete inst_watched[node.id];
+            }
+            ;
+        });
+    };
+    var FerrugemJSFactory = (function () {
+        function FerrugemJSFactory() {
+        }
+        FerrugemJSFactory.prototype.build = function (config) {
+            var _key = "";
+            if (config.hostVars && config.hostVars["key:id"]) {
+                _key = config.hostVars["key:id"];
+                delete config.hostVars["key:id"];
+            }
+            else if (config.staticVars && config.staticVars["key:id"]) {
+                _key = config.staticVars["key:id"];
+                delete config.staticVars["key:id"];
+            }
+            if (!config.classFactory.prototype.refresh) {
+                config.classFactory.prototype.refresh = FerrugemJSFactory.prototype.refresh;
+            }
+            if (!config.classFactory.prototype.content) {
+                config.classFactory.prototype.content = FerrugemJSFactory.prototype.content;
+            }
+            if (_key && inst_watched[_key]) {
+                return inst_watched[_key];
+            }
+            if (_key && !inst_watched[_key]) {
+                inst_watched[_key] = new config.classFactory();
+                inst_watched[_key]["_$target$_"] = config.target;
+                inst_watched[_key]["_$key$_"] = _key;
+                inst_watched[_key]["_$tagName$_"] = config.tagName;
+                this.changeAttrs.call(inst_watched[_key], config.hostVars);
+                this.changeAttrs.call(inst_watched[_key], config.staticVars);
+                return inst_watched[_key];
+            }
+            var _inst_ = new config.classFactory();
+            _inst_["_$target$_"] = config.target;
+            _inst_["_$tagName$_"] = config.tagName;
+            this.changeAttrs.call(_inst_, config.hostVars);
+            this.changeAttrs.call(_inst_, config.staticVars);
+            return _inst_;
+        };
+        FerrugemJSFactory.prototype.content = function ($content$) {
+            if ($content$) {
+                this._$content$_ = $content$;
+            }
+            else if (this._$content$_) {
+                this._$content$_();
+            }
+            return this;
+        };
+        FerrugemJSFactory.prototype.changeAttrs = function (attrs_vars, isStatics) {
+            if (attrs_vars) {
+                for (var propOrign in attrs_vars) {
+                    var notAccepted = isStatics && (propOrign === "is" || propOrign === "id");
+                    if (!notAccepted) {
+                        var prop = propOrign.toLowerCase().replace(/-(.)/g, function (match, group1) {
+                            return group1.toUpperCase();
+                        });
+                        var newValue = attrs_vars[propOrign];
+                        if (prop.indexOf(".") > -1) {
+                            var prop_splited = prop.split(".");
+                            this[prop_splited[0]][prop_splited[1]](newValue);
+                        }
+                        else {
+                            var _onChangedFunction = "set" + prop.replace(/(^\D)/g, function (g0, g1) {
+                                return g0.toUpperCase();
+                            });
+                            if (this[_onChangedFunction]) {
+                                this[_onChangedFunction](newValue);
+                            }
+                            else {
+                                this[prop] = newValue;
+                            }
+                        }
+                    }
+                }
+                ;
+            }
+        };
+        FerrugemJSFactory.prototype.refresh = function () {
+            var _inst_ = this;
+            if (_inst_._$target$_ && document.getElementById(_inst_._$target$_)) {
+                _IDOM.patch(document.getElementById(_inst_._$target$_), _inst_.render.bind(_inst_), _inst_);
+                if (!_inst_._$loaded$_ && _inst_.attached) {
+                    _inst_._$loaded$_ = true;
+                    _inst_.attached();
+                    document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_ || _inst_._$tag_name$_;
+                }
+            }
+            else {
+                _inst_._$target$_ = _inst_._$target$_ ? _inst_._$target$_ : 'uid_' + (uid_generated++);
+                var className = _inst_._$style_name$_ || _inst_._$tag_name$_;
+                _IDOM.elementOpen(_inst_._$tag_name$_, _inst_._$key$_ ? _inst_._$key$_ : null, ['is', _inst_._$tag_name$_, 'id', _inst_._$target$_, 'class', className]);
+                _inst_.render.call(_inst_, _inst_);
+                _IDOM.elementClose(_inst_._$tag_name$_);
+                if (!_inst_._$loaded$_ && _inst_.attached) {
+                    _inst_._$loaded$_ = true;
+                    _inst_.attached();
+                }
+            }
+        };
+        FerrugemJSFactory.prototype.compose = function (path, target, host_vars, static_vars, contentfn) {
+            var _this = this;
+            System.import(path + ".html").then(function (mod) {
+                _this.build({
+                    classFactory: mod.default,
+                    hostVars: host_vars,
+                    staticVars: static_vars,
+                    target: target,
+                    tagName: "compose-view"
+                }).content(contentfn).refresh();
+            });
+        };
+        return FerrugemJSFactory;
+    }());
+    exports.FerrugemJSFactory = FerrugemJSFactory;
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.default = new FerrugemJSFactory();
+});

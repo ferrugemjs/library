@@ -19,7 +19,6 @@
     "url": "https://github.com/ferrugemjs/library"
   },
   "jspm": {
-    "jspmPackage": true,
     "registry": "npm",
     "main": "ferrugem-bootstrap",
     "format": "amd",
