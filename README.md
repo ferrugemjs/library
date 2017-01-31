@@ -237,6 +237,15 @@ associete a controller method to DOM event.
 </template>
 ```
 
+preserve a element instance.
+
+``` xml
+<template>
+  <require from="./test-comp"></require>
+  <test-comp key:id="key_unique"></test-comp>
+</template>
+```
+
 associete a controller method to DOM event with extra paramaters.
 
 ``` html

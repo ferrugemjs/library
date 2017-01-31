@@ -1,8 +1,5 @@
-import {AuxClass} from "./generic-component";
+import _fjs_ from "./generic-component";
 declare var System:any;
-
-
-//console.log('staterde!!!');
 
 let app_html_s = document.querySelectorAll('[app]');
 let app_html:Element;
@@ -22,11 +19,16 @@ if(!app_uid){
 };
 
 System.import(app_url+".html").then((_mod_init_app:any)=>{
-	let _controller_ = new _mod_init_app.default();
 	let _tmp_class_name:string = app_html.className?app_html.className+" ":"";
-	app_html.className =  _tmp_class_name+_mod_init_app.default.prototype["$className$ref_style_name$"];
-	AuxClass.prototype.configComponent.call(_controller_,'init-app-tag', app_uid, {});
-	_controller_.refresh();
+	let _tmp_inst = _fjs_.build({
+		classFactory:_mod_init_app.default
+		,staticVars:{}
+		,hostVars:{}
+		,tagName:"init-app-tag"
+		,target:app_uid
+	});
+	_tmp_inst.refresh();
+	app_html.className =  _tmp_class_name+_mod_init_app.default.prototype["_$style_name$_"];
 });
 
-export {GenericComponent,AuxClass} from "./generic-component";
+export default _fjs_;
