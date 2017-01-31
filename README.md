@@ -123,7 +123,6 @@ export class HelloWorld{
 ###template stuffs
 
 if,elseif,else
-
 ``` html
 <template>
   <if condition="this.name==='test'">
@@ -154,7 +153,6 @@ if,elseif,else
 ```
 
 for each
-
 ``` html
 <template>
  <ul>
@@ -169,7 +167,6 @@ for each
 ```
 
 import other module
-
 ``` html
 <template>
     <require from="./example/hello-world"></require>
@@ -177,19 +174,17 @@ import other module
     <hello-world name="C-3PO"></hello-world>   
 </template>
 ```
-give an alias in module import statement. 
 
+give an alias in module import statement. 
 ``` html
 <template>
     <require from="./example/hello-world as sea-bienvenido"></require>
     <h1>My First APP with ${this.title}</h1>
     <sea-bienvenido name="C-3PO"></sea-bienvenido>   
 </template>
-
 ```
 
 import a css file. 
-
 ``` html
 <template>
     <require from="./hello-world.css!"></require>
@@ -197,10 +192,8 @@ import a css file.
     <h1>My First APP with ${this.title}</h1>
     <sea-bienvenido name="C-3PO"></sea-bienvenido>   
 </template>
-
 ```
 embed a style tag. 
-
 ``` html
 <template>
     <style>
@@ -212,11 +205,9 @@ embed a style tag.
     <h1 class="especial-tag">My First APP with ${this.title}</h1>
     <sea-bienvenido name="C-3PO"></sea-bienvenido>   
 </template>
-
 ```
 
 change the css className 
-
 ``` html
 <template class="my-custom-classname">
     <style>
@@ -226,11 +217,9 @@ change the css className
     </style>
     <h3>My element with a custom className</h3>
 </template>
-
 ```
 
 associete a controller method to DOM event.
-
 ``` html
 <template>
   <button click.trigger="this.showName">show my name!</button>
@@ -238,7 +227,6 @@ associete a controller method to DOM event.
 ```
 
 preserve a element instance.
-
 ``` xml
 <template>
   <require from="./test-comp"></require>
@@ -246,8 +234,8 @@ preserve a element instance.
 </template>
 ```
 
-associete a controller method to DOM event with extra paramaters.
 
+associete a controller method to DOM event with extra paramaters.
 ``` html
 <template>
   <button click.trigger="this.showName('test')">show my name!</button>
@@ -256,7 +244,6 @@ associete a controller method to DOM event with extra paramaters.
 
 
 associete a controller method to a custom element event.
-
 ``` html
 <template>
   <require from="./test-comp"></require>
@@ -265,7 +252,6 @@ associete a controller method to a custom element event.
 ```
 
 composition.
-
 ``` html
 <template>
   <compose view="path_to_dinamic_module/module_to_loader"></compose>
@@ -273,7 +259,6 @@ composition.
 ```
 
 to access a camelCase method or attribute from template (use slashes '-').
-
 ``` html
 <template>
   <require from="./test-comp"></require>
@@ -282,7 +267,6 @@ to access a camelCase method or attribute from template (use slashes '-').
 ```
 
 import other library/script.
-
 ``` html
 <template>
   <require from="moment" type="script"></require>
@@ -291,7 +275,6 @@ import other library/script.
 ```
 
 import other ui library as a namespace.
-
 ``` xml
 <template>
   <require from="ui-vendor as ui" type="namespace"></require>	
