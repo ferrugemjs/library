@@ -128,10 +128,12 @@ export class FerrugemJSFactory{
 		if(_inst_._$target$_ && document.getElementById(_inst_._$target$_)){
 			//old element
 			_IDOM.patch(document.getElementById(_inst_._$target$_),_inst_.render.bind(_inst_),_inst_);
-			if(!_inst_._$loaded$_ && _inst_.attached){
-				_inst_._$loaded$_ = true;	
+			if(!_inst_._$loaded$_ && _inst_.attached){					
 				_inst_.attached();
-				document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_||_inst_._$tag_name$_;				
+			}
+			if(!_inst_._$loaded$_){
+				document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_||_inst_._$tag_name$_;
+				_inst_._$loaded$_ = true;
 			}	
 		}else{
 			//first load in dom
@@ -142,9 +144,11 @@ export class FerrugemJSFactory{
 				(<any>_inst_).render.call(_inst_,_inst_);
 			_IDOM.elementClose(_inst_._$tag_name$_);
 			if(!_inst_._$loaded$_ && _inst_.attached){
-				_inst_._$loaded$_ = true;
 				_inst_.attached();
 			}
+			if(!_inst_._$loaded$_){
+				_inst_._$loaded$_ = true;
+			}	
 		}
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{
