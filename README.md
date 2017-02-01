@@ -77,26 +77,26 @@ now, we can importe into other template
 *attached:
 By implementing the method your module will be prompted for it once the html is in "DOM".
 ``` typescript
-   attached(){
-   	console.log('im in DOM');
-   }
+attached(){
+ console.log('im in DOM');
+}
 ```
 
 
 *detached:
 By implementing the method your module will be prompted for it once your object is detached from "DOM".
 ``` typescript
-   detached(){
-   	console.log('im out');
-   }
+detached(){
+ console.log('im out');
+}
 ```
 
 *set+attribute name:
 By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
 ``` typescript
-   setName(name:string){
-   	this.name = name;
-   }
+setName(name:string){
+ this.name = name;
+}
 ```
 
 ###one-way data binding
