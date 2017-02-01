@@ -16,12 +16,13 @@ Latest ✔ | Latest ✔ | 9+ ✔ | Latest ✔ | 6.1+ ✔ | Latest ✔ |
 ####examples
 https://ferrugemjs.github.io/examples/index.html
 
-####install
-jspm install npm:ferrugemjs
-
 ####how to start:
 clone
 [skeleton-typescript](https://github.com/ferrugemjs/skeleton-typescript)
+
+####individual install
+npm install ferrugemjs
+jspm install npm:ferrugemjs
 
 ####initialization
 
@@ -46,21 +47,26 @@ To create a module witch will be a custom tag do you need two files with same na
 By convention FerrugemJS know that "module-a.ts" is a controller file and "module-a.html" is the view of it and you can easily import it into your main app html file or into other module and use as a component with a custom tag.
 
 ex: 
-"app.ts" file.
+"module-a.ts" file.
 ``` typescript
-export class MyBasicApp{
+export class ModuleA{
     private title:string;
     constructor(){
-      this.title = "ferrugemjs";
+      this.title = "test!";
     }
 }
 ```
-Yes, its a simple class using only "typescript" or "javascript 2015", without any interference from the library.
-
-"app.html" file.
+"module-a.html" file.
 ``` html
 <template>
     <h1>My First APP with ${this.title}</h1>
+</template>
+```
+now, we can importe into other template
+``` xml
+<template>
+    <require from="./module-a"></require>
+    <module-a title="new title!"></module-a>
 </template>
 ```
 
@@ -68,16 +74,32 @@ Yes, its a simple class using only "typescript" or "javascript 2015", without an
 
 *attached:
 By implementing the method your module will be prompted for it once the html is in "DOM".
+``` typescript
+   attached(){
+   	console.log('im in DOM');
+   }
+```
+
 
 *detached:
 By implementing the method your module will be prompted for it once your object is detached from "DOM".
+``` typescript
+   detached(){
+   	console.log('im out');
+   }
+```
 
 *set+attribute name:
 By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
+``` typescript
+   setName(name:string){
+   	this.name = name;
+   }
+```
 
 ###one-way data binding
 
-When you set the 'value="${value.bind}"' in a input component it will set "value" attribute in element after a controller refresh.
+When you set the 'value=${name}' in a input component it will set "value" attribute in element after a controller refresh.
 
 ``` html
 <template>
@@ -108,7 +130,8 @@ When you set the "keyup.bind" in a input component it will change the "name" att
 
 ``` typescript
 export class HelloWorld{
-  private name:string;	
+  private name:string;
+  private refresh:Function;//necessary if you want avoid typescript warnings
   constructor(){
     this.name = "";
   }
