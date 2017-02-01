@@ -61,6 +61,16 @@ export class FerrugemJSFactory{
 		//lookup for old inst
 		if(_key && inst_watched[_key]){
 			//console.log('1',inst_watched[_key]);
+			//remove events already seted
+			//console.log('before',Object.assign({},config.hostVars));
+			if(config.hostVars){
+				for(var _prop_ in config.hostVars){
+					if(_prop_.indexOf(".") > -1){
+						delete config.hostVars[_prop_];
+					}
+				}
+			}
+			//console.log('after',config.hostVars);
 			//update dinamics vars from view
 			this.changeAttrs.call(inst_watched[_key],config.hostVars);
 			return <any>inst_watched[_key];

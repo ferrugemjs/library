@@ -14,6 +14,6 @@ gulp.task('template',function(){
     .pipe(rename({
         extname: ".html.js"
     }))
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest(tsConfig.outDir));
 });

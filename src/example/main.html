@@ -28,10 +28,7 @@
 	</for>
 	
 	<for each="item,my$indx in this.foolArray">
-		<ui:vendor-test key:id="${item}" expe="${item+':'+new Date().getSeconds()}"></ui:vendor-test>
-	</for>
-	<for each="item,my$indx in this.foolArray">
-		<ui:vendor-test key:id="${'uid_'+item}" expe="${item}"></ui:vendor-test>
+		<ui:vendor-test key_id="${item}" expe="${item+':'+new Date().getSeconds()}"></ui:vendor-test>
 	</for>
 	<!--
 	<if condition="this.count < 3">
@@ -42,4 +39,7 @@
 	-->
 	<ui:vendor-test expe="1999"></ui:vendor-test>
 	<ui:vendor-sub-comp key:id="${this.id}"></ui:vendor-sub-comp>
+	<for each="item in this.foolArray">
+		<ui:vendor-test expe="${item}"></ui:vendor-test>
+	</for>
 </template>
