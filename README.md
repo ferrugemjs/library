@@ -22,7 +22,9 @@ clone
 
 ####individual install
 npm install ferrugemjs
+
 jspm install npm:ferrugemjs
+
 
 ####initialization
 
