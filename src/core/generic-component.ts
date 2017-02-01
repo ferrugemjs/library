@@ -6,10 +6,7 @@ let inst_watched:{[key:string]:{detached?:Function}}={};
 let uid_generated:number = new Date().getTime()+1298;
 
 _IDOM.notifications.nodesDeleted = function(nodes:any) {
-  //console.log(inst_watched);
-  //console.log(inst_watched);
   nodes.forEach((node:any)=>{
-  	//console.log(node);
   	if(node.id && inst_watched[node.id] && inst_watched[node.id].detached){
   		inst_watched[node.id].detached();
   	} 
@@ -64,6 +61,8 @@ export class FerrugemJSFactory{
 		//lookup for old inst
 		if(_key && inst_watched[_key]){
 			//console.log('1',inst_watched[_key]);
+			//update dinamics vars from view
+			this.changeAttrs.call(inst_watched[_key],config.hostVars);
 			return <any>inst_watched[_key];
 		}
 		//save the new inst in watched insts
@@ -78,7 +77,7 @@ export class FerrugemJSFactory{
 			//console.log('2',inst_watched[_key]);
 			return <any>inst_watched[_key];
 		}
-		//only a temp class
+		//only a temp class instance
 		let _inst_ = new config.classFactory();
 		_inst_["_$target$_"] = config.target;
 		_inst_["_$tagName$_"] = config.tagName;
