@@ -1,8 +1,6 @@
 import _IDOM = require("incremental-dom");
 
-declare let System:{import:(path:string)=>{
-	then:(mod:any)=>void
-}};
+declare let require:Function
 
 let inst_watched:{[key:string]:{detached?:Function}}={};
 let uid_generated:number = new Date().getTime()+1298;
@@ -150,15 +148,14 @@ export class FerrugemJSFactory{
 		}
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{
-		System.import(path+".html").then((mod:any)=>{
+		require([path+".html"],(mod:any)=>{
 			this.build({
 				classFactory:mod.default
 				,hostVars:host_vars
 				,staticVars:static_vars
 				,target:target
 				,tagName:"compose-view"
-			}).content(contentfn).refresh();  
-			
+			}).content(contentfn).refresh();
 		});		
 	}
 }

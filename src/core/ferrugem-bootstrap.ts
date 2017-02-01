@@ -1,5 +1,5 @@
 import _fjs_ from "./generic-component";
-declare var System:any;
+declare let require:Function;
 
 let app_html_s = document.querySelectorAll('[app]');
 let app_html:Element;
@@ -18,7 +18,7 @@ if(!app_uid){
 	app_html.setAttribute("id",app_uid);
 };
 
-System.import(app_url+".html").then((_mod_init_app:any)=>{
+require([app_url+".html"],(_mod_init_app:any)=>{
 	let _tmp_class_name:string = app_html.className?app_html.className+" ":"";
 	let _tmp_inst = _fjs_.build({
 		classFactory:_mod_init_app.default
