@@ -28,7 +28,10 @@
 	</for>
 	
 	<for each="item,my$indx in this.foolArray">
-		<ui:vendor-test key:id="${item}" expe="${item}"></ui:vendor-test>
+		<ui:vendor-test key:id="${item}" expe="${item+':'+new Date().getSeconds()}"></ui:vendor-test>
+	</for>
+	<for each="item,my$indx in this.foolArray">
+		<ui:vendor-test key:id="${'uid_'+item}" expe="${item}"></ui:vendor-test>
 	</for>
 	<!--
 	<if condition="this.count < 3">
