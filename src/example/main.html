@@ -38,7 +38,15 @@
 	</if>
 	-->
 	<ui:vendor-test expe="1999"></ui:vendor-test>
-	<ui:vendor-sub-comp key:id="${this.id}"></ui:vendor-sub-comp>
+	<ui:vendor-sub-comp key:id="${this.id}">
+		<span>conforme especificado!</span>
+	</ui:vendor-sub-comp>
+	<ui:vendor-sub-comp key:id="${this.id}">
+		<span>com span! ${this.id} </span>
+	</ui:vendor-sub-comp>
+	<ui:vendor-sub-comp>
+		conforme especificado! - ${this.id}
+	</ui:vendor-sub-comp>
 	<for each="item in this.foolArray">
 		<ui:vendor-test expe="${item}"></ui:vendor-test>
 	</for>
