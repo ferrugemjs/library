@@ -341,3 +341,10 @@ view-two.html
   <h1>VIEW two of universal-view-model</h1>
 </template>
 ```
+
+template viewmodel-less.
+``` xml
+<template view-model="false">
+  <h1>NO viewmodel</h1>
+</template>
+```
