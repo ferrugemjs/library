@@ -28,7 +28,7 @@ jspm install npm:ferrugemjs
 
 ####initialization
 
-index.html file
+eg. index.html file
 
 ``` html
   <body>    
@@ -45,10 +45,10 @@ If you want to modify the path of the init file just add this information to the
 <div app="other_path/init_app_file"></div>
 ```
 ####modules & custom tags
-To create a module witch will be a custom tag do you need two files with same name(ex: "module-a.ts" and "module-a.html").
+To create a module witch will be a custom tag do you need two files with same name(eg. "module-a.ts" and "module-a.html").
 By convention FerrugemJS know that "module-a.ts" is a controller file and "module-a.html" is the view of it and you can easily import it into your main app html file or into other module and use as a component with a custom tag.
 
-ex: 
+eg. 
 "module-a.ts" file.
 ``` typescript
 export class ModuleA{
@@ -58,7 +58,7 @@ export class ModuleA{
     }
 }
 ```
-"module-a.html" file.
+eg. "module-a.html" file.
 ``` html
 <template>
     <h1>My First APP with ${this.title}</h1>
@@ -245,7 +245,7 @@ change the css className
 ```
 
 set where the content of element must be. 
-ex: (hello-world.html)
+eg. (hello-world.html)
 ``` xml
 <template>    
  <h1>
@@ -290,21 +290,21 @@ preserve a element instance.
 ```
 
 associete a controller method to DOM event.
-``` html
+``` xml
 <template>
   <button click.trigger="this.showName">show my name!</button>
 </template>
 ```
 
 associete a controller method to DOM event with extra paramaters.
-``` html
+``` xml
 <template>
   <button click.trigger="this.showName('test')">show my name!</button>
 </template>
 ```
 
 to access a camelCase method or attribute from template (use slashes '-').
-``` html
+``` xml
 <template>
   <require from="./test-comp"></require>
   <test-comp full-name="test"></test-comp>
@@ -312,7 +312,7 @@ to access a camelCase method or attribute from template (use slashes '-').
 ```
 
 associete a controller method to a custom element event.
-``` html
+``` xml
 <template>
   <require from="./test-comp"></require>
   <test-comp on-change-name.subscribe="this.showName"></test-comp>
@@ -320,8 +320,24 @@ associete a controller method to a custom element event.
 ```
 
 composition.
-``` html
+``` xml
 <template>
   <compose view="path_to_dinamic_module/module_to_loader"></compose>
+</template>
+```
+
+multiples views to a view-model.
+eg.
+view-one.html
+``` xml
+<template view-model="./universal-view-model">
+  <h1>VIEW one of universal-view-model</h1>
+</template>
+```
+
+view-two.html
+``` xml
+<template view-model="./universal-view-model">
+  <h1>VIEW two of universal-view-model</h1>
 </template>
 ```
