@@ -1,0 +1,11 @@
+<template view-model="./universal-view-model">
+	<style type="text/css">
+		.view-two{
+			width:200px;
+			border:1px solid blue;
+			float:left;
+		}
+	</style>
+	<strong>VIEW 2 ${this.pid}</strong>
+	<span click.trigger="this.outer('hey, its me!')">${this.name}</span>
+</template>
