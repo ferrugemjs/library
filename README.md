@@ -244,52 +244,25 @@ change the css className
 </template>
 ```
 
-associete a controller method to DOM event.
-``` html
-<template>
-  <button click.trigger="this.showName">show my name!</button>
-</template>
-```
-
-preserve a element instance.
+set where the content of element must be. 
+ex: (hello-world.html)
 ``` xml
-<template>
-  <require from="./test-comp"></require>
-  <test-comp key:id="key_unique"></test-comp>
+<template>    
+ <h1>
+  <content></content>
+ </h1>
+</template>
+```
+other template.
+``` xml
+<template>    
+    <require from="./example/hello-world"></require>
+    <hello-world>
+          Good night!
+    </hello-world>   
 </template>
 ```
 
-
-associete a controller method to DOM event with extra paramaters.
-``` html
-<template>
-  <button click.trigger="this.showName('test')">show my name!</button>
-</template>
-```
-
-
-associete a controller method to a custom element event.
-``` html
-<template>
-  <require from="./test-comp"></require>
-  <test-comp on-change-name.subscribe="this.showName"></test-comp>
-</template>
-```
-
-composition.
-``` html
-<template>
-  <compose view="path_to_dinamic_module/module_to_loader"></compose>
-</template>
-```
-
-to access a camelCase method or attribute from template (use slashes '-').
-``` html
-<template>
-  <require from="./test-comp"></require>
-  <test-comp full-name="test"></test-comp>
-</template>
-```
 
 import other library/script.
 ``` html
@@ -308,3 +281,47 @@ import other ui library as a namespace.
 </template>
 ```
 
+preserve a element instance.
+``` xml
+<template>
+  <require from="./test-comp"></require>
+  <test-comp key:id="key_unique"></test-comp>
+</template>
+```
+
+associete a controller method to DOM event.
+``` html
+<template>
+  <button click.trigger="this.showName">show my name!</button>
+</template>
+```
+
+associete a controller method to DOM event with extra paramaters.
+``` html
+<template>
+  <button click.trigger="this.showName('test')">show my name!</button>
+</template>
+```
+
+to access a camelCase method or attribute from template (use slashes '-').
+``` html
+<template>
+  <require from="./test-comp"></require>
+  <test-comp full-name="test"></test-comp>
+</template>
+```
+
+associete a controller method to a custom element event.
+``` html
+<template>
+  <require from="./test-comp"></require>
+  <test-comp on-change-name.subscribe="this.showName"></test-comp>
+</template>
+```
+
+composition.
+``` html
+<template>
+  <compose view="path_to_dinamic_module/module_to_loader"></compose>
+</template>
+```
