@@ -331,14 +331,17 @@ eg.
 view-one.html
 ``` xml
 <template view-model="./universal-view-model">
-  <h1>VIEW one of universal-view-model</h1>
+  <h1>VIEW ONE</h1>
+  <span>bla,bla,bla....</span>
 </template>
 ```
 
 view-two.html
 ``` xml
 <template view-model="./universal-view-model">
-  <h1>VIEW two of universal-view-model</h1>
+  <h3>VIEW TWO</h3>
+  <p>lol lol lol</p>
+  <img src="logo.png">
 </template>
 ```
 
