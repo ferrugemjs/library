@@ -345,7 +345,7 @@ multiples views to a view-model.
 
 template viewmodel-less.
 ``` xml
-<template view-model="false">
+<template no-view-model="true">
   <h1>NO viewmodel</h1>
 </template>
 ```
