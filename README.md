@@ -245,8 +245,8 @@ change the css className
 ```
 
 set where the content of element must be. 
-eg. (hello-world.html)
 ``` xml
+<!--hello-world.html-->
 <template>    
  <h1>
   <content></content>
@@ -327,17 +327,15 @@ composition.
 ```
 
 multiples views to a view-model.
-eg.
-view-one.html
 ``` xml
+<!--view-one.html-->
 <template view-model="./universal-view-model">
   <h1>VIEW ONE</h1>
   <span>bla,bla,bla....</span>
 </template>
 ```
-
-view-two.html
 ``` xml
+<!--view-two.html-->
 <template view-model="./universal-view-model">
   <h3>VIEW TWO</h3>
   <p>lol lol lol</p>
