@@ -244,6 +244,24 @@ change the css className
 </template>
 ```
 
+change the css className with expression
+``` html
+<template class="${'my-custom-classname '+this.customStyle}">
+    <style>
+    .style1{
+      background-color:red;
+    }
+    .style2{
+      background-color:blue;
+    }
+    .style3{
+      background-color:green;
+    }
+    </style>
+    <h3>My element with a custom className by expression</h3>
+</template>
+```
+
 set where the content of element must be. 
 ``` xml
 <!--hello-world.html-->
