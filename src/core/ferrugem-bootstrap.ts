@@ -28,7 +28,6 @@ require([app_url+".html"],(_mod_init_app:any)=>{
 		,target:app_uid
 	});
 	_tmp_inst.refresh();
-	app_html.className =  _tmp_class_name+_mod_init_app.default.prototype["_$style_name$_"];
 });
 
 export default _fjs_;
