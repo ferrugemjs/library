@@ -13,10 +13,10 @@ export class SubComp{
 		this.born = new Date();
 	}
 	private setName2(_new:string):void{
-		console.log(`${this.name} , ${this.name} --> ${_new}`);
+		//console.log(`${this.name} , ${this.name} --> ${_new}`);
 	}
 	private attached():void{
-		console.log(`${this.nameComp} - ${this.name}`);
+		//console.log(`${this.nameComp} - ${this.name}`);
 	}
 	private setVisible(on:boolean){
 		this.visible = !on;

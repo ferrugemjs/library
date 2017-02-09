@@ -1,9 +1,15 @@
-<template class="${'custom-class-css class_' + this.name}">
+<template class="${'custom-class-css ' + this.name}">
     <require from="./format-dates as libformat" type="script"></require>
 	<style type="text/css">
 		.custom-class-css{
 			background-color:#facada;
 			border:4px dotted #babaca;
+		}
+		.vade{
+			background-color:#222222 !important;
+		}
+		.sitt{
+			background-color:#aa2222 !important;
 		}
 	</style>
 	<if condition="this.name && this.name==='if'">

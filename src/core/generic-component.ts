@@ -135,27 +135,15 @@ export class FerrugemJSFactory{
 	public refresh():void{
 		let _inst_ = this;	
 		if(_inst_._$target$_ && document.getElementById(_inst_._$target$_)){
-			//old element
+			//console.info('old element');
 			_IDOM.patch(document.getElementById(_inst_._$target$_),_inst_.render.bind(_inst_),_inst_);
 			if(!_inst_._$loaded$_ && _inst_.attached){					
 				_inst_.attached();
 			}
+			document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_||_inst_._$tag_name$_;
+				
 			if(!_inst_._$loaded$_){
-				document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_||_inst_._$tag_name$_;
-				_inst_._$loaded$_ = true;
-			}	
-		}else{
-			//first load in dom
-			//console.log('first load',_inst_._$tag_name$_);
-			_inst_._$target$_ = _inst_._$target$_?_inst_._$target$_:'uid_'+(uid_generated++);			
-			let className:string = _inst_._$style_name$_||_inst_._$tag_name$_;
-			_IDOM.elementOpen(_inst_._$tag_name$_, _inst_._$key$_?_inst_._$key$_:null, ['is',_inst_._$tag_name$_,'id',_inst_._$target$_,'class',className]);
-				(<any>_inst_).render.call(_inst_,_inst_);
-			_IDOM.elementClose(_inst_._$tag_name$_);
-			if(!_inst_._$loaded$_ && _inst_.attached){
-				_inst_.attached();
-			}
-			if(!_inst_._$loaded$_){
+				//document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_||_inst_._$tag_name$_;
 				_inst_._$loaded$_ = true;
 			}	
 		}
