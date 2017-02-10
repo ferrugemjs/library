@@ -1,4 +1,4 @@
-<template view-model="./universal-view-model" class="view-2">
+<template view-model="./universal-view-model">
 	<style type="text/css">
 		.view-two{
 			width:200px;
@@ -6,6 +6,8 @@
 			float:left;
 		}
 	</style>
-	<strong>VIEW 2 ${this.pid}</strong>
-	<span click.trigger="this.outer('hey, its me!')">${this.name}</span>
+	<div class="view-2">
+		<strong>VIEW 2 ${this.pid}</strong>
+		<span click.trigger="this.outer('hey, its me!')">${this.name}</span>
+	</div>
 </template>

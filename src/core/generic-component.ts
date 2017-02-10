@@ -140,7 +140,8 @@ export class FerrugemJSFactory{
 			if(!_inst_._$loaded$_ && _inst_.attached){					
 				_inst_.attached();
 			}
-			document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_||_inst_._$tag_name$_;
+			//console.log(_inst_);
+			//document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_||_inst_._$tag_name$_;
 				
 			if(!_inst_._$loaded$_){
 				//document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_||_inst_._$tag_name$_;

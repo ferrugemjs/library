@@ -1,4 +1,4 @@
-<template class="${'custom-class-css ' + this.name}">
+<template>
     <require from="./format-dates as libformat" type="script"></require>
 	<style type="text/css">
 		.custom-class-css{
@@ -12,31 +12,32 @@
 			background-color:#aa2222 !important;
 		}
 	</style>
-	<if condition="this.name && this.name==='if'">
-		<span>IF - ${this.name} - ${this.nameComp}</span>
-	<elseif condition="this.name && this.name==='elseif'">
-		<span>ELSEIF - ${this.name} - ${this.nameComp}</span>
-	<else>
-		<span>ELSE - ${this.name} - ${this.nameComp}</span>
-	</if>
+	<div class="${'custom-class-css ' + this.name}">
+		<if condition="this.name && this.name==='if'">
+			<span>IF - ${this.name} - ${this.nameComp}</span>
+		<elseif condition="this.name && this.name==='elseif'">
+			<span>ELSEIF - ${this.name} - ${this.nameComp}</span>
+		<else>
+			<span>ELSE - ${this.name} - ${this.nameComp}</span>
+		</if>
 
 
-	<p>
-		<label click.trigger="this.setVisible((this.name)?true:false)">My Content HERE!!!</label>
-		<content></content>
-	</p>
-	<p>		
-		<input keyup.bind="this.name" value="${this.name}" type="text" value="okokok"/>
-		<span>name : ${this.name}, born at ${libformat.default.set(this.born).add(this.name.length * 10).format('mm/dd/YYYY')}</span>
-		
-	</p>
-	<p>			
-		<select change.bind="this.nameComp" value="${this.nameComp}">
-			<for each="opt in this.options">
-				<option selected="${opt===this.nameComp?true:false}" value="${opt}">${opt}</option>
-			</for>
-		</select>
-		<span>${this.nameComp}</span>
-	</p>
-
+		<p>
+			<label click.trigger="this.setVisible((this.name)?true:false)">My Content HERE!!!</label>
+			<content></content>
+		</p>
+		<p>		
+			<input keyup.bind="this.name" value="${this.name}" type="text" value="okokok"/>
+			<span>name : ${this.name}, born at ${libformat.default.set(this.born).add(this.name.length * 10).format('mm/dd/YYYY')}</span>
+			
+		</p>
+		<p>			
+			<select change.bind="this.nameComp" value="${this.nameComp}">
+				<for each="opt in this.options">
+					<option selected="${opt===this.nameComp?true:false}" value="${opt}">${opt}</option>
+				</for>
+			</select>
+			<span>${this.nameComp}</span>
+		</p>
+	</div>
 </template>
