@@ -21,6 +21,7 @@
   "jspm": {
     "registry": "npm",
     "main": "ferrugem-bootstrap",
+    "jspmPackage":true,
     "format": "amd",
     "directories": {
       "dist": "dist/core"
