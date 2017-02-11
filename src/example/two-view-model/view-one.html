@@ -6,8 +6,8 @@
 			float:left;
 		}
 	</style>
-	<div>
-		<strong click.trigger="this.getOuter">VIEW 1</strong>
+	<div class="view-one-1 view-one" data-oxe="233" title="${this.inc}" alt="${this.inc}">
+		<strong click.trigger="this.getOuter">VIEW ${this.pid} - ${this.idFromHill||0} - ${this.inc++}</strong>
 		<span>${this.pid} - ${this.name}</span>		
 	</div>
 </template>

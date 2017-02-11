@@ -1,3 +1,4 @@
+import _IDOM = require("incremental-dom");
 import _fjs_ from "./generic-component";
 declare let require:Function;
 
@@ -25,9 +26,10 @@ require([app_url+".html"],(_mod_init_app:any)=>{
 		,staticVars:{}
 		,hostVars:{}
 		,tagName:"init-app-tag"
-		,target:app_uid
+		//,target:app_uid
 	});
-	_tmp_inst.refresh();
+	_IDOM.patch(document.getElementById(app_uid),_fjs_.reDraw.bind(_tmp_inst),_tmp_inst);
+	//_tmp_inst.refresh();
 });
 
 export default _fjs_;

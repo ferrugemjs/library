@@ -2,7 +2,7 @@ import _IDOM = require("incremental-dom");
 
 declare let require:Function
 
-let inst_watched:{[key:string]:{detached?:Function}}={};
+let inst_watched:{[key:string]:{detached?:Function,tag:string}}={};
 let uid_generated:number = new Date().getTime()+1298;
 
 _IDOM.notifications.nodesDeleted = function(nodes:any) {
@@ -17,6 +17,13 @@ _IDOM.notifications.nodesDeleted = function(nodes:any) {
   });
 };
 
+export interface IInstConfig{
+	classFactory:any
+	,hostVars:{}
+	,staticVars:{}
+	,tagName:string
+	,target?:string
+}
 export class FerrugemJSFactory{
 	private _$content$_:Function;
 	private _$target$_:string;
@@ -24,19 +31,14 @@ export class FerrugemJSFactory{
 	private _$key$_:string;
 	private _$style_name$_:string;
 	private _$tag_name$_:string;
+	private _$atrrs$_:{name:string,attribs:{static:string[],dinamic:string}}
 	private render:Function;
 	private attached:Function;
 	private detached:Function;
 	/*
 	 Factory of class
 	*/
-	public build(config:{
-		classFactory:any
-		,hostVars:{}
-		,staticVars:{}
-		,tagName:string
-		,target:string
-	}):FerrugemJSFactory{
+	public build(config:IInstConfig):FerrugemJSFactory{
 
 		let _key = "";
 		//find any key
@@ -132,21 +134,61 @@ export class FerrugemJSFactory{
 			};	        
 		}
 	}
+	public reDraw(){
+		let _inst_ = this;
+		_inst_._$target$_ = _inst_._$target$_||'uid_'+(uid_generated++)+'_provided';//_IDOM.currentElement().id;
+		//cria uma copia para evitar alterar o prototype
+		let static_attrs = Object.assign([],_inst_._$atrrs$_.attribs.static);
+		//verifica se ja tem um id no static
+		if(static_attrs.indexOf('id') < 0){
+			//caso nao tenha adiciona o target como id
+			static_attrs.push('id',_inst_._$target$_);
+		}else{
+			//sincroniza o id que veio do static com o id do novo elemento
+			_inst_._$target$_ = static_attrs[static_attrs.indexOf('id')+1];
+		}
+		if(static_attrs.indexOf('is') < 0){
+			//static_attrs.unshift(_inst_["is"],'is');
+			//static_attrs.unshift(_inst_["is"]);
+			//static_attrs.unshift('is');
+			static_attrs.push('is',_inst_["is"]);
+		}
+		_IDOM.elementOpen(_inst_._$atrrs$_.name,_inst_._$key$_,static_attrs, ... new Function(
+			'$_this_$'
+			,'return ['+_inst_._$atrrs$_.attribs.dinamic+']'
+		)(_inst_));
+			_inst_.render(_inst_);			
+		_IDOM.elementClose(_inst_._$atrrs$_.name);
+		if(!_inst_._$loaded$_ && _inst_.attached){					
+			_inst_.attached();
+		}
+		if(!_inst_._$loaded$_){
+			_inst_._$loaded$_ = true;
+		}
+	}
 	public refresh():void{
-		let _inst_ = this;	
+		let _inst_ = this;
 		if(_inst_._$target$_ && document.getElementById(_inst_._$target$_)){
-			//console.info('old element');
-			_IDOM.patch(document.getElementById(_inst_._$target$_),_inst_.render.bind(_inst_),_inst_);
-			if(!_inst_._$loaded$_ && _inst_.attached){					
-				_inst_.attached();
+			let elementDom = document.getElementById(_inst_._$target$_);
+			if(_inst_._$atrrs$_.attribs.dinamic&&_inst_._$atrrs$_.attribs.dinamic!=='""'){
+				let converted_to_array:string[] = new Function(
+					'$_this_$'
+					,'return ['+_inst_._$atrrs$_.attribs.dinamic+']'
+				)(_inst_);	
+				converted_to_array.forEach((attrkey,$indx)=>{
+					let skypeZero = $indx||2;
+					if(skypeZero % 2 === 0){
+						elementDom.setAttribute(attrkey,converted_to_array[$indx+1]);
+					}					
+				});
 			}
-			//console.log(_inst_);
-			//document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_||_inst_._$tag_name$_;
-				
-			if(!_inst_._$loaded$_){
-				//document.getElementById(_inst_._$target$_).className = _inst_._$style_name$_||_inst_._$tag_name$_;
-				_inst_._$loaded$_ = true;
-			}	
+			_IDOM.patch(elementDom,_inst_.render,_inst_);	
+		}
+		if(!_inst_._$loaded$_ && _inst_.attached){					
+			_inst_.attached();
+		}
+		if(!_inst_._$loaded$_){
+			_inst_._$loaded$_ = true;
 		}
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{

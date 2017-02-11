@@ -1,8 +1,10 @@
 export class UniversalViewModel{
 	private name:string;
 	private refresh:Function;
+	private inc:number;
 	constructor(){
 		this.name = "hummmmm";
+		this.inc = 0;
 	}
 	private outer(nome?:string){
 		if(nome){

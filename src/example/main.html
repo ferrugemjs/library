@@ -7,14 +7,22 @@
 	<require from="./no-view-model/no-view-model as no-model"></require>
 	<form class="ops">
 		
+		<p id="myunique_p" onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>
+		<span click.trigger="this.refresh">${this.count++}</span>
+		<p id="myunique_p2" click.trigger="this.refresh">refresh all</p>
+
+
+		<view-one id-from-hill="${this.count}"></view-one>
+		<view-one key:id="oxe-mainha" id-from-hill="${this.count}"></view-one>	
+
+		<!--
 		<if condition="this.count < 3">
 			<compost-alias key:id="respect_me_1234" id="2000" especialname="humm modificado" calculado="${10+5}" on-event-msg.a="this.showAlert">
 					<span>whats???</span>
 			</compost-alias>
 		</if>	
-		<p id="myunique_p" onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>
-		<span click.trigger="this.refresh">${this.count++}</span>
-		<p id="myunique_p2" click.trigger="this.refresh">refresh all</p>	
+		
+	
 		<for each="item in this.foolArray">
 			<p> - ${item} - </p>
 		</for>
@@ -42,7 +50,47 @@
 		<view-two></view-two>
 		<no-model></no-model>
 		
-		<span>teste</span>
+		<view-one></view-one>
+		-->
+		
+		<if condition="this.count < 3">
+			<compost-alias key:id="respect_me_1234" id="2000" especialname="humm modificado" calculado="${10+5}" on-event-msg.a="this.showAlert">
+					<span>whats???</span>
+			</compost-alias>
+		</if>
+			
+		<for each="item in this.foolArray">
+			<p> - ${item} - </p>
+		</for>
+		<for each="item,my$indx in this.foolArray">
+			<p> ${my$indx} : ${item} </p>
+		</for>		
+		<for each="item in this.foolArray">
+			<p> - ${item} - </p>
+		</for>
+		<for each="item,my$indx in this.foolArray">
+			<p> ${my$indx} : ${item} </p>
+		</for>
+		
+		<for each="item,my$indx in this.foolArray">
+			<ui:vendor-test key_id="${item}" expe="${item+':'+new Date().getSeconds()}"></ui:vendor-test>
+		</for>
+		<ui:vendor-test expe="1999"></ui:vendor-test>
+		<ui:vendor-sub-comp key:id="${this.id}">
+			<span>conforme especificado!</span>
+		</ui:vendor-sub-comp>
+		<ui:vendor-sub-comp key:id="${this.id}">
+			<span>com span! ${this.id} </span>
+		</ui:vendor-sub-comp>
+		<ui:vendor-sub-comp>
+			conforme especificado! - ${this.id}
+		</ui:vendor-sub-comp>
+		<view-two></view-two>
+		<no-model></no-model>
+
+		
+		<span>FIRM DO MAIN</span>
+
 	</form>
 </template>
 

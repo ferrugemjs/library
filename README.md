@@ -68,7 +68,9 @@ now, we can importe into other template
 ``` xml
 <template>
     <require from="./module-a"></require>
-    <module-a title="new title!"></module-a>
+    <div>
+      <module-a title="new title!"></module-a>
+    </div>
 </template>
 ```
 
@@ -105,8 +107,10 @@ When you set the 'value=${name}' in a input component it will set "value" attrib
 
 ``` html
 <template>
-  <h2>Hello World, ${this.name}</h2>
-  <input value="${this.name}"/>
+  <div>
+    <h2>Hello World, ${this.name}</h2>
+    <input value="${this.name}"/>
+  </div>
 </template>
 ```
 
@@ -116,8 +120,10 @@ When you set the "keyup.bind" in a input component it will change the "name" att
 
 ``` html
 <template>
-  <h2>Hello World, ${this.name}</h2>
-  <input keyup.bind="this.name"/>
+  <div>
+    <h2>Hello World, ${this.name}</h2>
+    <input keyup.bind="this.name"/>
+  </div>  
 </template>
 ```
 
@@ -125,8 +131,10 @@ When you set the "keyup.bind" in a input component it will change the "name" att
 
 ``` html
 <template>
-  <h2>Hello World, ${this.name}</h2>
-  <input change.trigger="this.manualChangeMethod"/>
+  <div>
+    <h2>Hello World, ${this.name}</h2>
+    <input change.trigger="this.manualChangeMethod"/>
+  <div>
 </template>
 ```
 
@@ -148,32 +156,34 @@ export class HelloWorld{
 ###template stuffs
 
 if,elseif,else
-``` html
+``` xml
 <template>
-  <if condition="this.name==='test'">
-    <span>name is test</span>
-  </if>
+  <div>
+    <if condition="this.name==='test'">
+      <span>name is test</span>
+    </if>
 
-  <if condition="this.name==='test'">
-    <span>name is test</span>
-  <else>
-    <span>I dont know you!</span>
-  </if>
+    <if condition="this.name==='test'">
+      <span>name is test</span>
+    <else>
+      <span>I dont know you!</span>
+    </if>
 
-  <if condition="this.name==='test'">
-    <span>name is test</span>
-  <elseif condition="this.name==='test2'">
-    <span>ok, you are test2</span>
-  </if>
+    <if condition="this.name==='test'">
+      <span>name is test</span>
+    <elseif condition="this.name==='test2'">
+      <span>ok, you are test2</span>
+    </if>
 
-  <if condition="this.name==='test'">
-    <span>name is test</span>
-  <elseif condition="this.name==='test2'">
-    <span>ok, you are test2</span>
-  <else>
-    <span>I dont know you!</span>  
-  </if>
+    <if condition="this.name==='test'">
+      <span>name is test</span>
+    <elseif condition="this.name==='test2'">
+      <span>ok, you are test2</span>
+    <else>
+      <span>I dont know you!</span>  
+    </if>
 
+  </div>
 </template>
 ```
 
@@ -195,8 +205,10 @@ import other module
 ``` html
 <template>
     <require from="./example/hello-world"></require>
-    <h1>My First APP with ${this.title}</h1>
-    <hello-world name="C-3PO"></hello-world>   
+    <div>
+      <h1>My First APP with ${this.title}</h1>
+      <hello-world name="C-3PO"></hello-world>   
+    </div>
 </template>
 ```
 
@@ -204,8 +216,10 @@ give an alias in module import statement.
 ``` html
 <template>
     <require from="./example/hello-world as sea-bienvenido"></require>
-    <h1>My First APP with ${this.title}</h1>
-    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
+    <div>
+      <h1>My First APP with ${this.title}</h1>
+      <sea-bienvenido name="C-3PO"></sea-bienvenido> 
+    </div>  
 </template>
 ```
 
@@ -213,9 +227,7 @@ import a css file.
 ``` html
 <template>
     <require from="./hello-world.css!"></require>
-    <require from="./example/hello-world as sea-bienvenido"></require>
-    <h1>My First APP with ${this.title}</h1>
-    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
+    <h1>My First APP with ${this.title}</h1>   
 </template>
 ```
 embed a style tag. 
@@ -226,27 +238,25 @@ embed a style tag.
     	background-color:red;
     }
     </style>
-    <require from="./example/hello-world as sea-bienvenido"></require>
-    <h1 class="especial-tag">My First APP with ${this.title}</h1>
-    <sea-bienvenido name="C-3PO"></sea-bienvenido>   
+    <h1 class="especial-tag">My First APP with ${this.title}</h1>   
 </template>
 ```
 
 change the css className 
 ``` html
-<template class="my-custom-classname">
+<template>
     <style>
     .my-custom-classname{
       background-color:red;
     }
     </style>
-    <h3>My element with a custom className</h3>
+    <h3 class="my-custom-classname">My element with a custom className</h3>
 </template>
 ```
 
 change the css className with expression
 ``` html
-<template class="${'my-custom-classname '+this.customStyle}">
+<template>
     <style>
     .style1{
       background-color:red;
@@ -258,7 +268,7 @@ change the css className with expression
       background-color:green;
     }
     </style>
-    <h3>My element with a custom className by expression</h3>
+    <h3 class="${'my-custom-classname '+this.customStyle}">My element with a custom className by expression</h3>
 </template>
 ```
 
@@ -275,9 +285,11 @@ other template.
 ``` xml
 <template>    
     <require from="./example/hello-world"></require>
-    <hello-world>
-          Good night!
-    </hello-world>   
+    <div>
+      <hello-world>
+            Good night!
+      </hello-world> 
+    </div>  
 </template>
 ```
 
@@ -294,8 +306,10 @@ import other ui library as a namespace.
 ``` xml
 <template>
   <require from="ui-vendor as ui" type="namespace"></require>	
-  <span>using a ui library</span>
-  <ui:progress-bar></ui:progress-bar>
+  <div>
+    <span>using a ui library</span>
+    <ui:progress-bar></ui:progress-bar>
+  </div>
 </template>
 ```
 
@@ -303,7 +317,9 @@ preserve a element instance.
 ``` xml
 <template>
   <require from="./test-comp"></require>
-  <test-comp key:id="key_unique"></test-comp>
+  <div>
+    <test-comp key:id="key_unique"></test-comp>
+  </div>
 </template>
 ```
 
@@ -325,7 +341,9 @@ to access a camelCase method or attribute from template (use slashes '-').
 ``` xml
 <template>
   <require from="./test-comp"></require>
-  <test-comp full-name="test"></test-comp>
+  <div>
+    <test-comp full-name="test"></test-comp>
+  </div>
 </template>
 ```
 
@@ -333,14 +351,18 @@ associete a controller method to a custom element event.
 ``` xml
 <template>
   <require from="./test-comp"></require>
-  <test-comp on-change-name.subscribe="this.showName"></test-comp>
+  <div>
+    <test-comp on-change-name.subscribe="this.showName"></test-comp>
+  </div>
 </template>
 ```
 
 composition.
 ``` xml
 <template>
-  <compose view="path_to_dinamic_module/module_to_loader"></compose>
+  <div>
+    <compose view="path_to_dinamic_module/module_to_loader"></compose>
+  </div>
 </template>
 ```
 
@@ -348,16 +370,20 @@ multiples views to a view-model.
 ``` xml
 <!--view-one.html-->
 <template view-model="./universal-view-model">
-  <h1>VIEW ONE</h1>
-  <span>bla,bla,bla....</span>
+  <div>
+    <h1>VIEW ONE</h1>
+    <span>bla,bla,bla....</span>
+  </div>  
 </template>
 ```
 ``` xml
 <!--view-two.html-->
 <template view-model="./universal-view-model">
-  <h3>VIEW TWO</h3>
-  <p>lol lol lol</p>
-  <img src="logo.png">
+  <div>
+    <h3>VIEW TWO</h3>
+    <p>lol lol lol</p>
+    <img src="logo.png">
+  </div>  
 </template>
 ```
 

@@ -1,4 +1,5 @@
 <template>
+	<require from="./sub-comp"></require>
 	<style>
 		.compost-comp{
 			border:4px solid yellow;
@@ -8,7 +9,7 @@
 			padding:10px;
 		}
 	</style>
-	<div class="${'test-sub-style other_style'+this.id}">
+	<div class="${'test-sub-style compost-comp other_style'+this.id}">
 		<div class="hipertext">
 			<h3 click.trigger="this.getNewId">IM A COMPOST ELEMENT ${this.especialname} - ${this.id}</h3>
 		</div>	
@@ -17,9 +18,9 @@
 		<content></content>	
 		
 		<h5 click.trigger="this.triggerFn">after</h5>
-		<for each="_item_ in new String('cara,chato,pra,chuchu').split(',')">
+		<for each="_item_ in new String('cara,chato,sitt,chuchu').split(',')">
 			<span>${_item_}</span>
-			<if condition="_item_==='pra'">
+			<if condition="_item_==='sitt'">
 				<compose view="dist/example/sub-comp" key:id="${'key_'+_item_}" name="${_item_}" name-comp="x9" key_id2="hey_towo">
 					<span>segura esse limao!!!</span>
 				</compose>
