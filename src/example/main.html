@@ -1,10 +1,11 @@
 <template class="init-app">
 	<require from="./my-css-test.css!"></require>
+	<require from="./two-view-model/view-one"></require>	
 	<require from="./compost-comp as compost-alias"></require>
-	<require from="ui-vendor as ui" type="namespace"></require>
-	<require from="./two-view-model/view-one"></require>
+	<require from="ui-vendor as ui" type="namespace"></require>	
 	<require from="./two-view-model/view-two"></require>
 	<require from="./no-view-model/no-view-model as no-model"></require>
+	
 	<form class="ops">
 		
 		<p id="myunique_p" onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>
@@ -13,52 +14,24 @@
 
 
 		<view-one id-from-hill="${this.count}"></view-one>
-		<view-one key:id="oxe-mainha" id-from-hill="${this.count}"></view-one>	
-
-		<!--
-		<if condition="this.count < 3">
-			<compost-alias key:id="respect_me_1234" id="2000" especialname="humm modificado" calculado="${10+5}" on-event-msg.a="this.showAlert">
-					<span>whats???</span>
-			</compost-alias>
-		</if>	
+		<view-one key:id="test_id1234" id-from-hill="${this.count}"></view-one>	
 		
-	
-		<for each="item in this.foolArray">
-			<p> - ${item} - </p>
-		</for>
-		<for each="item,my$indx in this.foolArray">
-			<p> ${my$indx} : ${item} </p>
-		</for>
 		
-		<for each="item,my$indx in this.foolArray">
-			<ui:vendor-test key_id="${item}" expe="${item+':'+new Date().getSeconds()}"></ui:vendor-test>
-		</for>
-		<ui:vendor-test expe="1999"></ui:vendor-test>
-		<ui:vendor-sub-comp key:id="${this.id}">
-			<span>conforme especificado!</span>
-		</ui:vendor-sub-comp>
-		<ui:vendor-sub-comp key:id="${this.id}">
-			<span>com span! ${this.id} </span>
-		</ui:vendor-sub-comp>
-		<ui:vendor-sub-comp>
-			conforme especificado! - ${this.id}
-		</ui:vendor-sub-comp>
-		<for each="item in this.foolArray">
-			<ui:vendor-test expe="${item}"></ui:vendor-test>
-		</for>
-		<view-one></view-one>
-		<view-two></view-two>
-		<no-model></no-model>
-		
-		<view-one></view-one>
-		-->
 		
 		<if condition="this.count < 3">
-			<compost-alias key:id="respect_me_1234" id="2000" especialname="humm modificado" calculado="${10+5}" on-event-msg.a="this.showAlert">
+			
+			<compost-alias on-event-msg.a="this.showAlert" key:id="respect_me_1234" id="2000" especialname="humm modificado" calculado="${10+5}">
 					<span>whats???</span>
 			</compost-alias>
+			<!--
+			<span>whats??? on-event-msg.a="this.showAlert"</span>
+			-->
 		</if>
 			
+
+
+		
+		
 		<for each="item in this.foolArray">
 			<p> - ${item} - </p>
 		</for>
@@ -75,7 +48,7 @@
 		<for each="item,my$indx in this.foolArray">
 			<ui:vendor-test key_id="${item}" expe="${item+':'+new Date().getSeconds()}"></ui:vendor-test>
 		</for>
-		<ui:vendor-test expe="1999"></ui:vendor-test>
+		
 		<ui:vendor-sub-comp key:id="${this.id}">
 			<span>conforme especificado!</span>
 		</ui:vendor-sub-comp>
@@ -85,10 +58,13 @@
 		<ui:vendor-sub-comp>
 			conforme especificado! - ${this.id}
 		</ui:vendor-sub-comp>
+		
+
+		<ui:vendor-test expe="1999"></ui:vendor-test>
 		<view-two></view-two>
 		<no-model></no-model>
 
-		
+	
 		<span>FIRM DO MAIN</span>
 
 	</form>

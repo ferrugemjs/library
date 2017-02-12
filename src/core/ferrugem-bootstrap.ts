@@ -23,9 +23,12 @@ require([app_url+".html"],(_mod_init_app:any)=>{
 	let _tmp_class_name:string = app_html.className?app_html.className+" ":"";
 	let _tmp_inst = _fjs_.build({
 		classFactory:_mod_init_app.default
-		,staticVars:{}
+		,staticVars:{
+			"key:id":app_uid
+		}
 		,hostVars:{}
-		,tagName:"init-app-tag"
+		,tag:"div"
+		,alias:"init-app-tag"
 		//,target:app_uid
 	});
 	_IDOM.patch(document.getElementById(app_uid),_fjs_.reDraw.bind(_tmp_inst),_tmp_inst);
