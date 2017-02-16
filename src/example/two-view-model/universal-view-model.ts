@@ -20,4 +20,7 @@ export class UniversalViewModel{
 	private get pid(){
 		return this.name;
 	}
+	private attached():void{
+		console.log('universal view criado!',this.inc,this.name);
+	}
 }

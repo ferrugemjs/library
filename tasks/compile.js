@@ -7,6 +7,7 @@ var tsConfig = require("../tsconfig.json").compilerOptions;
 gulp.task('compile',function(){
     return gulp.src(["./src/**/*.ts"])
         .pipe(ts(tsConfig))
+        .pipe(uglify())
         .pipe(gulp.dest(tsConfig.outDir));   
 });
 

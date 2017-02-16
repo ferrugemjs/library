@@ -8,5 +8,5 @@ declare module 'incremental-dom'{
 	export var elementVoid:any;
 	export var attr: any;
 	export var port: any;
-	export var notifications:{nodesDeleted:Function}
+	export var notifications:{nodesDeleted:Function,nodesCreated:Function}
 }

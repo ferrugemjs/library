@@ -32,6 +32,20 @@ _IDOM.notifications.nodesDeleted = function(nodes:any) {
   });
 };
 
+
+_IDOM.notifications.nodesCreated = function(nodes:any) {
+  //console.log(nodes,inst_watched);
+  nodes.forEach((node:HTMLDivElement)=>{
+  	let key_id:string = node.getAttribute?node.getAttribute("key-id"):""; 
+  	if(key_id && inst_watched[key_id] && inst_watched[key_id].inst.attached && (!inst_watched[key_id].loaded)){
+  		inst_watched[key_id].loaded = true;
+  		inst_watched[key_id].inst.attached();
+  	}  
+  });
+};
+
+
+
 export interface IInstConfig{
 	classFactory:any
 	,hostVars:{}
@@ -197,12 +211,14 @@ export class FerrugemJSFactory{
 		)(_inst_.inst));
 			_inst_.inst.render(_inst_.inst);			
 		_IDOM.elementClose(_inst_.tag);
+		/*
 		if(!_inst_.loaded && _inst_.inst.attached){					
 			_inst_.inst.attached();
 		}
 		if(!_inst_.loaded){
 			_inst_.loaded = true;
 		}
+		*/
 	}
 	public refresh():void{
 		let _inst_:IInstWatched =  inst_watched[this._$key$_]||<any>{inst:this};
@@ -222,12 +238,14 @@ export class FerrugemJSFactory{
 			}
 			_IDOM.patch(elementDom,_inst_.inst.render,_inst_.inst);	
 		}
+		/*
 		if(!_inst_.loaded && _inst_.inst.attached){					
 			_inst_.inst.attached();
 		}
 		if(!_inst_.loaded){
 			_inst_.loaded = true;
 		}
+		*/
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{
 		require([path+".html"],(mod:any)=>{
