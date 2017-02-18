@@ -1,7 +1,7 @@
 #FerrugemJS
 ![Ferrugem Logo](/assets/img/ferrugemjs_new_120x120.png) 
-###A simple library, reactive, conventional and non-intrusive!
-**FerrugemJS** is inspired by [Aurelia](http://aurelia.io/) and [React](https://facebook.github.io/react/) using [Incremental DOM](http://google.github.io/incremental-dom/) with a html template engine.
+**A simple library, reactive, conventional and non-intrusive!**
+***FerrugemJS*** is inspired by [Aurelia](http://aurelia.io/) and [React](https://facebook.github.io/react/) using [Incremental DOM](http://google.github.io/incremental-dom/) with a html template engine.
 
 ####No jquery required, only 2kB!
 
@@ -58,12 +58,14 @@ export class ModuleA{
     }
 }
 ```
+
 eg. "module-a.html" file.
 ``` html
 <template>
     <h1>My First APP with ${this.title}</h1>
 </template>
 ```
+
 now, we can importe into other template
 ``` xml
 <template>
@@ -76,9 +78,8 @@ now, we can importe into other template
 
 ###module lifecycle
 
-*attached:
+****attached:****
 By implementing the method your module will be prompted for it once the html is in "DOM".
-
 eg.
 ``` typescript
 attached(){
@@ -87,9 +88,8 @@ attached(){
 ```
 
 
-*detached:
+****detached:****
 By implementing the method your module will be prompted for it once your object is detached from "DOM".
-
 eg.
 ``` typescript
 detached(){
@@ -97,9 +97,9 @@ detached(){
 }
 ```
 
-*set+attribute name:
-By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
 
+****set+attribute name:****
+By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
 eg.
 ``` typescript
 setName(name:string){
@@ -107,10 +107,10 @@ setName(name:string){
 }
 ```
 
-###one-way data binding
 
+****one-way data binding****
 When you set the 'value=${name}' in a input component it will set "value" attribute in element after a controller refresh.
-
+eg.
 ``` html
 <template>
   <div>
@@ -120,10 +120,9 @@ When you set the 'value=${name}' in a input component it will set "value" attrib
 </template>
 ```
 
-###event binding
-
+****event binding****
 When you set the "keyup.bind" in a input component it will change the "name" attribute in controller after a keyup event.
-
+eg.
 ``` html
 <template>
   <div>
@@ -133,8 +132,9 @@ When you set the "keyup.bind" in a input component it will change the "name" att
 </template>
 ```
 
-###manual event reactivity
 
+****manual event reactivity****
+eg.
 ``` html
 <template>
   <div>
@@ -159,11 +159,11 @@ export class HelloWorld{
 }
 ```
 
-###template stuffs
+***template stuffs***
 
-***if***
+****if****
+
 Conditional render with if
-
 eg.
 ``` xml
 <template>
@@ -174,9 +174,9 @@ eg.
 ```
 
 
-***tag if***
-Tag if condition
+****tag if****
 
+conditional flow with tag if condition
 eg.
 ``` xml
 <template>
@@ -187,7 +187,7 @@ eg.
 ```
 
 
-***Tags if,else***
+****Tags if,else****
 
 eg.
 ``` xml
@@ -203,7 +203,7 @@ eg.
 ```
 
 
-***Tags if,elseif***
+****Tags if,elseif****
 
 eg.
 ``` xml
@@ -219,7 +219,7 @@ eg.
 ```
 
 
-***Tags if,elseif,else***
+****Tags if,elseif,else****
 
 eg.
 ``` xml
