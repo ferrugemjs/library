@@ -78,6 +78,8 @@ now, we can importe into other template
 
 *attached:
 By implementing the method your module will be prompted for it once the html is in "DOM".
+
+eg.
 ``` typescript
 attached(){
  console.log('im in DOM');
@@ -87,6 +89,8 @@ attached(){
 
 *detached:
 By implementing the method your module will be prompted for it once your object is detached from "DOM".
+
+eg.
 ``` typescript
 detached(){
  console.log('im out');
@@ -95,6 +99,8 @@ detached(){
 
 *set+attribute name:
 By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
+
+eg.
 ``` typescript
 setName(name:string){
  this.name = name;
@@ -155,26 +161,70 @@ export class HelloWorld{
 
 ###template stuffs
 
-if,elseif,else
+***if***
+Conditional render with if
+
+eg.
+``` xml
+<template>
+  <div>
+    <span if="this.name==='test'">name is test</span>
+  </div>
+</template>
+```
+
+
+***tag if***
+Tag if condition
+
+eg.
+``` xml
+<template>
+    <if condition="this.name==='test'">
+      <span>name is test</span>
+    </if>
+</template>
+```
+
+
+***Tags if,else***
+
+eg.
 ``` xml
 <template>
   <div>
     <if condition="this.name==='test'">
       <span>name is test</span>
-    </if>
-
-    <if condition="this.name==='test'">
-      <span>name is test</span>
     <else>
       <span>I dont know you!</span>
     </if>
+  </div>
+</template>
+```
 
+
+***Tags if,elseif***
+
+eg.
+``` xml
+<template>
+  <div>
     <if condition="this.name==='test'">
       <span>name is test</span>
     <elseif condition="this.name==='test2'">
       <span>ok, you are test2</span>
     </if>
+  </div>
+</template>
+```
 
+
+***Tags if,elseif,else***
+
+eg.
+``` xml
+<template>
+  <div>
     <if condition="this.name==='test'">
       <span>name is test</span>
     <elseif condition="this.name==='test2'">
@@ -182,18 +232,55 @@ if,elseif,else
     <else>
       <span>I dont know you!</span>  
     </if>
-
   </div>
 </template>
 ```
 
-for each
-``` html
+
+***Loop render with each***
+
+eg.
+``` xml
+<template>
+ <ul>
+  <li each="item in this.itens">${item.name}</li>
+ </ul>
+</template>
+```
+
+
+***Loop render with each with a custom index***
+
+eg.
+``` xml
+<template>
+ <ul>
+  <li each="item,$index in this.itens">${$index} - ${item.name}</li>
+ </ul>
+</template>
+```
+
+
+***Tag for each***
+
+eg.
+``` xml
 <template>
  <ul>
   <for each="item in this.itens">
    <li>${item.name}</li>
   </for>
+ </ul>
+</template>
+```
+
+
+***Tag for each with index***
+
+eg.
+``` xml
+<template>
+ <ul>
   <for each="item,$index in this.itens">
    <li>${$index} - ${item.name}</li>
   </for>
@@ -201,7 +288,10 @@ for each
 </template>
 ```
 
-import other module
+
+***import other module***
+
+eg.
 ``` html
 <template>
     <require from="./example/hello-world"></require>
@@ -212,7 +302,10 @@ import other module
 </template>
 ```
 
-give an alias in module import statement. 
+
+***give an alias in module import statement*** 
+
+eg.
 ``` html
 <template>
     <require from="./example/hello-world as sea-bienvenido"></require>
@@ -223,14 +316,21 @@ give an alias in module import statement.
 </template>
 ```
 
-import a css file. 
+
+***import a css file*** 
+
+eg.
 ``` html
 <template>
     <require from="./hello-world.css!"></require>
     <h1>My First APP with ${this.title}</h1>   
 </template>
 ```
-embed a style tag. 
+
+
+***embed a style tag***
+
+eg.
 ``` html
 <template>
     <style>
@@ -242,7 +342,10 @@ embed a style tag.
 </template>
 ```
 
-change the css className 
+
+***change the css className*** 
+
+eg.
 ``` html
 <template>
     <style>
@@ -254,7 +357,10 @@ change the css className
 </template>
 ```
 
-change the css className with expression
+
+***change the css className with expression***
+
+eg.
 ``` html
 <template>
     <style>
@@ -272,7 +378,10 @@ change the css className with expression
 </template>
 ```
 
-set where the content of element must be. 
+
+***set where the content of element must be placed***
+
+eg.
 ``` xml
 <!--hello-world.html-->
 <template>    
@@ -281,7 +390,8 @@ set where the content of element must be.
  </h1>
 </template>
 ```
-other template.
+Bellow is as "hello-world.html" will be used.
+eg.
 ``` xml
 <template>    
     <require from="./example/hello-world"></require>
@@ -294,7 +404,8 @@ other template.
 ```
 
 
-import other library/script.
+***import other library/script***
+eg.
 ``` html
 <template>
   <require from="moment" type="script"></require>
@@ -302,7 +413,10 @@ import other library/script.
 </template>
 ```
 
-import other ui library as a namespace.
+
+***import other ui library as a namespace***
+
+eg.
 ``` xml
 <template>
   <require from="ui-vendor as ui" type="namespace"></require>	
@@ -313,7 +427,10 @@ import other ui library as a namespace.
 </template>
 ```
 
-preserve a element instance.
+
+***preserve a element instance***
+
+eg.
 ``` xml
 <template>
   <require from="./test-comp"></require>
@@ -323,21 +440,30 @@ preserve a element instance.
 </template>
 ```
 
-associete a controller method to DOM event.
+
+***associete a controller method to DOM event***
+
+eg.
 ``` xml
 <template>
   <button click.trigger="this.showName">show my name!</button>
 </template>
 ```
 
-associete a controller method to DOM event with extra paramaters.
+
+***associete a controller method to DOM event with extra paramaters.
+
+eg.
 ``` xml
 <template>
   <button click.trigger="this.showName('test')">show my name!</button>
 </template>
 ```
 
-to access a camelCase method or attribute from template (use slashes '-').
+
+***to access a camelCase method or attribute from template (use slashes '-')***
+
+eg.
 ``` xml
 <template>
   <require from="./test-comp"></require>
@@ -361,7 +487,7 @@ composition.
 ``` xml
 <template>
   <div>
-    <compose view="path_to_dinamic_module/module_to_loader"></compose>
+    <compose view:from="path_to_dinamic_module/module_to_loader"></compose>
   </div>
 </template>
 ```
