@@ -1,5 +1,9 @@
 #FerrugemJS
+
 ![Ferrugem Logo](/assets/img/ferrugemjs_new_120x120.png) 
+
+
+
 **A simple library, reactive, conventional and non-intrusive!**
 ***FerrugemJS*** is inspired by [Aurelia](http://aurelia.io/) and [React](https://facebook.github.io/react/) using [Incremental DOM](http://google.github.io/incremental-dom/) with a html template engine.
 
@@ -76,10 +80,13 @@ now, we can importe into other template
 </template>
 ```
 
+
 ###module lifecycle
 
-****attached:****
+***attached:***
+
 By implementing the method your module will be prompted for it once the html is in "DOM".
+
 eg.
 ``` typescript
 attached(){
@@ -88,8 +95,11 @@ attached(){
 ```
 
 
-****detached:****
+
+***detached:***
+
 By implementing the method your module will be prompted for it once your object is detached from "DOM".
+
 eg.
 ``` typescript
 detached(){
@@ -98,8 +108,11 @@ detached(){
 ```
 
 
-****set+attribute name:****
-By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute
+
+***set+attribute name:***
+
+By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute.
+
 eg.
 ``` typescript
 setName(name:string){
@@ -108,8 +121,11 @@ setName(name:string){
 ```
 
 
-****one-way data binding****
+
+***one-way data binding***
+
 When you set the 'value=${name}' in a input component it will set "value" attribute in element after a controller refresh.
+
 eg.
 ``` html
 <template>
@@ -120,8 +136,12 @@ eg.
 </template>
 ```
 
-****event binding****
+
+
+***event binding***
+
 When you set the "keyup.bind" in a input component it will change the "name" attribute in controller after a keyup event.
+
 eg.
 ``` html
 <template>
@@ -133,7 +153,9 @@ eg.
 ```
 
 
-****manual event reactivity****
+
+***manual event reactivity***
+
 eg.
 ``` html
 <template>
@@ -161,9 +183,12 @@ export class HelloWorld{
 
 ***template stuffs***
 
-****if****
 
-Conditional render with if
+
+***if***
+
+Conditional render with if.
+
 eg.
 ``` xml
 <template>
@@ -174,9 +199,11 @@ eg.
 ```
 
 
-****tag if****
 
-conditional flow with tag if condition
+***tag if***
+
+conditional flow with tag if condition.
+
 eg.
 ``` xml
 <template>
@@ -187,7 +214,7 @@ eg.
 ```
 
 
-****Tags if,else****
+***Tags if,else***
 
 eg.
 ``` xml
@@ -203,7 +230,8 @@ eg.
 ```
 
 
-****Tags if,elseif****
+
+***Tags if,elseif***
 
 eg.
 ``` xml
@@ -219,7 +247,8 @@ eg.
 ```
 
 
-****Tags if,elseif,else****
+
+***Tags if,elseif,else***
 
 eg.
 ``` xml
@@ -237,6 +266,7 @@ eg.
 ```
 
 
+
 ***Loop render with each***
 
 eg.
@@ -249,6 +279,7 @@ eg.
 ```
 
 
+
 ***Loop render with each with a custom index***
 
 eg.
@@ -259,6 +290,7 @@ eg.
  </ul>
 </template>
 ```
+
 
 
 ***Tag for each***
@@ -275,6 +307,7 @@ eg.
 ```
 
 
+
 ***Tag for each with index***
 
 eg.
@@ -287,6 +320,7 @@ eg.
  </ul>
 </template>
 ```
+
 
 
 ***import other module***
@@ -303,6 +337,7 @@ eg.
 ```
 
 
+
 ***give an alias in module import statement*** 
 
 eg.
@@ -317,6 +352,7 @@ eg.
 ```
 
 
+
 ***import a css file*** 
 
 eg.
@@ -326,6 +362,7 @@ eg.
     <h1>My First APP with ${this.title}</h1>   
 </template>
 ```
+
 
 
 ***embed a style tag***
@@ -343,6 +380,7 @@ eg.
 ```
 
 
+
 ***change the css className*** 
 
 eg.
@@ -356,6 +394,7 @@ eg.
     <h3 class="my-custom-classname">My element with a custom className</h3>
 </template>
 ```
+
 
 
 ***change the css className with expression***
@@ -379,6 +418,7 @@ eg.
 ```
 
 
+
 ***set where the content of element must be placed***
 
 eg.
@@ -391,6 +431,7 @@ eg.
 </template>
 ```
 Bellow is as "hello-world.html" will be used.
+
 eg.
 ``` xml
 <template>    
@@ -404,7 +445,9 @@ eg.
 ```
 
 
+
 ***import other library/script***
+
 eg.
 ``` html
 <template>
@@ -412,6 +455,7 @@ eg.
   <span>${moment().format('DD/MM/YYYY')}</span>
 </template>
 ```
+
 
 
 ***import other ui library as a namespace***
@@ -428,6 +472,7 @@ eg.
 ```
 
 
+
 ***preserve a element instance***
 
 eg.
@@ -441,6 +486,7 @@ eg.
 ```
 
 
+
 ***associete a controller method to DOM event***
 
 eg.
@@ -451,6 +497,7 @@ eg.
 ```
 
 
+
 ***associete a controller method to DOM event with extra paramaters.
 
 eg.
@@ -459,6 +506,7 @@ eg.
   <button click.trigger="this.showName('test')">show my name!</button>
 </template>
 ```
+
 
 
 ***to access a camelCase method or attribute from template (use slashes '-')***
@@ -473,7 +521,11 @@ eg.
 </template>
 ```
 
-associete a controller method to a custom element event.
+
+
+***associete a controller method to a custom element event***
+
+eg.
 ``` xml
 <template>
   <require from="./test-comp"></require>
@@ -483,7 +535,11 @@ associete a controller method to a custom element event.
 </template>
 ```
 
-composition.
+
+
+***composition***
+
+eg.
 ``` xml
 <template>
   <div>
@@ -492,7 +548,11 @@ composition.
 </template>
 ```
 
-multiples views to a view-model.
+
+
+***multiples views to a view-model***
+
+eg.
 ``` xml
 <!--view-one.html-->
 <template view-model="./universal-view-model">
@@ -513,7 +573,11 @@ multiples views to a view-model.
 </template>
 ```
 
-template viewmodel-less.
+
+
+***template viewmodel-less***
+
+eg.
 ``` xml
 <template no-view-model="true">
   <h1>NO viewmodel</h1>
