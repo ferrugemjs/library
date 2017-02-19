@@ -21,7 +21,6 @@
   "jspm": {
     "registry": "npm",
     "main": "ferrugem-bootstrap",
-    "jspmPackage": true,
     "format": "amd",
     "directories": {
       "dist": "dist/core"
@@ -36,7 +35,7 @@
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.3.1",
-    "gulp-ferrugemjs": "0.10.13",
+    "gulp-ferrugemjs": "0.11.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-typescript": "^2.11.0",
