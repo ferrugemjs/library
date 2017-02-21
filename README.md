@@ -355,10 +355,17 @@ eg.
 
 ***import a css file*** 
 
+You need "plugin-css" for jspm or equivalent if you are using requirejs.
+
 eg.
-``` html
+``` xml
 <template>
-    <require from="./hello-world.css!"></require>
+    <!--plugin-css format-->
+    <require from="./hello-world.css!"/>    
+    <!--common plugin-css format to requirejs-->
+    <require from="style!./hello-world"/>
+    <!--other common plugin-css format to requirejs-->
+    <require from="css!./hello-world.css"/>    
     <h1>My First APP with ${this.title}</h1>   
 </template>
 ```
@@ -457,7 +464,6 @@ eg.
 ```
 
 
-
 ***import other ui library as a namespace***
 
 eg.
@@ -480,11 +486,13 @@ eg.
 <template>
   <require from="./test-comp"></require>
   <div>
-    <test-comp key:id="key_unique"></test-comp>
+  <for each="item in this.itens">
+     <test-comp key:id="item.id"></test-comp>
+   </for>
   </div>
 </template>
 ```
-
+You shouldnt use this every moment, but it is recomended to use in a  interation with tag "for" ou instruction "each".
 
 
 ***associete a controller method to DOM event***
@@ -583,3 +591,27 @@ eg.
   <h1>NO viewmodel</h1>
 </template>
 ```
+
+***function representation***
+
+If you have a function with a "export default" you can represent it in your template with a tag.
+
+eg.
+``` typescript
+export default function(log:{}){ 
+   console.log(log);
+}
+```
+
+``` xml
+<template>
+  <require from="./myfunctionlog as fn-log" type="script"/>
+  <div>
+        <fn-log msg="it is alive"/>
+  </div>
+</template>
+```
+
+
+
+
