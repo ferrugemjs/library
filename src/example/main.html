@@ -1,6 +1,7 @@
 <template class="init-app">
 	
 	<require from="./my-css-test.css!"></require>
+	<require from="./fn-view/fn-view as log-system" type="script"></require>
 	<require from="./two-view-model/view-one"></require>	
 	<require from="./compost-comp as compost-alias"></require>
 	<require from="ui-vendor as ui" type="namespace"></require>	
@@ -8,7 +9,7 @@
 	<require from="./no-view-model/no-view-model as no-model"></require>
 	
 	<form class="ops">
-		
+		<log-system pass-msg="${this.count}" dud="cull"/>
 		<p id="myunique_p" onclick="alert('o que esta acontecendo humm!!!!')">voltei teste</p>
 		<span click.trigger="this.refresh">${this.count++}</span>
 		<p id="myunique_p2" click.trigger="this.refresh">refresh all</p>
@@ -43,9 +44,9 @@
 			<p> ${my$indx} : ${item} </p>
 		</for>
 		
-		<for each="item,my$indx in this.foolArray">
-			<ui:vendor-test key_id="${item}" expe="${item+':'+new Date().getSeconds()}"></ui:vendor-test>
-		</for>
+		
+		<ui:vendor-test each="item,my$indx in this.foolArray" key:id="${'vt_'+my$indx}" key_id="${item}" expe="${item+':'+new Date().getSeconds()}"/>
+		
 		
 		<ui:vendor-sub-comp key:id="${this.id}">
 			<span>conforme especificado!</span>

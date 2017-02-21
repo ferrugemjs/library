@@ -23,11 +23,11 @@
 		<for each="_item_ in new String('cara,chato,sitt,chuchu').split(',')">
 			<span>${_item_}</span>
 			<if condition="_item_==='sitt'">
-				<compose view="dist/example/sub-comp" key:id="${'key_'+_item_}" name="${_item_}" name-comp="x9" key_id2="hey_towo">
+				<compose id="${'comp_key_'+_item_}" view:from="dist/example/sub-comp" key:id="${'comp_key_'+_item_}" name="${_item_}" name-comp="x9" key_id2="hey_towo">
 					<span>segura esse limao!!!</span>
 				</compose>
 			<else>
-				<compose view="dist/example/sub-comp" key:id="${'key_'+_item_}" name="luke" name-comp="x9" key_id2="hey_towo">
+				<compose id="${'comp_key_'+_item_}" view:from="dist/example/sub-comp" key:id="${'comp_key_'+_item_}" name="luke" name-comp="x9" key_id2="hey_towo">
 					<span>segura esse limao!!!</span>
 				</compose>
 			</if>
