@@ -280,7 +280,7 @@ eg.
 
 
 
-***Loop render with each with a custom index***
+***Loop render with a custom index***
 
 eg.
 ``` xml
@@ -611,7 +611,27 @@ export default function(log:{}){
   </div>
 </template>
 ```
-
-
-
+other example
+``` typescript
+\\make your own router interface
+import page = require("page");
+export default (config:{path:string,onTrigger:Function})=>{
+	if(config.path && config.onTrigger){
+		page(config.path,context=>{
+			config.onTrigger(context.params);
+		});
+	}else{
+		page.start();
+	}
+}
+```
+using
+``` xml
+<template>
+ <require from="../commons/router as add-router" type="script"/>
+ <div>
+  <add-router path="/user/:id" on-trigger="this.edit"/>
+ </div>
+</template>	
+```
 
