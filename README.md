@@ -1,6 +1,6 @@
 #FerrugemJS
 
-![Ferrugem Logo](/assets/img/ferrugemjs_new_120x120.png) 
+![Ferrugem Logo](/assets/img/new-logo.png) 
 
 
 
