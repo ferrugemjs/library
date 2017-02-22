@@ -613,7 +613,7 @@ export default function(log:{}){
 ```
 other example
 ``` typescript
-\\make your own router interface
+//make your own router interface
 import page = require("page");
 export default (config:{path:string,onTrigger:Function})=>{
 	if(config.path && config.onTrigger){
