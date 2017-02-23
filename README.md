@@ -27,7 +27,9 @@ clone
 ####individual install
 
 jspm install npm:ferrugemjs
+
 npm install ferrugemjs (requirejs)
+
 npm install --save-dev gulp-ferrugemjs
 
 
