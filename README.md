@@ -22,12 +22,13 @@ https://ferrugemjs.github.io/examples/index.html
 
 ####how to start:
 clone
-[skeleton-typescript](https://github.com/ferrugemjs/skeleton-typescript)
+[skeleton-typescript](https://github.com/ferrugemjs/skeleton-typescript) (recomended way)
 
 ####individual install
-npm install ferrugemjs
 
 jspm install npm:ferrugemjs
+npm install ferrugemjs (requirejs)
+npm install --save-dev gulp-ferrugemjs
 
 
 ####initialization
@@ -73,9 +74,9 @@ eg. "module-a.html" file.
 now, we can importe into other template
 ``` xml
 <template>
-    <require from="./module-a"></require>
+    <require from="./module-a"/>
     <div>
-      <module-a title="new title!"></module-a>
+      <module-a title="new title!"/>
     </div>
 </template>
 ```
@@ -143,7 +144,7 @@ eg.
 When you set the "keyup.bind" in a input component it will change the "name" attribute in controller after a keyup event.
 
 eg.
-``` html
+``` xml
 <template>
   <div>
     <h2>Hello World, ${this.name}</h2>
@@ -157,12 +158,12 @@ eg.
 ***manual event reactivity***
 
 eg.
-``` html
+``` xml
 <template>
   <div>
     <h2>Hello World, ${this.name}</h2>
     <input change.trigger="this.manualChangeMethod"/>
-  <div>
+  </div>
 </template>
 ```
 
@@ -328,10 +329,10 @@ eg.
 eg.
 ``` html
 <template>
-    <require from="./example/hello-world"></require>
+    <require from="./example/hello-world"/>
     <div>
       <h1>My First APP with ${this.title}</h1>
-      <hello-world name="C-3PO"></hello-world>   
+      <hello-world name="C-3PO"/>   
     </div>
 </template>
 ```
@@ -343,10 +344,10 @@ eg.
 eg.
 ``` html
 <template>
-    <require from="./example/hello-world as sea-bienvenido"></require>
+    <require from="./example/hello-world as sea-bienvenido"/>
     <div>
       <h1>My First APP with ${this.title}</h1>
-      <sea-bienvenido name="C-3PO"></sea-bienvenido> 
+      <sea-bienvenido name="C-3PO"/>
     </div>  
 </template>
 ```
@@ -360,11 +361,11 @@ You need "plugin-css" for jspm or equivalent if you are using requirejs.
 eg.
 ``` xml
 <template>
-    <!--plugin-css format-->
+    <!--if using 'plugin-css' systemjs-->
     <require from="./hello-world.css!"/>    
-    <!--common plugin-css format to requirejs-->
+    <!--if using commons css plugins to requirejs-->
     <require from="style!./hello-world"/>
-    <!--other common plugin-css format to requirejs-->
+    <!--to others commons css plugins-->
     <require from="css!./hello-world.css"/>    
     <h1>My First APP with ${this.title}</h1>   
 </template>
@@ -433,7 +434,7 @@ eg.
 <!--hello-world.html-->
 <template>    
  <h1>
-  <content></content>
+  <content/>
  </h1>
 </template>
 ```
@@ -442,7 +443,7 @@ Bellow is as "hello-world.html" will be used.
 eg.
 ``` xml
 <template>    
-    <require from="./example/hello-world"></require>
+    <require from="./example/hello-world"/>
     <div>
       <hello-world>
             Good night!
@@ -458,7 +459,7 @@ eg.
 eg.
 ``` html
 <template>
-  <require from="moment" type="script"></require>
+  <require from="moment" type="script"/>
   <span>${moment().format('DD/MM/YYYY')}</span>
 </template>
 ```
@@ -469,14 +470,13 @@ eg.
 eg.
 ``` xml
 <template>
-  <require from="ui-vendor as ui" type="namespace"></require>	
+  <require from="ui-vendor as ui" type="namespace"/>	
   <div>
     <span>using a ui library</span>
-    <ui:progress-bar></ui:progress-bar>
+    <ui:progress-bar/>
   </div>
 </template>
 ```
-
 
 
 ***preserve a element instance***
@@ -484,10 +484,10 @@ eg.
 eg.
 ``` xml
 <template>
-  <require from="./test-comp"></require>
+  <require from="./test-comp"/>
   <div>
   <for each="item in this.itens">
-     <test-comp key:id="item.id"></test-comp>
+     <test-comp key:id="${item.id}"/>
    </for>
   </div>
 </template>
@@ -522,9 +522,9 @@ eg.
 eg.
 ``` xml
 <template>
-  <require from="./test-comp"></require>
+  <require from="./test-comp"/>
   <div>
-    <test-comp full-name="test"></test-comp>
+    <test-comp full-name="test"/>
   </div>
 </template>
 ```
@@ -536,9 +536,9 @@ eg.
 eg.
 ``` xml
 <template>
-  <require from="./test-comp"></require>
+  <require from="./test-comp"/>
   <div>
-    <test-comp on-change-name.subscribe="this.showName"></test-comp>
+    <test-comp on-change-name.subscribe="this.showName"/>
   </div>
 </template>
 ```
@@ -551,14 +551,14 @@ eg.
 ``` xml
 <template>
   <div>
-    <compose view:from="path_to_dinamic_module/module_to_loader"></compose>
+    <compose view:from="path_to_dinamic_module/module_to_loader"/>
   </div>
 </template>
 ```
 
 
 
-***multiples views to a view-model***
+***custom view-model***
 
 eg.
 ``` xml
@@ -576,7 +576,7 @@ eg.
   <div>
     <h3>VIEW TWO</h3>
     <p>lol lol lol</p>
-    <img src="logo.png">
+    <img src="logo.png"/>
   </div>  
 </template>
 ```
