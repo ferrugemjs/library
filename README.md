@@ -123,6 +123,36 @@ setName(name:string){
 }
 ```
 
+***component refresh from modelview***
+
+Controller refresh.
+
+eg.
+``` typescript
+export class ModuleA{
+  private title:string;
+  private refresh:Function;//necessary if you want avoid typescript warnings
+  doAnyThing(){
+    this.title = "new Title";
+    refresh();
+  }
+}
+```
+
+***component refresh with state***
+
+Controller refresh with new modelview values equivalent to 'setState' of react.
+
+eg.
+``` typescript
+export class ModuleA{
+  private title:string;
+  private refresh:Function;//necessary if you want avoid typescript warnings
+  doAnyThing(){
+    refresh({title:"new Title"});//equivalent to "setState of react"
+  }
+}
+```
 
 
 ***one-way data binding***

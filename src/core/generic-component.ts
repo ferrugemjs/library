@@ -24,7 +24,10 @@ _IDOM.notifications.nodesDeleted = function(nodes:any) {
   	if(key_id && inst_watched[key_id] && inst_watched[key_id].inst.detached){
   		inst_watched[key_id].inst.detached();
   	} 
+  	//ajudando o guarbage collector do javascript
   	if(key_id && inst_watched[key_id]){
+  		//evitando usar o refresh em um no morto
+  		inst_watched[key_id].loaded = false;
   		inst_watched[key_id].inst = null;
   		inst_watched[key_id] = null;
   		delete inst_watched[key_id];
@@ -74,6 +77,17 @@ export class FerrugemJSFactory{
 		}else if(config.staticVars && config.staticVars["key:id"]){
 			_key = config.staticVars["key:id"];
 			delete config.staticVars["key:id"];
+		}
+
+		if(config.hostVars && config.hostVars["prop:values"]){
+			let _prop_values:{} = config.hostVars["prop:values"];
+			delete config.hostVars["prop:values"];
+			for(let keyp in _prop_values){
+				config.hostVars[keyp]=_prop_values[keyp];
+			}
+		}else if(config.staticVars && config.staticVars["prop:values"]){
+			//_key = config.staticVars["prop:values"];
+			delete config.staticVars["prop:values"];
 		}
 
 		//append methods refresh and content to prototype
@@ -220,9 +234,12 @@ export class FerrugemJSFactory{
 		}
 		*/
 	}
-	public refresh():void{
+	public refresh(props?:{}):void{
 		let _inst_:IInstWatched =  inst_watched[this._$key$_]||<any>{inst:this};
-		if(_inst_.target && document.getElementById(_inst_.target)){
+		if(props){
+			FerrugemJSFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
+		}
+		if(_inst_.loaded && _inst_.target && document.getElementById(_inst_.target)){
 			let elementDom = document.getElementById(_inst_.target);
 			if(_inst_.extHostVars&&_inst_.extHostVars!=='""'){
 				let converted_to_array:string[] = new Function(
@@ -238,14 +255,6 @@ export class FerrugemJSFactory{
 			}
 			_IDOM.patch(elementDom,_inst_.inst.render,_inst_.inst);	
 		}
-		/*
-		if(!_inst_.loaded && _inst_.inst.attached){					
-			_inst_.inst.attached();
-		}
-		if(!_inst_.loaded){
-			_inst_.loaded = true;
-		}
-		*/
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{
 		require([path+".html"],(mod:any)=>{

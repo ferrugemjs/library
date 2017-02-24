@@ -4,15 +4,22 @@ export class Main{
     private title:string="default!";
     private foolArray:string[] = ['ops','humm','interesting'];
     private count:number;
+    private childValues:{};
     constructor(){
         this.count=0;
         this.foolArray = ['ops','humm','interesting'];
+        this.childValues = {
+            msg:"modificado via parente"
+        };
     }
     private showId():void{        
         this.foolArray.forEach((txt:string,inxd:number)=>{
             this.foolArray[inxd] = txt+" "+ new Date().getSeconds()+ " ";
         });
         alert(`NOW with ${this.id} and ${this.title}`);
+         this.childValues = {
+            msg:"modificado via parente2"
+        };
     	(<any>this).refresh();
     }
     private attached():void{    

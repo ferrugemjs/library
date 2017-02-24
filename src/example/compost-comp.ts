@@ -6,6 +6,7 @@ export class CompostComp{
 	private onEventMsg:{a:Function};
 	private id:number;
 	private refresh:Function;
+	private msg:string;
 	constructor(){
 		this.especialname = "humm-default";
 		this.onEventMsg={a:(fnext:Function)=>{
@@ -13,6 +14,7 @@ export class CompostComp{
 			this.myfnext=fnext;
 		}};
 		this.id = 2010;
+		this.msg = "ainda nao alterado";
 	}
 	setEspecialname2(n:string):void{
 		console.log(n);
@@ -35,6 +37,6 @@ export class CompostComp{
 		let nid = new Date().getSeconds();
 		console.log(this.id,nid,this["id33"]);
 		this.id = nid;
-		this.refresh();
+		this.refresh({version:this.id++});
 	}
 }
