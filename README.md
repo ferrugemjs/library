@@ -499,6 +499,8 @@ eg.
 
 ***import other ui library as a namespace***
 
+It is a basic example, but there are a example more elaborate at [ferrugem-router](https://github.com/ferrugemjs/router).
+
 eg.
 ``` xml
 <template>

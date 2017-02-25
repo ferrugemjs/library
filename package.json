@@ -1,6 +1,6 @@
 {
   "name": "ferrugemjs",
-  "version": "0.11.5",
+  "version": "0.11.6",
   "description": "A reactive library.",
   "main": false,
   "scripts": {
@@ -27,10 +27,11 @@
       "dist": "dist/core"
     },
     "dependencies": {
+    },
+    "devDependencies": {
       "css": "github:systemjs/plugin-css@^0.1.32",
       "incremental-dom": "^0.5.1"
-    },
-    "devDependencies": {}
+    }
   },
   "devDependencies": {
     "gulp": "^3.9.1",
