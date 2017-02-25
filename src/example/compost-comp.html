@@ -1,7 +1,7 @@
 <template>
-	<!--
+	
 	<require from="./sub-comp"></require>
-	-->
+	
 	<style>
 		.compost-comp{
 			border:4px solid yellow;
@@ -13,13 +13,17 @@
 	</style>
 	<div class="${'test-sub-style compost-comp other_style'+this.id}">
 		<div class="hipertext">
-			<h3 click.trigger="this.getNewId">IM A COMPOST ELEMENT ${this.especialname} - ${this.id} - ${this.version} - ${this.msg}</h3>
+			<h3 click.trigger="this.getNewId">IM A COMPOST ELEMENT ${this.especialname} - ${this.id} - ${this.version?this.version:0} - ${this.msg}</h3>
 		</div>	
 		<h5 alt="${this.calculado}">before</h5>	
 
 		<content></content>	
 		
 		<h5 click.trigger="this.triggerFn">after</h5>
+		<compose key:id="fora_loop" id="fora_loop" view:from="dist/example/sub-comp"  name="fora loope" name-comp="x9">
+			<span>fora loop</span>
+		</compose>
+		
 		<for each="_item_ in new String('cara,chato,sitt,chuchu').split(',')">
 			<span>${_item_}</span>
 			<if condition="_item_==='sitt'">
@@ -31,6 +35,7 @@
 					<span>segura esse limao!!!</span>
 				</compose>
 			</if>			
-		</for>		
+		</for>
+			
 	</div>
 </template>

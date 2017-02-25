@@ -21,6 +21,7 @@ export class CompostComp{
 	}
 	private attached():void{
 		//console.log(this.onEventMsg);
+		console.log(this);
 	}
 	private detached():void{
 		console.log('compost-comp out of dom!');

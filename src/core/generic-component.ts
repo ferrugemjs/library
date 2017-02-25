@@ -12,13 +12,13 @@ interface IInstWatched{
 	,extStaticVars?:string[]
 	,extHostVars?:string
 	,loaded?:boolean
+	,content?:Function;
 };
 
 let inst_watched:{[key:string]:IInstWatched}={};
 let uid_generated:number = new Date().getTime()+1298;
 
 _IDOM.notifications.nodesDeleted = function(nodes:any) {
-  //console.log(nodes,inst_watched);
   nodes.forEach((node:HTMLDivElement)=>{
   	let key_id:string = node.getAttribute?node.getAttribute("key-id"):""; 
   	if(key_id && inst_watched[key_id] && inst_watched[key_id].inst.detached){
@@ -37,7 +37,6 @@ _IDOM.notifications.nodesDeleted = function(nodes:any) {
 
 
 _IDOM.notifications.nodesCreated = function(nodes:any) {
-  //console.log(nodes,inst_watched);
   nodes.forEach((node:HTMLDivElement)=>{
   	let key_id:string = node.getAttribute?node.getAttribute("key-id"):""; 
   	if(key_id && inst_watched[key_id] && inst_watched[key_id].inst.attached && (!inst_watched[key_id].loaded)){
@@ -60,7 +59,6 @@ export interface IInstConfig{
 export class FerrugemJSFactory{
 	private _$content$_:Function;
 	private _$key$_:string;
-	//private _$attrs$_:{name:string,attribs:{static:string[],dinamic:string}}
 	private render:Function;
 	private attached:Function;
 	private detached:Function;
@@ -69,7 +67,7 @@ export class FerrugemJSFactory{
 	*/
 	public build(config:IInstConfig):FerrugemJSFactory{
 
-		let _key = "";
+		let _key = config.target;
 		//find any key
 		if(config.hostVars && config.hostVars["key:id"]){
 			_key = config.hostVars["key:id"];
@@ -90,14 +88,14 @@ export class FerrugemJSFactory{
 			delete config.staticVars["prop:values"];
 		}
 
-		//append methods refresh and content to prototype
+		//append method refresh to prototype
 		if(!config.classFactory.prototype.refresh){
 			config.classFactory.prototype.refresh = FerrugemJSFactory.prototype.refresh;
 		}
 
-		//append methods refresh and content to prototype
+		//append method content to prototype
 		if(!config.classFactory.prototype.content){
-			config.classFactory.prototype.content = FerrugemJSFactory.prototype.content;
+			//config.classFactory.prototype.content = FerrugemJSFactory.prototype.content;
 		}
 
 		//lookup for old inst
@@ -115,49 +113,25 @@ export class FerrugemJSFactory{
 			return <any>inst_watched[_key].inst;
 		}
 		//save the new inst in watched insts
-		//if(_key && !inst_watched[_key]){
-			inst_watched[_key] = <any>{ inst: new config.classFactory()};			 
-			inst_watched[_key].target = config.target;
-			inst_watched[_key].inst["_$key$_"] = _key;
-			inst_watched[_key].alias = config.alias;
-			inst_watched[_key].tag = config.tag||"div";
-			inst_watched[_key].tag = inst_watched[_key].inst["_$attrs$_"]?inst_watched[_key].inst["_$attrs$_"]["name"]:inst_watched[_key].tag;
-			//console.log(inst_watched[_key]);
-			//inst_watched[_key].tag = !inst_watched[];
-			this.changeAttrs.call(inst_watched[_key].inst,config.hostVars);
-			this.changeAttrs.call(inst_watched[_key].inst,config.staticVars);
+		inst_watched[_key] = <any>{ inst: new config.classFactory()};			 
+		inst_watched[_key].target = config.target;
+		inst_watched[_key].inst["_$key$_"] = _key;
+		inst_watched[_key].alias = config.alias;
+		inst_watched[_key].tag = config.tag||"div";
+		inst_watched[_key].tag = inst_watched[_key].inst["_$attrs$_"]?inst_watched[_key].inst["_$attrs$_"]["name"]:inst_watched[_key].tag;
 
-			//console.log('2',inst_watched[_key]);
-			if(inst_watched[_key].inst["_$attrs$_"]){
-				inst_watched[_key].extHostVars = inst_watched[_key].inst["_$attrs$_"]["dinamic"];
-				inst_watched[_key].extStaticVars = Object.assign([],inst_watched[_key].inst["_$attrs$_"]["static"]);
-				//console.log(inst_watched[_key].extStaticVars,inst_watched[_key].inst["_$attrs$_"]["static"])
-				//nao deletar, guargar para as proximas instancias
-				//delete inst_watched[_key].inst["_$attrs$_"]["dinamic"];
-				//delete inst_watched[_key].inst["_$attrs$_"]["static"];
-				//delete inst_watched[_key].inst["_$attrs$_"]["name"];
-				//delete inst_watched[_key].inst["_$attrs$_"];			
-			}
-			//console.log(inst_watched[_key]);
-			return inst_watched[_key].inst;
-		//}
+		this.changeAttrs.call(inst_watched[_key].inst,config.hostVars);
+		this.changeAttrs.call(inst_watched[_key].inst,config.staticVars);
 
-
-		//only a temp class instance
-		/*
-		let _inst_ = new config.classFactory();
-		_inst_["_$target$_"] = config.target;
-		_inst_["_$tagName$_"] = config.tag;
-		this.changeAttrs.call(_inst_,config.hostVars);
-		this.changeAttrs.call(_inst_,config.staticVars);
-		
-		//console.log('3');
-		return _inst_;
-		//return <any>{};
-		*/
+		if(inst_watched[_key].inst["_$attrs$_"]){
+			inst_watched[_key].extHostVars = inst_watched[_key].inst["_$attrs$_"]["dinamic"];
+			inst_watched[_key].extStaticVars = (<any>Object).assign([],inst_watched[_key].inst["_$attrs$_"]["static"]);
+		}
+		return <any>inst_watched[_key].inst;
 	}
 
 	public content($content$?:Function):FerrugemJSFactory{
+		//nao eh vinculado a instancia e sim ao watched
 		if($content$){
 			this._$content$_ = $content$;
 		}else if(this._$content$_){
@@ -196,13 +170,10 @@ export class FerrugemJSFactory{
 		}
 	}
 	public reDraw(){
-		let _inst_:IInstWatched =  inst_watched[this._$key$_]||{inst:this,extStaticVars:[],extHostVars:""};
+		let _inst_:IInstWatched =  <any>(inst_watched[this._$key$_]||{inst:this,extStaticVars:[],extHostVars:""});
 		_inst_.extHostVars = _inst_.extHostVars||"";
 		_inst_.extStaticVars = _inst_.extStaticVars||[];
 		_inst_.target = _inst_.target||'uid_'+(uid_generated++)+'_provided';//_IDOM.currentElement().id;
-		//console.log('166',_inst_);
-		//if(_inst_.extStaticVars){
-			//verifica se ja tem um id no static
 			if(_inst_.extStaticVars.indexOf('id') < 0){
 				//caso nao tenha adiciona o target como id
 				_inst_.extStaticVars.push('id',_inst_.target);
@@ -216,30 +187,19 @@ export class FerrugemJSFactory{
 			if(_inst_.inst._$key$_){
 				_inst_.extStaticVars.push('key-id',_inst_.inst._$key$_);
 			}
-		//console.log('182',_inst_);
-		//}
-		//console.log(_inst_);
 		_IDOM.elementOpen(_inst_.tag,_inst_.inst._$key$_,_inst_.extStaticVars, ... new Function(
 			'$_this_$'
 			,'return ['+_inst_.extHostVars+']'
 		)(_inst_.inst));
 			_inst_.inst.render(_inst_.inst);			
 		_IDOM.elementClose(_inst_.tag);
-		/*
-		if(!_inst_.loaded && _inst_.inst.attached){					
-			_inst_.inst.attached();
-		}
-		if(!_inst_.loaded){
-			_inst_.loaded = true;
-		}
-		*/
 	}
 	public refresh(props?:{}):void{
 		let _inst_:IInstWatched =  inst_watched[this._$key$_]||<any>{inst:this};
 		if(props){
 			FerrugemJSFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
 		}
-		if(_inst_.loaded && _inst_.target && document.getElementById(_inst_.target)){
+		if((_inst_.loaded||_inst_.alias=="compose-view") && _inst_.target && document.getElementById(_inst_.target)){
 			let elementDom = document.getElementById(_inst_.target);
 			if(_inst_.extHostVars&&_inst_.extHostVars!=='""'){
 				let converted_to_array:string[] = new Function(
@@ -258,14 +218,20 @@ export class FerrugemJSFactory{
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{
 		require([path+".html"],(mod:any)=>{
-			this.build({
-				classFactory:mod.default
-				,hostVars:host_vars
-				,staticVars:static_vars
-				,target:target
-				,alias:"compose-view"
-				,tag:"div"
-			}).content(contentfn).refresh();
+			let _inst_ = this.build({
+					classFactory:mod.default
+					,hostVars:host_vars
+					,staticVars:static_vars
+					,target:target
+					,alias:"compose-view"
+					,tag:"div"
+			});
+			//emprestando metodo content e anexando ao watch e nao a instancia
+			FerrugemJSFactory.prototype.content.call(
+				inst_watched[_inst_._$key$_]
+				,contentfn
+			);
+			_inst_.refresh();
 		});		
 	}
 }

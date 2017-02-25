@@ -2,14 +2,14 @@ export class SubComp{
 	private name:string;
 	private nameComp:string;
 	private options:string[];
-	private visible:boolean;
+	//private visible:boolean;
 	private born:Date;
 	private refresh:Function;
 	constructor(){
 		this.name = "my name";
 		this.nameComp = "my father name";
 		this.options = ["vade","sitt","x9"];
-		this.visible = false;
+		//this.visible = false;
 		this.born = new Date();
 	}
 	private setName2(_new:string):void{
@@ -19,7 +19,7 @@ export class SubComp{
 		//console.log(`${this.nameComp} - ${this.name}`);
 	}
 	private setVisible(on:boolean){
-		this.visible = !on;
+		//this.visible = !on;
 		this.refresh();
 	}
 	private detached():void{
