@@ -1,6 +1,6 @@
 {
   "name": "ferrugemjs",
-  "version": "0.11.4",
+  "version": "0.11.5",
   "description": "A reactive library.",
   "main": false,
   "scripts": {
@@ -19,6 +19,7 @@
     "url": "https://github.com/ferrugemjs/library"
   },
   "jspm": {
+    "jspmPackage":true,
     "registry": "npm",
     "main": "ferrugem-bootstrap",
     "format": "amd",
