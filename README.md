@@ -214,6 +214,11 @@ export class HelloWorld{
 }
 ```
 
+***router***
+
+There are a basic implamentation at [ferrugemjs-router](https://github.com/ferrugemjs/router).
+
+
 ***template stuffs***
 
 
@@ -499,7 +504,7 @@ eg.
 
 ***import other ui library as a namespace***
 
-It is a basic example, but there are a example more elaborate at [ferrugem-router](https://github.com/ferrugemjs/router).
+It is a basic example, but there are a example more elaborate at [ferrugemjs-router](https://github.com/ferrugemjs/router).
 
 eg.
 ``` xml
