@@ -39,10 +39,14 @@ _IDOM.notifications.nodesDeleted = function(nodes:any) {
 _IDOM.notifications.nodesCreated = function(nodes:any) {
   nodes.forEach((node:HTMLDivElement)=>{
   	let key_id:string = node.getAttribute?node.getAttribute("key-id"):""; 
-  	if(key_id && inst_watched[key_id] && inst_watched[key_id].inst.attached && (!inst_watched[key_id].loaded)){
-  		inst_watched[key_id].loaded = true;
-  		inst_watched[key_id].inst.attached();
-  	}  
+  	if(key_id && inst_watched[key_id]){		
+	  	if(inst_watched[key_id].inst.attached && (!inst_watched[key_id].loaded)){
+			inst_watched[key_id].inst.attached();
+		}
+		inst_watched[key_id].loaded = true;
+	}
+ 
+  	
   });
 };
 
