@@ -676,3 +676,59 @@ using
 </template>	
 ```
 
+
+
+**power ups!**
+
+Hhen you need more power then...
+
+***tag script***
+
+some times we need use scripts into our template, for example witch some jquery plugins.
+
+eg.
+``` xml
+<template>
+ <require from="jquery as jq" type="script"/>
+ <div>
+   <span class="test"></span>
+   <script>
+ 	jq(".test").hide();
+   </script>
+ </div>
+</template>	
+```
+
+***conditional script***
+
+eg.
+``` xml
+<template>
+ <require from="jquery as jq" type="script"/>
+ <div>
+   <span class="test"></span>
+   <script if="this.visible">
+ 	jq(".test").hide();
+   </script>
+ </div>
+</template>	
+```
+
+
+***get "@this" scope into script***
+
+
+eg.
+``` xml
+<template>
+ <require from="jquery as jq" type="script"/>
+ <div>
+   <span class="test"></span>
+   <script if="this.visible">
+ 	jq(".test").hide();
+	@this.visible = false;
+   </script>
+ </div>
+</template>	
+```
+
