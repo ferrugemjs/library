@@ -19,8 +19,8 @@
 
 		<content></content>	
 		
-		<h5 click.trigger="this.triggerFn">after</h5>
-		<compose key:id="fora_loop" id="fora_loop" view:from="dist/example/sub-comp"  name="fora loope" name-comp="x9">
+		<h5 click.trigger="this.hideCompose">after</h5>
+		<compose if="!this.composeHidden" key:id="fora_loop" id="fora_loop" view:from="dist/example/sub-comp"  name="fora loope" name-comp="x9">
 			<span>fora loop</span>
 		</compose>
 		

@@ -21,6 +21,7 @@ let uid_generated:number = new Date().getTime()+1298;
 _IDOM.notifications.nodesDeleted = function(nodes:any) {
   nodes.forEach((node:HTMLDivElement)=>{
   	let key_id:string = node.getAttribute?node.getAttribute("key-id"):""; 
+  	//console.log(node);
   	if(key_id && inst_watched[key_id] && inst_watched[key_id].inst.detached){
   		inst_watched[key_id].inst.detached();
   	} 
@@ -39,7 +40,9 @@ _IDOM.notifications.nodesDeleted = function(nodes:any) {
 _IDOM.notifications.nodesCreated = function(nodes:any) {
   nodes.forEach((node:HTMLDivElement)=>{
   	let key_id:string = node.getAttribute?node.getAttribute("key-id"):""; 
+  	
   	if(key_id && inst_watched[key_id]){		
+	  	//console.log(inst_watched[key_id])	
 	  	if(inst_watched[key_id].inst.attached && (!inst_watched[key_id].loaded)){
 			inst_watched[key_id].inst.attached();
 		}
@@ -230,12 +233,19 @@ export class FerrugemJSFactory{
 					,alias:"compose-view"
 					,tag:"div"
 			});
+			//console.log(inst_watched[_inst_._$key$_]);
 			//emprestando metodo content e anexando ao watch e nao a instancia
 			FerrugemJSFactory.prototype.content.call(
 				inst_watched[_inst_._$key$_]
 				,contentfn
 			);
 			_inst_.refresh();
+
+			if(_inst_.attached && (!inst_watched[_inst_._$key$_].loaded)){
+				_inst_.attached();
+			}
+			inst_watched[_inst_._$key$_].loaded = true;
+
 		});		
 	}
 }

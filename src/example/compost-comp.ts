@@ -7,6 +7,7 @@ export class CompostComp{
 	private id:number;
 	private refresh:Function;
 	private msg:string;
+	private composeHidden:boolean;
 	constructor(){
 		this.especialname = "humm-default";
 		this.onEventMsg={a:(fnext:Function)=>{
@@ -15,13 +16,18 @@ export class CompostComp{
 		}};
 		this.id = 2010;
 		this.msg = "ainda nao alterado";
+		this.composeHidden = false;
 	}
 	setEspecialname2(n:string):void{
 		console.log(n);
 	}
 	private attached():void{
 		//console.log(this.onEventMsg);
-		console.log(this);
+		//console.log(this);
+	}
+	private hideCompose(){
+		this.composeHidden = !this.composeHidden;
+		this.refresh();
 	}
 	private detached():void{
 		console.log('compost-comp out of dom!');

@@ -10,7 +10,7 @@ export class UniversalViewModel{
 		if(nome){
 			this.name = nome;
 		}
-		console.warn(this.name);
+		//console.warn(this.name);
 		this.refresh();
 	}
 	private getOuter(){
@@ -21,6 +21,6 @@ export class UniversalViewModel{
 		return this.name;
 	}
 	private attached():void{
-		console.log('universal view criado!',this.inc,this.name);
+		//console.log('universal view criado!',this.inc,this.name);
 	}
 }

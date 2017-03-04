@@ -15,14 +15,14 @@ export class SubComp{
 	private setName2(_new:string):void{
 		//console.log(`${this.name} , ${this.name} --> ${_new}`);
 	}
-	private attached():void{
-		//console.log(`${this.nameComp} - ${this.name}`);
-	}
 	private setVisible(on:boolean){
 		//this.visible = !on;
 		this.refresh();
 	}
 	private detached():void{
-		console.log('sub-comp out of dom!');
+		console.log('compose out of dom!');
+	}
+	private attached():void{
+		console.log('compose can be attached');
 	}
 }
