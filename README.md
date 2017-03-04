@@ -680,11 +680,11 @@ using
 
 **power ups!**
 
-Hhen you need more power then...
+When you need more power then...
 
 ***tag script***
 
-some times we need use scripts into our template, for example witch some jquery plugins.
+useful when working with some jquery plugins.
 
 eg.
 ``` xml
