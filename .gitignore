@@ -37,8 +37,7 @@ jspm_packages
 .node_repl_history
 
 #dist dir
-dist/example
-dist/incremental-dom.js
+dist
 
 #.npmrc
 .npmrc
