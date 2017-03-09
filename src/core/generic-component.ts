@@ -85,6 +85,7 @@ export class FerrugemJSFactory{
 		}
 
 		if(config.hostVars && config.hostVars["prop:values"]){
+			console.log(config.hostVars["prop:values"])
 			let _prop_values:{} = config.hostVars["prop:values"];
 			delete config.hostVars["prop:values"];
 			for(let keyp in _prop_values){
@@ -151,9 +152,12 @@ export class FerrugemJSFactory{
 			for(let propOrign in attrs_vars){
 				let notAccepted:boolean = isStatics && (propOrign==="is"||propOrign==="id");
 				if(!notAccepted){
-					let prop:string = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
-	        				return group1.toUpperCase();
-	    			});
+                    let prop:string = propOrign;
+                    if(prop.indexOf("-") > -1){
+                        prop = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
+                            return group1.toUpperCase();
+                        });  
+                    };
 					let newValue:any = attrs_vars[propOrign];
 					if(prop.indexOf(".") > -1){		
 

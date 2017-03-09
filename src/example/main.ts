@@ -10,6 +10,7 @@ export class Main{
         this.foolArray = ['ops','humm','interesting'];
         this.childValues = {
             msg:"modificado via parente"
+            ,idMsg:458
         };
     }
     private showId():void{        
