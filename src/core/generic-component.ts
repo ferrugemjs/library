@@ -85,7 +85,7 @@ export class FerrugemJSFactory{
 		}
 
 		if(config.hostVars && config.hostVars["prop:values"]){
-			console.log(config.hostVars["prop:values"])
+			//console.log(config.hostVars["prop:values"])
 			let _prop_values:{} = config.hostVars["prop:values"];
 			delete config.hostVars["prop:values"];
 			for(let keyp in _prop_values){
