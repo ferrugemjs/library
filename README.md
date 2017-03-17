@@ -7,24 +7,24 @@
 **A simple library, reactive, conventional and non-intrusive!**
 ***FerrugemJS*** is inspired by [Aurelia](http://aurelia.io/) and [React](https://facebook.github.io/react/) using [Incremental DOM](http://google.github.io/incremental-dom/) with a html template engine.
 
-####No jquery required, only 2kB!
+***No jquery required, only 2kB!***
 
 [![NPM](https://nodei.co/npm/ferrugemjs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ferrugemjs/)
 
-####Browser Support
+***Browser Support***
 
 ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![IE](https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png)
 --- | --- | --- | --- | --- | --- |
 Latest ✔ | Latest ✔ | 9+ ✔ | Latest ✔ | 6.1+ ✔ | Latest ✔ |
 
-####examples
+***examples***
 https://ferrugemjs.github.io/examples/index.html
 
-####how to start:
+***how to start:***
 clone
 [skeleton-typescript](https://github.com/ferrugemjs/skeleton-typescript) (recomended way)
 
-####individual install
+***individual install***
 
 jspm install npm:ferrugemjs
 
@@ -33,7 +33,7 @@ npm install ferrugemjs (requirejs)
 npm install --save-dev gulp-ferrugemjs
 
 
-####initialization
+***initialization***
 
 eg. index.html file
 
@@ -84,7 +84,7 @@ now, we can importe into other template
 ```
 
 
-###module lifecycle
+**module lifecycle**
 
 ***attached:***
 
