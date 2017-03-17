@@ -51,7 +51,8 @@ If you want to modify the path of the init file just add this information to the
 ``` html
 <div app="other_path/init_app_file"></div>
 ```
-####modules & custom tags
+**modules & custom tags**
+
 To create a module witch will be a custom tag do you need two files with same name(eg. "module-a.ts" and "module-a.html").
 By convention FerrugemJS know that "module-a.ts" is a controller file and "module-a.html" is the view of it and you can easily import it into your main app html file or into other module and use as a component with a custom tag.
 
