@@ -1,0 +1,484 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FerrugemJS</title>
+ 
+ 
+  </head>
+  <body> 
+  <h2>FerrugemJS</h2>
+<article class="markdown-body entry-content" itemprop="text"><p><em><strong>FerrugemJS</strong></em></p>
+<p><a href="/ferrugemjs/library/blob/master/assets/img/new-logo2_98x129.png" target="_blank"><img src="/ferrugemjs/library/raw/master/assets/img/new-logo2_98x129.png" alt="Ferrugem Logo" style="max-width:100%;"></a></p>
+<p><strong>A simple library, reactive, conventional and non-intrusive!</strong>
+<em><strong>FerrugemJS</strong></em> is inspired by <a href="http://aurelia.io/">Aurelia</a> and <a href="https://facebook.github.io/react/">React</a> using <a href="http://google.github.io/incremental-dom/">Incremental DOM</a> with a html template engine.</p>
+<p><em><strong>No jquery required, only 2kB!</strong></em></p>
+<p><a href="https://nodei.co/npm/ferrugemjs/"><img src="https://camo.githubusercontent.com/ddeb3b2111f2b295419ce5f9cfedfac52eb8a993/68747470733a2f2f6e6f6465692e636f2f6e706d2f666572727567656d6a732e706e673f646f776e6c6f6164733d7472756526646f776e6c6f616452616e6b3d747275652673746172733d74727565" alt="NPM" data-canonical-src="https://nodei.co/npm/ferrugemjs.png?downloads=true&amp;downloadRank=true&amp;stars=true" style="max-width:100%;"></a></p>
+<p><em><strong>Browser Support</strong></em></p>
+<table>
+<thead>
+<tr>
+<th><a href="https://camo.githubusercontent.com/26846e979600799e9f4273d38bd9e5cb7bb8d6d0/68747470733a2f2f7261772e6769746875622e636f6d2f616c7272612f62726f777365722d6c6f676f732f6d61737465722f7372632f6368726f6d652f6368726f6d655f34387834382e706e67" target="_blank"><img src="https://camo.githubusercontent.com/26846e979600799e9f4273d38bd9e5cb7bb8d6d0/68747470733a2f2f7261772e6769746875622e636f6d2f616c7272612f62726f777365722d6c6f676f732f6d61737465722f7372632f6368726f6d652f6368726f6d655f34387834382e706e67" alt="Chrome" data-canonical-src="https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" style="max-width:100%;"></a></th>
+<th><a href="https://camo.githubusercontent.com/6087557f69ec6585eb7f8d7bd7d9ecb6b7f51ba1/68747470733a2f2f7261772e6769746875622e636f6d2f616c7272612f62726f777365722d6c6f676f732f6d61737465722f7372632f66697265666f782f66697265666f785f34387834382e706e67" target="_blank"><img src="https://camo.githubusercontent.com/6087557f69ec6585eb7f8d7bd7d9ecb6b7f51ba1/68747470733a2f2f7261772e6769746875622e636f6d2f616c7272612f62726f777365722d6c6f676f732f6d61737465722f7372632f66697265666f782f66697265666f785f34387834382e706e67" alt="Firefox" data-canonical-src="https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" style="max-width:100%;"></a></th>
+<th><a href="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png" target="_blank"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png" alt="IE" style="max-width:100%;"></a></th>
+<th><a href="https://camo.githubusercontent.com/96d2405a936da1fb8988db0c1d304d3db04b8a52/68747470733a2f2f7261772e6769746875622e636f6d2f616c7272612f62726f777365722d6c6f676f732f6d61737465722f7372632f6f706572612f6f706572615f34387834382e706e67" target="_blank"><img src="https://camo.githubusercontent.com/96d2405a936da1fb8988db0c1d304d3db04b8a52/68747470733a2f2f7261772e6769746875622e636f6d2f616c7272612f62726f777365722d6c6f676f732f6d61737465722f7372632f6f706572612f6f706572615f34387834382e706e67" alt="Opera" data-canonical-src="https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png" style="max-width:100%;"></a></th>
+<th><a href="https://camo.githubusercontent.com/6fbaeb334b99e74ddd89190a42766ea3b4600d2c/68747470733a2f2f7261772e6769746875622e636f6d2f616c7272612f62726f777365722d6c6f676f732f6d61737465722f7372632f7361666172692f7361666172695f34387834382e706e67" target="_blank"><img src="https://camo.githubusercontent.com/6fbaeb334b99e74ddd89190a42766ea3b4600d2c/68747470733a2f2f7261772e6769746875622e636f6d2f616c7272612f62726f777365722d6c6f676f732f6d61737465722f7372632f7361666172692f7361666172695f34387834382e706e67" alt="Safari" data-canonical-src="https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png" style="max-width:100%;"></a></th>
+<th><a href="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" target="_blank"><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="Edge" style="max-width:100%;"></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest ✔</td>
+<td>Latest ✔</td>
+<td>9+ ✔</td>
+<td>Latest ✔</td>
+<td>6.1+ ✔</td>
+<td>Latest ✔</td>
+</tr></tbody></table>
+<p><em><strong>examples</strong></em>
+<a href="https://ferrugemjs.github.io/examples/index.html">https://ferrugemjs.github.io/examples/index.html</a></p>
+<p><em><strong>how to start:</strong></em>
+clone
+<a href="https://github.com/ferrugemjs/skeleton-typescript">skeleton-typescript</a> (recomended way)</p>
+<p><em><strong>individual install</strong></em></p>
+<p>jspm install npm:ferrugemjs</p>
+<p>npm install ferrugemjs (requirejs)</p>
+<p>npm install --save-dev gulp-ferrugemjs</p>
+<p><em><strong>initialization</strong></em></p>
+<p>eg. index.html file</p>
+<div class="highlight highlight-text-html-basic"><pre>  &lt;<span class="pl-ent">body</span>&gt;    
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">app</span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+<span class="pl-s1">    &lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">      <span class="pl-smi">System</span>.<span class="pl-en">import</span>(<span class="pl-s"><span class="pl-pds">"</span>ferrugemjs<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1">    &lt;/<span class="pl-ent">script</span>&gt;</span>
+  &lt;/<span class="pl-ent">body</span>&gt;</pre></div>
+<p>FerrugemJS will look for the first page element with the attribute "app" to start the application and if not found it, will use the tag "body".
+Just create app.ts files and app.html in the same directory of the index.html page.
+If you want to modify the path of the init file just add this information to the app attribute as below:</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">app</span>=<span class="pl-s"><span class="pl-pds">"</span>other_path/init_app_file<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+<p><strong>modules &amp; custom tags</strong></p>
+<p>To create a module witch will be a custom tag do you need two files with same name(eg. "module-a.ts" and "module-a.html").
+By convention FerrugemJS know that "module-a.ts" is a controller file and "module-a.html" is the view of it and you can easily import it into your main app html file or into other module and use as a component with a custom tag.</p>
+<p>eg.
+"module-a.ts" file.</p>
+<div class="highlight highlight-source-ts"><pre><span class="pl-k">export</span> <span class="pl-k">class</span> <span class="pl-en">ModuleA</span>{
+    <span class="pl-k">private</span> title<span class="pl-k">:</span><span class="pl-c1">string</span>;
+    <span class="pl-k">constructor</span>(){
+      <span class="pl-c1">this</span>.<span class="pl-c1">title</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>test!<span class="pl-pds">"</span></span>;
+    }
+}</pre></div>
+<p>eg. "module-a.html" file.</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">template</span>&gt;
+    &lt;<span class="pl-ent">h1</span>&gt;My First APP with ${this.title}&lt;/<span class="pl-ent">h1</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p>now, we can importe into other template</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+    &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>./module-a<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+      &lt;<span class="pl-ent">module-a</span> <span class="pl-e">title</span>=<span class="pl-s"><span class="pl-pds">"</span>new title!<span class="pl-pds">"</span></span>/&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><strong>module lifecycle</strong></p>
+<p><em><strong>attached:</strong></em></p>
+<p>By implementing the method your module will be prompted for it once the html is in "DOM".</p>
+<p>eg.</p>
+<div class="highlight highlight-source-ts"><pre><span class="pl-en">attached</span>(){
+ <span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>im in DOM<span class="pl-pds">'</span></span>);
+}</pre></div>
+<p><em><strong>detached:</strong></em></p>
+<p>By implementing the method your module will be prompted for it once your object is detached from "DOM".</p>
+<p>eg.</p>
+<div class="highlight highlight-source-ts"><pre><span class="pl-en">detached</span>(){
+ <span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>im out<span class="pl-pds">'</span></span>);
+}</pre></div>
+<p><em><strong>set+attribute name:</strong></em></p>
+<p>By implementing the method with the module attribute in CamelCase format your module will be notified when there is any change to the way template attribute.</p>
+<p>eg.</p>
+<div class="highlight highlight-source-ts"><pre><span class="pl-en">setName</span>(<span class="pl-smi">name</span>:<span class="pl-smi">string</span>){
+ <span class="pl-c1">this</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-smi">name</span>;
+}</pre></div>
+<p><em><strong>component refresh from modelview</strong></em></p>
+<p>Controller refresh.</p>
+<p>eg.</p>
+<div class="highlight highlight-source-ts"><pre><span class="pl-k">export</span> <span class="pl-k">class</span> <span class="pl-en">ModuleA</span>{
+  <span class="pl-k">private</span> title<span class="pl-k">:</span><span class="pl-c1">string</span>;
+  <span class="pl-k">private</span> refresh<span class="pl-k">:</span><span class="pl-en">Function</span>;<span class="pl-c"><span class="pl-c">//</span>necessary if you want avoid typescript warnings</span>
+  doAnyThing(){
+    <span class="pl-c1">this</span>.<span class="pl-c1">title</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>new Title<span class="pl-pds">"</span></span>;
+    <span class="pl-en">refresh</span>();
+  }
+}</pre></div>
+<p><em><strong>component refresh with state</strong></em></p>
+<p>Controller refresh with new modelview values equivalent to 'setState' of react.</p>
+<p>eg.</p>
+<div class="highlight highlight-source-ts"><pre><span class="pl-k">export</span> <span class="pl-k">class</span> <span class="pl-en">ModuleA</span>{
+  <span class="pl-k">private</span> title<span class="pl-k">:</span><span class="pl-c1">string</span>;
+  <span class="pl-k">private</span> refresh<span class="pl-k">:</span><span class="pl-en">Function</span>;<span class="pl-c"><span class="pl-c">//</span>necessary if you want avoid typescript warnings</span>
+  doAnyThing(){
+    <span class="pl-en">refresh</span>({title:<span class="pl-s"><span class="pl-pds">"</span>new Title<span class="pl-pds">"</span></span>});<span class="pl-c"><span class="pl-c">//</span>equivalent to "setState of react"</span>
+  }
+}</pre></div>
+<p><em><strong>one-way data binding</strong></em></p>
+<p>When you set the 'value=${name}' in a input component it will set "value" attribute in element after a controller refresh.</p>
+<p>eg.</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">h2</span>&gt;Hello World, ${this.name}&lt;/<span class="pl-ent">h2</span>&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>${this.name}<span class="pl-pds">"</span></span>/&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>event binding</strong></em></p>
+<p>When you set the "keyup.bind" in a input component it will change the "name" attribute in controller after a keyup event.</p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">h2</span>&gt;Hello World, ${this.name}&lt;/<span class="pl-ent">h2</span>&gt;
+    &lt;<span class="pl-ent">input</span> keyup.bind=<span class="pl-s"><span class="pl-pds">"</span>this.name<span class="pl-pds">"</span></span>/&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;  
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>manual event reactivity</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">h2</span>&gt;Hello World, ${this.name}&lt;/<span class="pl-ent">h2</span>&gt;
+    &lt;<span class="pl-ent">input</span> change.trigger=<span class="pl-s"><span class="pl-pds">"</span>this.manualChangeMethod<span class="pl-pds">"</span></span>/&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<div class="highlight highlight-source-ts"><pre><span class="pl-k">export</span> <span class="pl-k">class</span> <span class="pl-en">HelloWorld</span>{
+  <span class="pl-k">private</span> name<span class="pl-k">:</span><span class="pl-c1">string</span>;
+  <span class="pl-k">private</span> refresh<span class="pl-k">:</span><span class="pl-en">Function</span>;<span class="pl-c"><span class="pl-c">//</span>necessary if you want avoid typescript warnings</span>
+  <span class="pl-k">constructor</span>(){
+    <span class="pl-c1">this</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>;
+  }
+  manualChangeMethod(<span class="pl-v">event</span>)<span class="pl-k">:</span><span class="pl-c1">void</span>{	
+	<span class="pl-c"><span class="pl-c">//</span>a reactive update after 'anyMethod' is calling</span>
+	<span class="pl-c1">this</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-c1">event</span>.<span class="pl-c1">target</span>.<span class="pl-c1">value</span>;
+	<span class="pl-c1">this</span>.<span class="pl-en">refresh</span>();
+  }
+}</pre></div>
+<p><em><strong>router</strong></em></p>
+<p>There are a basic implamentation at <a href="https://github.com/ferrugemjs/router">ferrugemjs-router</a>.</p>
+<p><em><strong>template stuffs</strong></em></p>
+<p><em><strong>if</strong></em></p>
+<p>Conditional render with if.</p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">span</span> <span class="pl-e">if</span>=<span class="pl-s"><span class="pl-pds">"</span>this.name==='test'<span class="pl-pds">"</span></span>&gt;name is test&lt;/<span class="pl-ent">span</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>tag if</strong></em></p>
+<p>conditional flow with tag if condition.</p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+    &lt;<span class="pl-ent">if</span> <span class="pl-e">condition</span>=<span class="pl-s"><span class="pl-pds">"</span>this.name==='test'<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">span</span>&gt;name is test&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;/<span class="pl-ent">if</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>Tags if,else</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">if</span> <span class="pl-e">condition</span>=<span class="pl-s"><span class="pl-pds">"</span>this.name==='test'<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">span</span>&gt;name is test&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;<span class="pl-ent">else</span>&gt;
+      &lt;<span class="pl-ent">span</span>&gt;I dont know you!&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;/<span class="pl-ent">if</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>Tags if,elseif</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">if</span> <span class="pl-e">condition</span>=<span class="pl-s"><span class="pl-pds">"</span>this.name==='test'<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">span</span>&gt;name is test&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;<span class="pl-ent">elseif</span> <span class="pl-e">condition</span>=<span class="pl-s"><span class="pl-pds">"</span>this.name==='test2'<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">span</span>&gt;ok, you are test2&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;/<span class="pl-ent">if</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>Tags if,elseif,else</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">if</span> <span class="pl-e">condition</span>=<span class="pl-s"><span class="pl-pds">"</span>this.name==='test'<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">span</span>&gt;name is test&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;<span class="pl-ent">elseif</span> <span class="pl-e">condition</span>=<span class="pl-s"><span class="pl-pds">"</span>this.name==='test2'<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">span</span>&gt;ok, you are test2&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;<span class="pl-ent">else</span>&gt;
+      &lt;<span class="pl-ent">span</span>&gt;I dont know you!&lt;/<span class="pl-ent">span</span>&gt;  
+    &lt;/<span class="pl-ent">if</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>Loop render with each</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+ &lt;<span class="pl-ent">ul</span>&gt;
+  &lt;<span class="pl-ent">li</span> <span class="pl-e">each</span>=<span class="pl-s"><span class="pl-pds">"</span>item in this.itens<span class="pl-pds">"</span></span>&gt;${item.name}&lt;/<span class="pl-ent">li</span>&gt;
+ &lt;/<span class="pl-ent">ul</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>Loop render with a custom index</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+ &lt;<span class="pl-ent">ul</span>&gt;
+  &lt;<span class="pl-ent">li</span> <span class="pl-e">each</span>=<span class="pl-s"><span class="pl-pds">"</span>item,$index in this.itens<span class="pl-pds">"</span></span>&gt;${$index} - ${item.name}&lt;/<span class="pl-ent">li</span>&gt;
+ &lt;/<span class="pl-ent">ul</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>Tag for each</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+ &lt;<span class="pl-ent">ul</span>&gt;
+  &lt;<span class="pl-ent">for</span> <span class="pl-e">each</span>=<span class="pl-s"><span class="pl-pds">"</span>item in this.itens<span class="pl-pds">"</span></span>&gt;
+   &lt;<span class="pl-ent">li</span>&gt;${item.name}&lt;/<span class="pl-ent">li</span>&gt;
+  &lt;/<span class="pl-ent">for</span>&gt;
+ &lt;/<span class="pl-ent">ul</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>Tag for each with index</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+ &lt;<span class="pl-ent">ul</span>&gt;
+  &lt;<span class="pl-ent">for</span> <span class="pl-e">each</span>=<span class="pl-s"><span class="pl-pds">"</span>item,$index in this.itens<span class="pl-pds">"</span></span>&gt;
+   &lt;<span class="pl-ent">li</span>&gt;${$index} - ${item.name}&lt;/<span class="pl-ent">li</span>&gt;
+  &lt;/<span class="pl-ent">for</span>&gt;
+ &lt;/<span class="pl-ent">ul</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>import other module</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">template</span>&gt;
+    &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>./example/hello-world<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+      &lt;<span class="pl-ent">h1</span>&gt;My First APP with ${this.title}&lt;/<span class="pl-ent">h1</span>&gt;
+      &lt;<span class="pl-ent">hello</span><span class="pl-e">-world</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>C-3PO<span class="pl-pds">"</span></span>/&gt;   
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>give an alias in module import statement</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">template</span>&gt;
+    &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>./example/hello-world as sea-bienvenido<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+      &lt;<span class="pl-ent">h1</span>&gt;My First APP with ${this.title}&lt;/<span class="pl-ent">h1</span>&gt;
+      &lt;<span class="pl-ent">sea</span><span class="pl-e">-bienvenido</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>C-3PO<span class="pl-pds">"</span></span>/&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;  
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>import a css file</strong></em></p>
+<p>You need "plugin-css" for jspm or equivalent if you are using requirejs.</p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+    <span class="pl-c"><span class="pl-c">&lt;!--</span>if using 'plugin-css' systemjs<span class="pl-c">--&gt;</span></span>
+    &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>./hello-world.css!<span class="pl-pds">"</span></span>/&gt;    
+    <span class="pl-c"><span class="pl-c">&lt;!--</span>if using commons css plugins to requirejs<span class="pl-c">--&gt;</span></span>
+    &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>style!./hello-world<span class="pl-pds">"</span></span>/&gt;
+    <span class="pl-c"><span class="pl-c">&lt;!--</span>to others commons css plugins<span class="pl-c">--&gt;</span></span>
+    &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>css!./hello-world.css<span class="pl-pds">"</span></span>/&gt;    
+    &lt;<span class="pl-ent">h1</span>&gt;My First APP with ${this.title}&lt;/<span class="pl-ent">h1</span>&gt;   
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>embed a style tag</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">template</span>&gt;
+<span class="pl-s1">    &lt;<span class="pl-ent">style</span>&gt;</span>
+<span class="pl-s1">    <span class="pl-e">.especial-tag</span>{</span>
+<span class="pl-s1">    	<span class="pl-c1"><span class="pl-c1">background-color</span></span>:<span class="pl-c1">red</span>;</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">    &lt;/<span class="pl-ent">style</span>&gt;</span>
+    &lt;<span class="pl-ent">h1</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>especial-tag<span class="pl-pds">"</span></span>&gt;My First APP with ${this.title}&lt;/<span class="pl-ent">h1</span>&gt;   
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>change the css className</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">template</span>&gt;
+<span class="pl-s1">    &lt;<span class="pl-ent">style</span>&gt;</span>
+<span class="pl-s1">    <span class="pl-e">.my-custom-classname</span>{</span>
+<span class="pl-s1">      <span class="pl-c1"><span class="pl-c1">background-color</span></span>:<span class="pl-c1">red</span>;</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">    &lt;/<span class="pl-ent">style</span>&gt;</span>
+    &lt;<span class="pl-ent">h3</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>my-custom-classname<span class="pl-pds">"</span></span>&gt;My element with a custom className&lt;/<span class="pl-ent">h3</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>change the css className with expression</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">template</span>&gt;
+<span class="pl-s1">    &lt;<span class="pl-ent">style</span>&gt;</span>
+<span class="pl-s1">    <span class="pl-e">.style1</span>{</span>
+<span class="pl-s1">      <span class="pl-c1"><span class="pl-c1">background-color</span></span>:<span class="pl-c1">red</span>;</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">    <span class="pl-e">.style2</span>{</span>
+<span class="pl-s1">      <span class="pl-c1"><span class="pl-c1">background-color</span></span>:<span class="pl-c1">blue</span>;</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">    <span class="pl-e">.style3</span>{</span>
+<span class="pl-s1">      <span class="pl-c1"><span class="pl-c1">background-color</span></span>:<span class="pl-c1">green</span>;</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">    &lt;/<span class="pl-ent">style</span>&gt;</span>
+    &lt;<span class="pl-ent">h3</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>${'my-custom-classname '+this.customStyle}<span class="pl-pds">"</span></span>&gt;My element with a custom className by expression&lt;/<span class="pl-ent">h3</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>set where the content of element must be placed</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre><span class="pl-c"><span class="pl-c">&lt;!--</span>hello-world.html<span class="pl-c">--&gt;</span></span>
+&lt;<span class="pl-ent">template</span>&gt;    
+ &lt;<span class="pl-ent">h1</span>&gt;
+  &lt;<span class="pl-ent">content</span>/&gt;
+ &lt;/<span class="pl-ent">h1</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p>Bellow is as "hello-world.html" will be used.</p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;    
+    &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>./example/hello-world<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+      &lt;<span class="pl-ent">hello-world</span>&gt;
+            Good night!
+      &lt;/<span class="pl-ent">hello-world</span>&gt; 
+    &lt;/<span class="pl-ent">div</span>&gt;  
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>import other library/script</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>moment<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>script<span class="pl-pds">"</span></span>/&gt;
+  &lt;<span class="pl-ent">span</span>&gt;${moment().format('DD/MM/YYYY')}&lt;/<span class="pl-ent">span</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>import other ui library as a namespace</strong></em></p>
+<p>It is a basic example, but there are a example more elaborate at <a href="https://github.com/ferrugemjs/router">ferrugemjs-router</a>.</p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>ui-vendor as ui<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>namespace<span class="pl-pds">"</span></span>/&gt;	
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">span</span>&gt;using a ui library&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;<span class="pl-ent">ui</span><span class="pl-ent">:</span><span class="pl-ent">progress-bar</span>/&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>preserve a element instance</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>./test-comp<span class="pl-pds">"</span></span>/&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+  &lt;<span class="pl-ent">for</span> <span class="pl-e">each</span>=<span class="pl-s"><span class="pl-pds">"</span>item in this.itens<span class="pl-pds">"</span></span>&gt;
+     &lt;<span class="pl-ent">test-comp</span> <span class="pl-e">key</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>${item.id}<span class="pl-pds">"</span></span>/&gt;
+   &lt;/<span class="pl-ent">for</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p>You shouldnt use this every moment, but it is recomended to use in a  interation with tag "for" ou instruction "each".</p>
+<p><em><strong>associete a controller method to DOM event</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">button</span> click.trigger=<span class="pl-s"><span class="pl-pds">"</span>this.showName<span class="pl-pds">"</span></span>&gt;show my name!&lt;/<span class="pl-ent">button</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p>***associete a controller method to DOM event with extra paramaters.</p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">button</span> click.trigger=<span class="pl-s"><span class="pl-pds">"</span>this.showName('test')<span class="pl-pds">"</span></span>&gt;show my name!&lt;/<span class="pl-ent">button</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>to access a camelCase method or attribute from template (use slashes '-')</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>./test-comp<span class="pl-pds">"</span></span>/&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">test-comp</span> <span class="pl-e">full-name</span>=<span class="pl-s"><span class="pl-pds">"</span>test<span class="pl-pds">"</span></span>/&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>associete a controller method to a custom element event</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>./test-comp<span class="pl-pds">"</span></span>/&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">test-comp</span> on-change-name.subscribe=<span class="pl-s"><span class="pl-pds">"</span>this.showName<span class="pl-pds">"</span></span>/&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>composition</strong></em></p>
+<p>with composition you need  use the same id an key:id to load the view.</p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">compose</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>_unique_id_<span class="pl-pds">"</span></span> <span class="pl-e">key</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>_unique_id<span class="pl-pds">"</span></span> <span class="pl-e">view</span><span class="pl-e">:</span><span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>path_to_dinamic_module/module_to_loader<span class="pl-pds">"</span></span>/&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;http://127.0.0.1:9000/dist/example/fruit-app/assets/grapes-bunchttp://127.0.0.1:9000/dist/example/fruit-app/assets/grapes-bunch.pngh.png
+&lt;/<span class="pl-ent">template</span>&gt;http://127.0.0.1:9000/dist/example/fruit-app/assets/bananas.png</pre></div>
+<p><em><strong>custom view-model</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre><span class="pl-c"><span class="pl-c">&lt;!--</span>view-one.html<span class="pl-c">--&gt;</span></span>
+&lt;<span class="pl-ent">template</span> <span class="pl-e">view-model</span>=<span class="pl-s"><span class="pl-pds">"</span>./universal-view-model<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">h1</span>&gt;VIEW ONE&lt;/<span class="pl-ent">h1</span>&gt;
+    &lt;<span class="pl-ent">span</span>&gt;bla,bla,bla....&lt;/<span class="pl-ent">span</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;  
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<div class="highlight highlight-text-xml"><pre><span class="pl-c"><span class="pl-c">&lt;!--</span>view-two.html<span class="pl-c">--&gt;</span></span>
+&lt;<span class="pl-ent">template</span> <span class="pl-e">view-model</span>=<span class="pl-s"><span class="pl-pds">"</span>./universal-view-model<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">h3</span>&gt;VIEW TWO&lt;/<span class="pl-ent">h3</span>&gt;
+    &lt;<span class="pl-ent">p</span>&gt;lol lol lol&lt;/<span class="pl-ent">p</span>&gt;
+    &lt;<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>logo.png<span class="pl-pds">"</span></span>/&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;  
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>template viewmodel-less</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span> <span class="pl-e">no-view-model</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">h1</span>&gt;NO viewmodel&lt;/<span class="pl-ent">h1</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p><em><strong>function representation</strong></em></p>
+<p>If you have a function with a "export default" you can represent it in your template with a tag.</p>
+<p>eg.</p>
+<div class="highlight highlight-source-ts"><pre><span class="pl-k">export</span> <span class="pl-k">default</span> <span class="pl-k">function</span>(<span class="pl-v">log</span><span class="pl-k">:</span>{}){ 
+   <span class="pl-c1">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">log</span>);
+}</pre></div>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+  &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>./myfunctionlog as fn-log<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>script<span class="pl-pds">"</span></span>/&gt;
+  &lt;<span class="pl-ent">div</span>&gt;
+        &lt;<span class="pl-ent">fn-log</span> <span class="pl-e">msg</span>=<span class="pl-s"><span class="pl-pds">"</span>it is alive<span class="pl-pds">"</span></span>/&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;</pre></div>
+<p>other example</p>
+<div class="highlight highlight-source-ts"><pre><span class="pl-c"><span class="pl-c">//</span>make your own router interface</span>
+<span class="pl-k">import</span> <span class="pl-smi">page</span> <span class="pl-k">=</span> <span class="pl-k">require</span>(<span class="pl-s"><span class="pl-pds">"</span>page<span class="pl-pds">"</span></span>);
+<span class="pl-k">export</span> <span class="pl-k">default</span> (<span class="pl-v">config</span><span class="pl-k">:</span>{path<span class="pl-k">:</span><span class="pl-c1">string</span>,onTrigger<span class="pl-k">:</span><span class="pl-en">Function</span>})<span class="pl-k">=&gt;</span>{
+	<span class="pl-k">if</span>(<span class="pl-smi">config</span>.<span class="pl-smi">path</span> <span class="pl-k">&amp;&amp;</span> <span class="pl-smi">config</span>.<span class="pl-smi">onTrigger</span>){
+		<span class="pl-en">page</span>(<span class="pl-smi">config</span>.<span class="pl-smi">path</span>,<span class="pl-v">context</span><span class="pl-k">=&gt;</span>{
+			<span class="pl-smi">config</span>.<span class="pl-en">onTrigger</span>(<span class="pl-smi">context</span>.<span class="pl-smi">params</span>);
+		});
+	}<span class="pl-k">else</span>{
+		<span class="pl-smi">page</span>.<span class="pl-en">start</span>();
+	}
+}</pre></div>
+<p>using</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+ &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>../commons/router as add-router<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>script<span class="pl-pds">"</span></span>/&gt;
+ &lt;<span class="pl-ent">div</span>&gt;
+  &lt;<span class="pl-ent">add-router</span> <span class="pl-e">path</span>=<span class="pl-s"><span class="pl-pds">"</span>/user/:id<span class="pl-pds">"</span></span> <span class="pl-e">on-trigger</span>=<span class="pl-s"><span class="pl-pds">"</span>this.edit<span class="pl-pds">"</span></span>/&gt;
+ &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;	</pre></div>
+<p><strong>power ups!</strong></p>
+<p>When you need more power then...</p>
+<p><em><strong>tag script</strong></em></p>
+<p>useful when working with some jquery plugins.</p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+ &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>jquery as jq<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>script<span class="pl-pds">"</span></span>/&gt;
+ &lt;<span class="pl-ent">div</span>&gt;
+   &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>test<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+   &lt;<span class="pl-ent">script</span>&gt;
+ 	jq(".test").hide();
+   &lt;/<span class="pl-ent">script</span>&gt;
+ &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;	</pre></div>
+<p><em><strong>conditional script</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+ &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>jquery as jq<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>script<span class="pl-pds">"</span></span>/&gt;
+ &lt;<span class="pl-ent">div</span>&gt;
+   &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>test<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+   &lt;<span class="pl-ent">script</span> <span class="pl-e">if</span>=<span class="pl-s"><span class="pl-pds">"</span>this.visible<span class="pl-pds">"</span></span>&gt;
+ 	jq(".test").hide();
+   &lt;/<span class="pl-ent">script</span>&gt;
+ &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;	</pre></div>
+<p><em><strong>get "@this" scope into script</strong></em></p>
+<p>eg.</p>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">template</span>&gt;
+ &lt;<span class="pl-ent">require</span> <span class="pl-e">from</span>=<span class="pl-s"><span class="pl-pds">"</span>jquery as jq<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>script<span class="pl-pds">"</span></span>/&gt;
+ &lt;<span class="pl-ent">div</span>&gt;
+   &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>test<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+   &lt;<span class="pl-ent">script</span> <span class="pl-e">if</span>=<span class="pl-s"><span class="pl-pds">"</span>this.visible<span class="pl-pds">"</span></span>&gt;
+ 	jq(".test").hide();
+	@this.visible = false;
+   &lt;/<span class="pl-ent">script</span>&gt;
+ &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">template</span>&gt;	</pre></div>
+</article>
+  </body>
+</html>
