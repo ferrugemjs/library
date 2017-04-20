@@ -89,7 +89,7 @@ now, we can importe into other template
 
 ***attached:***
 
-By implementing the method your module will be prompted for it once the html is in "DOM".
+By implementing the method your module will be prompted for it once your component is in "DOM".
 
 eg.
 ``` typescript
@@ -102,7 +102,7 @@ attached(){
 
 ***detached:***
 
-By implementing the method your module will be prompted for it once your object is detached from "DOM".
+By implementing the method your module will be prompted for it once your component is detached from "DOM".
 
 eg.
 ``` typescript
