@@ -657,10 +657,10 @@ other example
 ``` typescript
 //make your own router interface
 import page = require("page");
-export default (config:{path:string,onTrigger:Function})=>{
-	if(config.path && config.onTrigger){
+export default (config:{path:string,setHandler:Function})=>{
+	if(config.path && config.setHandler){
 		page(config.path,context=>{
-			config.onTrigger(context.params);
+			config.setHandler(context.params);
 		});
 	}else{
 		page.start();
@@ -672,7 +672,7 @@ using
 <template>
  <require from="../commons/router as add-router" type="script"/>
  <div>
-  <add-router path="/user/:id" on-trigger="this.edit"/>
+  <add-router path="/user/:id" set-handler="this.edit"/>
  </div>
 </template>	
 ```
