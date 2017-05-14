@@ -362,6 +362,22 @@ eg.
 
 
 
+***skip***
+
+Conditional children render with skip.
+
+eg.
+``` xml
+<template>
+  <div skip="this.name==='test'">
+    <span>name is test</span>
+  </div>
+</template>
+```
+
+This is util when working with libs that dinamicaly insert itens into that node as [select2](https://select2.github.io/), [selectize](https://selectize.github.io/selectize.js/) and others.
+
+
 ***import other module***
 
 eg.
