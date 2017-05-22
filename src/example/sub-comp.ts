@@ -1,9 +1,13 @@
-export class SubComp{
-	private name:string;
+interface ISubComp{
+	name?:string;
+	born?:Date;	
+}
+export class SubComp implements ISubComp{
+	public name:string;
 	private nameComp:string;
 	private options:string[];
 	//private visible:boolean;
-	private born:Date;
+	public born:Date;
 	private refresh:Function;
 	constructor(){
 		this.name = "my name";
@@ -17,12 +21,15 @@ export class SubComp{
 	}
 	private setVisible(on:boolean){
 		//this.visible = !on;
-		this.refresh();
+		this.refresh({"hummmm":123465});
 	}
 	private detached():void{
 		console.log('compose out of dom!');
 	}
 	private attached():void{
 		console.log('compose can be attached');
+	}
+	private shouldUpdate(new_props:ISubComp = {}):boolean{
+		return this.name != new_props.name;
 	}
 }

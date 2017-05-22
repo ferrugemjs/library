@@ -155,6 +155,23 @@ export class ModuleA{
 }
 ```
 
+***component shouldUpdate***
+
+By implementing the method "shouldUpdate" you can decide if a component should refresh or not by returning true or false.
+
+eg.
+``` typescript
+export class ModuleA{
+  private title:string;
+  private refresh:Function;//necessary if you want avoid typescript warnings
+  doAnyThing(){
+    refresh({title:"new Title"});//equivalent to "setState of react"
+  }
+  private shouldUpdate(new_props:ISubComp = {}):boolean{
+    return this.title != new_props.title;
+  }
+}
+```
 
 ***one-way data binding***
 
@@ -732,7 +749,7 @@ eg.
 ```
 
 
-***get "@this" scope into script***
+***get "this" scope into script***
 
 
 eg.
@@ -742,8 +759,8 @@ eg.
  <div>
    <span class="test"></span>
    <script if="this.visible">
- 	jq(".test").hide();
-	@this.visible = false;
+ 	  jq(".test").hide();
+	  this.visible = false;
    </script>
  </div>
 </template>	

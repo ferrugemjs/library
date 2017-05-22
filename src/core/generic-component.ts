@@ -3,7 +3,7 @@ import _IDOM = require("incremental-dom");
 declare let require:Function
 
 interface IInstWatched{	
-	inst?:{detached?:Function,attached:Function,_$key$_:string,render:Function}
+	inst?:{shouldUpdate?:(prop:{}) => boolean,detached?:Function,attached:Function,_$key$_:string,render:Function}
 	,tag:string
 	,alias:string
 	,target?:string
@@ -207,24 +207,32 @@ export class FerrugemJSFactory{
 	}
 	public refresh(props?:{}):void{
 		let _inst_:IInstWatched =  inst_watched[this._$key$_]||<any>{inst:this};
+		
+		let shouldUpdate:boolean = true;
+
+		if(_inst_.inst.shouldUpdate){
+			shouldUpdate = _inst_.inst.shouldUpdate(props);
+		}
 		if(props){
 			FerrugemJSFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
 		}
-		if((_inst_.loaded||_inst_.alias=="compose-view") && _inst_.target && document.getElementById(_inst_.target)){
-			let elementDom = document.getElementById(_inst_.target);
-			if(_inst_.extHostVars&&_inst_.extHostVars!=='""'){
-				let converted_to_array:string[] = new Function(
-					'$_this_$'
-					,'return ['+_inst_.extHostVars+']'
-				)(_inst_.inst);	
-				converted_to_array.forEach((attrkey,$indx)=>{
-					let skypeZero = $indx||2;
-					if(skypeZero % 2 === 0){
-						elementDom.setAttribute(attrkey,converted_to_array[$indx+1]);
-					}					
-				});
+		if(shouldUpdate){
+			if((_inst_.loaded||_inst_.alias=="compose-view") && _inst_.target && document.getElementById(_inst_.target)){
+				let elementDom = document.getElementById(_inst_.target);
+				if(_inst_.extHostVars&&_inst_.extHostVars!=='""'){
+					let converted_to_array:string[] = new Function(
+						'$_this_$'
+						,'return ['+_inst_.extHostVars+']'
+					)(_inst_.inst);	
+					converted_to_array.forEach((attrkey,$indx)=>{
+						let skypeZero = $indx||2;
+						if(skypeZero % 2 === 0){
+							elementDom.setAttribute(attrkey,converted_to_array[$indx+1]);
+						}					
+					});
+				}
+				_IDOM.patch(elementDom,_inst_.inst.render,_inst_.inst);	
 			}
-			_IDOM.patch(elementDom,_inst_.inst.render,_inst_.inst);	
 		}
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{
