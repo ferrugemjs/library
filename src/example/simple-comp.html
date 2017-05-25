@@ -1,8 +1,16 @@
 <template class="poxaveio">
+	<style>
+		.simple-comp{
+			border:1px solid #fefefe;
+			width:90%;
+			margin-left:5%;
+		}
+	</style>
 	<div>
-		<h1>${this.id}</h1>
-		<h2 click.trigger="this.setTexto('muito doido veio-'+new Date().getSeconds())">IM A SIMPLE COMPS</h2>
-		<p>texto_contr:${this.texto}</p>
-		<content></content>	
+		<div class="simple-comp">	
+			<p>${this.id} *- ${this.text}</p>
+			<a style="color:#ffffff" href="#" click.trigger="this.setText('text changed to:'+new Date().getSeconds())">click here to change text</a>
+			<content></content>	
+		</div>
 	</div>
 </template>

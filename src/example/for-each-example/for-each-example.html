@@ -1,0 +1,16 @@
+<template no-view-model="true">
+	<require from="../simple-comp"/>
+	<div>
+		<script type="text/javascript">
+			this.foolArray = ["one","two","three","four","five","six","seven","eight","nine","ten"];
+		</script>
+		<simple-comp id="ppovid">
+					no loop
+		</simple-comp>
+		<simple-comp 
+			each="item in this.foolArray"
+			id="${item}"
+			key:id="${'for_each_example'+item}"
+		/>
+	</div>
+</template>

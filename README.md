@@ -627,8 +627,8 @@ eg.
 <template>
   <div>
     <compose id="_unique_id_" key:id="_unique_id" view:from="path_to_dinamic_module/module_to_loader"/>
-  </div>http://127.0.0.1:9000/dist/example/fruit-app/assets/grapes-bunchttp://127.0.0.1:9000/dist/example/fruit-app/assets/grapes-bunch.pngh.png
-</template>http://127.0.0.1:9000/dist/example/fruit-app/assets/bananas.png
+  </div>
+</template>
 ```
 
 

@@ -1,0 +1,18 @@
+<template no-view-model="true">
+	<div>
+		<script type="text/javascript">
+			this.foolArray = ["one","two","three","four","five","six","seven","eight","nine","ten"];
+		</script>
+		<compose 
+			view:from="dist/example/simple-comp"
+			id="test_id"
+			key:id="test_id"
+		/>
+		<compose 
+			each="item in this.foolArray"
+			view:from="dist/example/simple-comp"
+			id="${'compose_example'+item}"
+			key:id="${'compose_example'+item}"
+		/>
+	</div>
+</template>

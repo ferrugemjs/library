@@ -1,21 +1,10 @@
 export class SimpleComp{
-	private texto:string="poxa veio";
-	constructor(){
-		//console.log('IM live');
-		//this.texto = "";
-	}
+	private text:string="text default";
 	private attached():void{
-		console.log(`my texto is: ${this.texto} `);
-		//(<any>this).refresh();
+		console.log(`on attached: my texto is: ${this.text} `);
 	}
-	private setTexto(texto:string):void{
-		//console.log(` from  '${this.texto}' to '${texto}' `);
-		this.texto = texto;
-		//console.log(this);
-		(<any>this).refresh();
-	}
-	private onTextoChanged():void{
-		//console.log(`my texto changed to: ${this.texto} `);
+	private setText(text:string):void{
+		this.text = text;
 		(<any>this).refresh();
 	}
 }
