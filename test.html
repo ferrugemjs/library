@@ -10,28 +10,23 @@
         background-color: red;
       }
     </style>
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
+    <script src="node_modules/requirejs/require.js"></script>
   </head>
   <body>    
     <div app="dist/example/main"></div>
     <div id="example"></div>
     <script>
-      System.config({
-        map:{
-          "ferrugemjs":"dist/core/ferrugem-bootstrap"
+      requirejs.config({
+        baseUrl: '.',
+        paths: {
+          "ferrugemjs":"dist/core/bootstrap"
           ,"ui-vendor":"dist/example/ui-vendor-example/index"
+          ,"incremental-dom":"node_modules/incremental-dom/dist/incremental-dom-min"
         }
       });
-      //"ferrugemjs":"dist/core/ferrugem-bootstrap"
-      System.import("ferrugemjs");
-      //System.import("ferrugemjs/ferrugem-bootstrap");
-      //System.import("dist/example/main2");
-      /*
-      System.import("dist/example/simple-comp.html").then(function(_mod_temp){
-        console.log(_mod_temp);
+      require(["ferrugemjs"],function(_mod){
+        console.log(_mod)
       });
-      */
     </script>
   </body>
 </html>

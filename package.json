@@ -1,16 +1,15 @@
 {
   "name": "ferrugemjs",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "A reactive library.",
-  "main": false,
+  "main": "dist/core/bootstrap",
   "scripts": {
-    "jspm": "./node_modules/.bin/jspm",
     "gulp": "./node_modules/.bin/gulp",
     "watch": "gulp watch",
     "compile": "gulp compile",
     "convert": "gulp template",
     "postinstall2": "jspm install",
-    "prepublish":"npm run build",
+    "prepublish": "npm run compile",
     "build": "gulp build"
   },
   "author": "ferrugemjs",
@@ -20,31 +19,28 @@
     "url": "https://github.com/ferrugemjs/library"
   },
   "jspm": {
-    "jspmPackage":true,
+    "jspmPackage": true,
     "registry": "npm",
-    "main": "ferrugem-bootstrap",
+    "main": "bootstrap",
     "format": "amd",
     "directories": {
       "dist": "dist/core"
     },
-    "dependencies": {
-    },
-    "devDependencies": {
-      "css": "github:systemjs/plugin-css@^0.1.32",
-      "incremental-dom": "^0.5.1"
-    }
+    "dependencies": {}
   },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.3.1",
-    "gulp-ferrugemjs": "^0.12.3",
+    "gulp-ferrugemjs": "^0.12.5",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-typescript": "^2.11.0",
     "gulp-uglify": "^1.5.2",
-    "http-proxy-middleware": "^0.14.0",
-    "jspm": "^0.16.39",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "requirejs": "^2.3.3"
+  },
+  "dependencies": {
+    "incremental-dom": "^0.5.1"
   }
 }

@@ -40,22 +40,19 @@ _IDOM.notifications.nodesDeleted = function(nodes:any) {
 _IDOM.notifications.nodesCreated = function(nodes:any) {
   nodes.forEach((node:HTMLDivElement)=>{
   	let key_id:string = node.getAttribute?node.getAttribute("key-id"):""; 
-  	
   	if(key_id && inst_watched[key_id]){		
 	  	//console.log(inst_watched[key_id])	
 	  	if(inst_watched[key_id].inst.attached && (!inst_watched[key_id].loaded)){
 			inst_watched[key_id].inst.attached();
 		}
 		inst_watched[key_id].loaded = true;
-	}
- 
-  	
+	}  	
   });
 };
 
 
 
-export interface IInstConfig{
+interface IInstConfig{
 	classFactory:any
 	,hostVars:{}
 	,staticVars:{}
@@ -63,7 +60,7 @@ export interface IInstConfig{
 	,alias?:string
 	,target?:string
 }
-export class FerrugemJSFactory{
+class AuxComponentFactory{
 	private _$content$_:Function;
 	private _$key$_:string;
 	private render:Function;
@@ -72,7 +69,7 @@ export class FerrugemJSFactory{
 	/*
 	 Factory of class
 	*/
-	public build(config:IInstConfig):FerrugemJSFactory{
+	public build(config:IInstConfig):AuxComponentFactory{
 
 		let _key = config.target;
 		//find any key
@@ -98,12 +95,12 @@ export class FerrugemJSFactory{
 
 		//append method refresh to prototype
 		if(!config.classFactory.prototype.refresh){
-			config.classFactory.prototype.refresh = FerrugemJSFactory.prototype.refresh;
+			config.classFactory.prototype.refresh = AuxComponentFactory.prototype.refresh;
 		}
 
 		//append method content to prototype
 		if(!config.classFactory.prototype.content){
-			//config.classFactory.prototype.content = FerrugemJSFactory.prototype.content;
+			//config.classFactory.prototype.content = AuxComponentFactory.prototype.content;
 		}
 
 		//lookup for old inst
@@ -138,7 +135,7 @@ export class FerrugemJSFactory{
 		return <any>inst_watched[_key].inst;
 	}
 
-	public content($content$?:Function):FerrugemJSFactory{
+	public content($content$?:Function):AuxComponentFactory{
 		//nao eh vinculado a instancia e sim ao watched
 		if($content$){
 			this._$content$_ = $content$;
@@ -214,7 +211,7 @@ export class FerrugemJSFactory{
 			shouldUpdate = _inst_.inst.shouldUpdate(props);
 		}
 		if(props){
-			FerrugemJSFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
+			AuxComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
 		}
 		if(shouldUpdate){
 			if((_inst_.loaded||_inst_.alias=="compose-view") && _inst_.target && document.getElementById(_inst_.target)){
@@ -247,7 +244,7 @@ export class FerrugemJSFactory{
 			});
 			//console.log(inst_watched[_inst_._$key$_]);
 			//emprestando metodo content e anexando ao watch e nao a instancia
-			FerrugemJSFactory.prototype.content.call(
+			AuxComponentFactory.prototype.content.call(
 				inst_watched[_inst_._$key$_]
 				,contentfn
 			);
@@ -262,4 +259,44 @@ export class FerrugemJSFactory{
 	}
 }
 
-export default new FerrugemJSFactory();
+let _fjs_ = new AuxComponentFactory();
+
+
+
+
+//import _fjs_ from "./aux-component";
+
+let app_html_s = document.querySelectorAll('[app]');
+let app_html:Element;
+
+if(app_html_s.length === 0){
+	app_html = document.getElementsByTagName('body')[0];
+}else{
+	app_html = app_html_s[0];
+};
+app_html_s = null;
+
+let app_url:string = app_html.getAttribute("app")||"app";
+let app_uid:string = app_html.getAttribute("id");
+if(!app_uid){
+	app_uid = "uid_"+new Date().getTime();
+	app_html.setAttribute("id",app_uid);
+};
+
+require([app_url+".html"],(_mod_init_app:any)=>{
+	//let _tmp_class_name:string = app_html.className?app_html.className+" ":"";
+	let _tmp_inst = _fjs_.build({
+		classFactory:_mod_init_app.default
+		,staticVars:{
+			"key:id":app_uid
+		}
+		,hostVars:{}
+		,tag:"div"
+		,alias:"init-app-tag"
+		//,target:app_uid
+	});
+	_IDOM.patch(document.getElementById(app_uid),_fjs_.reDraw.bind(_tmp_inst),_tmp_inst);
+	//_tmp_inst.refresh();
+});
+
+export default _fjs_;
