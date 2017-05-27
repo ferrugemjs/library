@@ -30,6 +30,8 @@ npm i ferrugemjs --save
 
 ****with webpack****
 
+npm i ferrugemjs --save
+
 npm i ferrugemjs-loader --save-dev
 
 add 'ferrugemjs-loader' to your rules
