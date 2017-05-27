@@ -26,9 +26,29 @@ clone
 
 ***individual install***
 
-jspm install npm:ferrugemjs
+npm i ferrugemjs --save
 
-npm install ferrugemjs (requirejs)
+****with webpack****
+
+npm i ferrugemjs-loader --save-dev
+
+add 'ferrugemjs-loader' to your rules
+``` javascript
+rules: [
+    {
+      test: /\.html$/
+      ,use:['ferrugemjs-loader']
+    }
+]
+```
+
+****with requirejs****
+
+npm i ferrugemjs --save
+
+****with jspm****
+
+jspm install npm:ferrugemjs
 
 npm install --save-dev gulp-ferrugemjs
 
