@@ -39,7 +39,7 @@ add 'ferrugemjs-loader' to your rules
 rules: [
     {
       test: /\.html$/
-      ,use:['ferrugemjs-loader']
+      ,loader:'ferrugemjs-loader'
     }
 ]
 ```
