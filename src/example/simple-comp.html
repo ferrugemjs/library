@@ -9,7 +9,7 @@
 	<div>
 		<div class="simple-comp">	
 			<p>${this.id} *- ${this.text}</p>
-			<a style="color:#ffffff" href="#" click.trigger="this.setText('text changed to:'+new Date().getSeconds())">click here to change text</a>
+			<a style="color:#ffffff" href="#" click.trigger="this.setText('text:'+this.id+':'+new Date().getSeconds())">click here to change text</a>
 			<content></content>	
 		</div>
 	</div>
