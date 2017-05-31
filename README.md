@@ -63,7 +63,7 @@ eg. index.html file
   <body>    
     <div app></div>
     <script>
-      System.import("ferrugemjs");
+      System.import("ferrugemjs/bootstrapper");
     </script>
   </body>
 ```
