@@ -763,7 +763,7 @@ eg.
  <require from="jquery as jq" type="script"/>
  <div>
    <span class="test"></span>
-   <script if="this.visible">
+   <script if="!this.hidden">
  	jq(".test").hide();
    </script>
  </div>
@@ -780,9 +780,9 @@ eg.
  <require from="jquery as jq" type="script"/>
  <div>
    <span class="test"></span>
-   <script if="this.visible">
+   <script if="!this.hidden">
  	  jq(".test").hide();
-	  this.visible = false;
+	  this.hidden = true;
    </script>
  </div>
 </template>	
