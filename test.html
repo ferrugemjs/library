@@ -19,12 +19,12 @@
       requirejs.config({
         baseUrl: '.',
         paths: {
-          "ferrugemjs":"dist/core/bootstrap"
+          "ferrugemjs":"dist/core"
           ,"ui-vendor":"dist/example/ui-vendor-example/index"
           ,"incremental-dom":"node_modules/incremental-dom/dist/incremental-dom-min"
         }
       });
-      require(["ferrugemjs"],function(_mod){
+      require(["ferrugemjs/bootstrap"],function(_mod){
         console.log(_mod)
       });
     </script>
