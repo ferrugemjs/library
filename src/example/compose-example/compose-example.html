@@ -1,12 +1,26 @@
-<template no-view-model="true">
+<template>
+	<require from="dist/example/component-with-subcomponent/compo-one"/>
 	<div>
 		<script type="text/javascript">
 			this.foolArray = ["one","two","three","four","five","six","seven","eight","nine","ten"];
 		</script>
+		<a href="#" click.trigger="this.toogle">Click here to reload all ${this.toogleShow}</a>
+		<!--
+		<compo-one if="this.toogleShow"/>
+		-->
+		
 		<compose 
-			view:from="dist/example/simple-comp"
+		    if="this.toogleShow"
+			view:from="dist/example/component-with-subcomponent/compo-one"
 			id="test_id"
 			key:id="test_id"
+		/>
+		
+		<compose 
+		    if="this.toogleShow"
+			view:from="dist/example/simple-comp"
+			id="test_id2"
+			key:id="test_id2"
 		/>
 		<compose 
 			each="item in this.foolArray"
