@@ -28,6 +28,10 @@ clone
 
 npm i ferrugemjs --save
 
+****with requirejs****
+
+npm i ferrugemjs --save
+
 ****with webpack****
 
 npm i ferrugemjs --save
@@ -44,9 +48,16 @@ rules: [
 ]
 ```
 
-****with requirejs****
+``` javascript
+import platform from "ferrugemjs/platform";
+import init_app from "./init-app";
 
-npm i ferrugemjs --save
+platform
+    .bootstrap(init_app)
+    .at(
+        document.getElementById("init_app_id")
+    );
+```
 
 ****with jspm****
 
