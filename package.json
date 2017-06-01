@@ -1,6 +1,6 @@
 {
   "name": "ferrugemjs",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "A reactive library.",
   "main": false,
   "files":["dist/core"],
@@ -24,7 +24,7 @@
     "gulp-beautify": "^2.0.1",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.3.1",
-    "gulp-ferrugemjs": "^0.15.0",
+    "gulp-ferrugemjs": "^0.15.1",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-typescript": "^2.11.0",

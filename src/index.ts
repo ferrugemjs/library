@@ -15,3 +15,8 @@ declare module "ferrugemjs/nodes-watched"{
 declare module "ferrugemjs/nodes-action"{
 	export {attacheNode,detacheNode} from "core/nodes-action";
 }
+
+declare module "ferrugemjs/platform"{
+	import platform from "core/platform";
+	export default platform;
+}
