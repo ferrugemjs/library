@@ -38,16 +38,26 @@ npm i ferrugemjs --save
 
 npm i ferrugemjs-loader --save-dev
 
-add 'ferrugemjs-loader' to your rules
+add 'ferrugemjs-loader' to your rules and alias
 ``` javascript
-rules: [
-    {
-      test: /\.html$/
-      ,loader:'ferrugemjs-loader'
-    }
-]
+//webpack.config.js
+module: {
+	rules: [
+	    {
+	      test: /\.html$/
+	      ,loader:'ferrugemjs-loader'
+	    }
+	]
+},
+,resolve: {
+    extensions: [".js",".html"]
+    ,alias:{    		
+    	"app":__dirname + '/src'
+    	,"ferrugemjs":"ferrugemjs/dist/core"
+    }    
+ }
 ```
-
+to work with webpack there is 'ferrugemjs/platform' as a application bootstrapping.
 ``` javascript
 import platform from "ferrugemjs/platform";
 import init_app from "./init-app";
