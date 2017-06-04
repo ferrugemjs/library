@@ -208,8 +208,9 @@ class ComponentFactory{
 			if(_inst_.attached && (!inst_watched[_inst_._$key$_].loaded)){
 				_inst_.attached();
 			}
-			inst_watched[_inst_._$key$_].loaded = true;
-
+			if(_inst_._$key$_ && inst_watched[_inst_._$key$_]){
+				inst_watched[_inst_._$key$_].loaded = true;
+			}
 		});		
 	}
 }
