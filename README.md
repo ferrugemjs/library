@@ -322,7 +322,8 @@ eg.
     <if condition="this.name==='test'">
       <span>name is test</span>
     <else>
-      <span>I dont know you!</span>
+      	<span>I dont know you!</span>
+    </else>  
     </if>
   </div>
 </template>
@@ -340,6 +341,7 @@ eg.
       <span>name is test</span>
     <elseif condition="this.name==='test2'">
       <span>ok, you are test2</span>
+    </elseif>  
     </if>
   </div>
 </template>
@@ -355,10 +357,12 @@ eg.
   <div>
     <if condition="this.name==='test'">
       <span>name is test</span>
-    <elseif condition="this.name==='test2'">
-      <span>ok, you are test2</span>
-    <else>
-      <span>I dont know you!</span>  
+      <elseif condition="this.name==='test2'">
+        <span>ok, you are test2</span>
+      </elseif>  
+      <else>
+        <span>I dont know you!</span> 
+      </else>  
     </if>
   </div>
 </template>
