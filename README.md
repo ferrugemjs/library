@@ -1,10 +1,10 @@
 ***FerrugemJS***
 
-![Ferrugem Logo](/assets/img/new-logo2_98x129.png) 
+![Ferrugem Logo](/assets/img/new-logo-home.png) 
 
 
 
-**A simple library, reactive, conventional and non-intrusive!**
+**A simple, reactive, conventional and non-intrusive library!**
 ***FerrugemJS*** is inspired by [Aurelia](http://aurelia.io/) and [React](https://facebook.github.io/react/) using [Incremental DOM](http://google.github.io/incremental-dom/) with a html template engine.
 
 ***No jquery required, only 2kB!***
