@@ -3,7 +3,9 @@ import {IInstConfig} from "ferrugemjs/i-inst-config";
 import {IInstWatched} from "ferrugemjs/i-inst-watched";
 import inst_watched from "ferrugemjs/nodes-watched";
 import {detacheNode,attacheNode} from "ferrugemjs/nodes-action";
+
 declare let require:Function;
+declare let __webpack_require__:Function;
 
 let uid_generated:number = new Date().getTime()+1298;
 
@@ -188,7 +190,8 @@ class ComponentFactory{
 		}
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{
-		require([path+".html"],(mod:any)=>{
+		
+		const handlerLoad = (mod:any) => {
 			let _inst_ = this.build({
 					classFactory:mod.default
 					,hostVars:host_vars
@@ -211,7 +214,15 @@ class ComponentFactory{
 			if(_inst_._$key$_ && inst_watched[_inst_._$key$_]){
 				inst_watched[_inst_._$key$_].loaded = true;
 			}
-		});		
+		};
+
+		if(typeof __webpack_require__ === 'function'){
+			require(["root_app/"+path+".html"],handlerLoad.bind(this));
+		}else{
+			require([path+".html"],handlerLoad.bind(this));
+		}
+
+
 	}
 }
 
