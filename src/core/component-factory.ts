@@ -165,7 +165,7 @@ class ComponentFactory{
 		let shouldUpdate:boolean = true;
 
 		if(_inst_.inst.shouldUpdate){
-			shouldUpdate = _inst_.inst.shouldUpdate(props);
+			shouldUpdate = _inst_.inst.shouldUpdate(Object.assign({},_inst_.inst,props));
 		}
 		if(props){
 			ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
