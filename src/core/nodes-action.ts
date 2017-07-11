@@ -16,8 +16,8 @@ export const detacheNode = (node:HTMLDivElement) => {
   	//ajudando o guarbage collector do javascript
   	if(key_id && inst_captured){
   		//evitando usar o refresh em um no morto
-		inst_captured._capture$KeyId = null;
-		delete inst_captured._capture$KeyId;
+		inst_captured.inst._capture$KeyId = null;
+		delete inst_captured.inst._capture$KeyId;
   		inst_captured.loaded = false;
   		inst_captured.inst = null;
   		inst_captured = null;

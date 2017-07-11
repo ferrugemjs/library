@@ -19,7 +19,7 @@ _IDOM.notifications.nodesCreated = function(nodes:HTMLDivElement[]) {
 
 class ComponentFactory{
 	private _$content$_:Function;
-	private _$key$_:string;
+	private _capture$KeyId:() => string;
 	private render:Function;
 	private attached:Function;
 	private detached:Function;
@@ -108,34 +108,36 @@ class ComponentFactory{
 	}
 	public changeAttrs(attrs_vars:{},isStatics?:boolean):void{
 		if(attrs_vars){		
+			let forbiddenAttrList:string[] = ["key-id","is"];
 			for(let propOrign in attrs_vars){
-				let notAccepted:boolean = isStatics && (propOrign==="is"||propOrign==="id");
-				if(!notAccepted){
-                    let prop:string = propOrign;
-                    if(prop.indexOf("-") > -1){
-                        prop = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
-                            return group1.toUpperCase();
-                        });  
-                    };
-					let newValue:any = attrs_vars[propOrign];
-					if(prop.indexOf(".") > -1){		
+				if(forbiddenAttrList.indexOf(propOrign) < 0 ){			
+					let notAccepted:boolean = isStatics && (propOrign==="id" || propOrign==="is");
+					if(!notAccepted){
+		                let prop:string = propOrign;
+		                if(prop.indexOf("-") > -1){
+		                    prop = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
+		                        return group1.toUpperCase();
+		                    });  
+		                };
+						let newValue:any = attrs_vars[propOrign];
+						if(prop.indexOf(".") > -1){		
 
-	                    let prop_splited:string[] = prop.split(".");
-	                    //console.log(this,prop_splited);
-	                    //console.log(this);
-	                    this[prop_splited[0]][prop_splited[1]](newValue);		
-					}else{					
-						let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
-							return g0.toUpperCase();
-						});
-						if(this[_onChangedFunction]){						
-							this[_onChangedFunction](newValue);
-						}else{						
-	                   		this[prop] = newValue;
-	                   	}
-	                }					
+			                let prop_splited:string[] = prop.split(".");
+			                //console.log(this,prop_splited);
+			                //console.log(this);
+			                this[prop_splited[0]][prop_splited[1]](newValue);		
+						}else{					
+							let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
+								return g0.toUpperCase();
+							});
+							if(this[_onChangedFunction]){						
+								this[_onChangedFunction](newValue);
+							}else{						
+			               		this[prop] = newValue;
+			               	}
+			            }					
+					}
 				}
-
 			};	        
 		}
 	}
