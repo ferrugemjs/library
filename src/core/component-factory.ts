@@ -79,7 +79,7 @@ class ComponentFactory{
 		inst_watched[_key].target = config.target;
 		//inst_watched[_key].inst["_$key$_"] = _key;
 		if(!inst_watched[_key].inst._capture$KeyId){
-			(function(p_key){
+			(function(p_key:string){
 				inst_watched[_key].inst._capture$KeyId = function(){
 					return p_key;
 				};
