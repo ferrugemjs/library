@@ -78,11 +78,14 @@ class ComponentFactory{
 		inst_watched[_key] = <any>{ inst: new config.classFactory()};			 
 		inst_watched[_key].target = config.target;
 		//inst_watched[_key].inst["_$key$_"] = _key;
-		(function(){
-			inst_watched[_key].inst._capture$KeyId = function(){
-				return _key;
-			};
-		}());
+		if(!inst_watched[_key].inst._capture$KeyId){
+			(function(p_key){
+				inst_watched[_key].inst._capture$KeyId = function(){
+					return p_key;
+				};
+			}(_key));
+		}
+
 		inst_watched[_key].alias = config.alias;
 		inst_watched[_key].tag = config.tag||"div";
 		inst_watched[_key].tag = inst_watched[_key].inst["_$attrs$_"]?inst_watched[_key].inst["_$attrs$_"]["name"]:inst_watched[_key].tag;
