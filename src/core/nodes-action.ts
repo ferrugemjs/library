@@ -9,26 +9,30 @@ export const detacheNode = (node:HTMLDivElement) => {
 	};
 	let key_id:string = node.getAttribute?node.getAttribute("key-id"):""; 
   	//console.log(node);
-  	if(key_id && inst_watched[key_id] && inst_watched[key_id].inst.detached){
-  		inst_watched[key_id].inst.detached();
+	let inst_captured = inst_watched[key_id];
+  	if(key_id && inst_captured && inst_captured.inst.detached){
+  		inst_captured.inst.detached();
   	} 
   	//ajudando o guarbage collector do javascript
-  	if(key_id && inst_watched[key_id]){
+  	if(key_id && inst_captured){
   		//evitando usar o refresh em um no morto
-  		inst_watched[key_id].loaded = false;
-  		inst_watched[key_id].inst = null;
-  		inst_watched[key_id] = null;
+		inst_captured._capture$KeyId = null;
+		delete inst_captured._capture$KeyId;
+  		inst_captured.loaded = false;
+  		inst_captured.inst = null;
+  		inst_captured = null;
   		delete inst_watched[key_id];
   	};
 }
 
 export const attacheNode = (node:HTMLDivElement) => {
 	let key_id:string = node.getAttribute?node.getAttribute("key-id"):""; 
-  	if(key_id && inst_watched[key_id]){		
+	let inst_captured = inst_watched[key_id];
+  	if(key_id && inst_captured){		
 	  	//console.log(inst_watched[key_id])	
-	  	if(inst_watched[key_id].inst.attached && (!inst_watched[key_id].loaded)){
-			inst_watched[key_id].inst.attached();
+	  	if(inst_captured.inst.attached && (!inst_captured.loaded)){
+			inst_captured.inst.attached();
 		}
-		inst_watched[key_id].loaded = true;
+		inst_captured.loaded = true;
 	}
 }

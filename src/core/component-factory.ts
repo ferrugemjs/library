@@ -77,7 +77,12 @@ class ComponentFactory{
 		//save the new inst in watched insts
 		inst_watched[_key] = <any>{ inst: new config.classFactory()};			 
 		inst_watched[_key].target = config.target;
-		inst_watched[_key].inst["_$key$_"] = _key;
+		//inst_watched[_key].inst["_$key$_"] = _key;
+		(function(){
+			inst_watched[_key].inst._capture$KeyId = function(){
+				return _key;
+			};
+		}());
 		inst_watched[_key].alias = config.alias;
 		inst_watched[_key].tag = config.tag||"div";
 		inst_watched[_key].tag = inst_watched[_key].inst["_$attrs$_"]?inst_watched[_key].inst["_$attrs$_"]["name"]:inst_watched[_key].tag;
@@ -135,7 +140,8 @@ class ComponentFactory{
 		}
 	}
 	public reDraw(){
-		let _inst_:IInstWatched =  <any>(inst_watched[this._$key$_]||{inst:this,extStaticVars:[],extHostVars:""});
+		let _$key$_:string = this._capture$KeyId ? this._capture$KeyId() : "";
+		let _inst_:IInstWatched =  <any>(inst_watched[_$key$_]||{inst:this,extStaticVars:[],extHostVars:""});
 		_inst_.extHostVars = _inst_.extHostVars||"";
 		_inst_.extStaticVars = _inst_.extStaticVars||[];
 		_inst_.target = _inst_.target||'uid_'+(uid_generated++)+'_provided';//_IDOM.currentElement().id;
@@ -149,10 +155,10 @@ class ComponentFactory{
 			if(_inst_.extStaticVars.indexOf('is') < 0 && _inst_.alias){
 				_inst_.extStaticVars.push('is',_inst_.alias);
 			}
-			if(_inst_.inst._$key$_){
-				_inst_.extStaticVars.push('key-id',_inst_.inst._$key$_);
+			if(_$key$_){
+				_inst_.extStaticVars.push('key-id', _$key$_);
 			}
-		_IDOM.elementOpen(_inst_.tag,_inst_.inst._$key$_,_inst_.extStaticVars, ... new Function(
+		_IDOM.elementOpen(_inst_.tag,_$key$_,_inst_.extStaticVars, ... new Function(
 			'$_this_$'
 			,'return ['+_inst_.extHostVars+']'
 		)(_inst_.inst));
@@ -160,7 +166,8 @@ class ComponentFactory{
 		_IDOM.elementClose(_inst_.tag);
 	}
 	public refresh(props?:{}):void{
-		let _inst_:IInstWatched =  inst_watched[this._$key$_]||<any>{inst:this};
+		let _$key$_:string = this._capture$KeyId ? this._capture$KeyId() : "";
+		let _inst_:IInstWatched =  inst_watched[_$key$_]||<any>{inst:this};
 		
 		let shouldUpdate:boolean = true;
 
@@ -190,7 +197,6 @@ class ComponentFactory{
 		}
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{
-		
 		const handlerLoad = (mod:any) => {
 			let _inst_ = this.build({
 					classFactory:mod.default
@@ -200,19 +206,20 @@ class ComponentFactory{
 					,alias:"compose-view"
 					,tag:"div"
 			});
+			let _$key$_:string = _inst_._capture$KeyId ? _inst_._capture$KeyId() : "";
 			//console.log(inst_watched[_inst_._$key$_]);
 			//emprestando metodo content e anexando ao watch e nao a instancia
 			ComponentFactory.prototype.content.call(
-				inst_watched[_inst_._$key$_]
+				inst_watched[_$key$_]
 				,contentfn
 			);
 			_inst_.refresh();
 
-			if(_inst_.attached && (!inst_watched[_inst_._$key$_].loaded)){
+			if(_inst_.attached && (!inst_watched[_$key$_].loaded)){
 				_inst_.attached();
 			}
-			if(_inst_._$key$_ && inst_watched[_inst_._$key$_]){
-				inst_watched[_inst_._$key$_].loaded = true;
+			if(_$key$_ && inst_watched[_$key$_]){
+				inst_watched[_$key$_].loaded = true;
 			}
 		};
 
@@ -221,8 +228,6 @@ class ComponentFactory{
 		}else{
 			require([path+".html"],handlerLoad.bind(this));
 		}
-
-
 	}
 }
 
