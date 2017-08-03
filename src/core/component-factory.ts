@@ -17,6 +17,14 @@ _IDOM.notifications.nodesCreated = function(nodes:HTMLDivElement[]) {
   nodes.forEach(node => attacheNode(node));
 };
 
+_IDOM.attributes.value = function (el:any, name:string, value:any) {
+  el.value = value === null || typeof (value) === 'undefined' ? '' : value
+}
+
+_IDOM.attributes.checked = function (el:any, name:string, value:any) {
+  el.checked = !!value
+}
+
 class ComponentFactory{
 	private _$content$_:Function;
 	private _capture$KeyId:() => string;
