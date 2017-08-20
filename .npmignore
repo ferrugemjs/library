@@ -3,6 +3,7 @@ jspm_packages
 src
 assets
 tasks
+package-lock.json
 
 #dist dir
 dist/example

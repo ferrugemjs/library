@@ -131,11 +131,16 @@ class ComponentFactory{
 		                    });  
 		                };
 						let newValue:any = attrs_vars[propOrign];
-						if(prop.indexOf(".") > -1){		
-
+						let regx = /(\w*)+\.if$/g;
+						if(regx.test(prop)){
+							let attrcondi = prop.replace(".if","");
+							if(newValue){
+								this[attrcondi] = attrcondi;
+							}else{
+								delete this[attrcondi];
+							}
+                        }else if(prop.indexOf(".") > -1){	
 			                let prop_splited:string[] = prop.split(".");
-			                //console.log(this,prop_splited);
-			                //console.log(this);
 			                this[prop_splited[0]][prop_splited[1]](newValue);		
 						}else{					
 							let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
