@@ -29,8 +29,9 @@ class ComponentFactory{
 	private _$content$_:Function;
 	private _capture$KeyId:() => string;
 	private render:Function;
-	private attached:Function;
-	private detached:Function;
+	private connectedCallback:Function;
+	private disconnectedCallback:Function;
+	private attributeChangedCallback:(attrName:string, oldVal:any, newVal:any) => void;
 	/*
 	 Factory of class
 	*/
@@ -142,15 +143,12 @@ class ComponentFactory{
                         }else if(prop.indexOf(".") > -1){	
 			                let prop_splited:string[] = prop.split(".");
 			                this[prop_splited[0]][prop_splited[1]](newValue);		
-						}else{					
-							let _onChangedFunction:string = "set"+prop.replace(/(^\D)/g,function(g0,g1){
-								return g0.toUpperCase();
-							});
-							if(this[_onChangedFunction]){						
-								this[_onChangedFunction](newValue);
-							}else{						
-			               		this[prop] = newValue;
-			               	}
+						}else{
+							let oldValue = this[prop];
+							this[prop] = newValue;
+							if(this.attributeChangedCallback){						
+								this.attributeChangedCallback(prop,oldValue,newValue);
+							}
 			            }					
 					}
 				}
@@ -189,8 +187,8 @@ class ComponentFactory{
 		
 		let shouldUpdate:boolean = true;
 
-		if(_inst_.inst.shouldUpdate){
-			shouldUpdate = _inst_.inst.shouldUpdate(Object.assign({},_inst_.inst,props));
+		if(_inst_.inst.shouldUpdateCallback){
+			shouldUpdate = _inst_.inst.shouldUpdateCallback(Object.assign({},_inst_.inst,props));
 		}
 		if(props){
 			ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
@@ -233,8 +231,8 @@ class ComponentFactory{
 			);
 			_inst_.refresh();
 
-			if(_inst_.attached && (!inst_watched[_$key$_].loaded)){
-				_inst_.attached();
+			if(_inst_.connectedCallback && (!inst_watched[_$key$_].loaded)){
+				_inst_.connectedCallback();
 			}
 			if(_$key$_ && inst_watched[_$key$_]){
 				inst_watched[_$key$_].loaded = true;
