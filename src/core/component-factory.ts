@@ -18,12 +18,12 @@ _IDOM.notifications.nodesCreated = function(nodes:HTMLDivElement[]) {
 };
 
 _IDOM.attributes.value = function (el:any, name:string, value:any) {
-  el.value = value === null || typeof (value) === 'undefined' ? '' : value
-}
+  el.value = value === null || typeof (value) === 'undefined' ? '' : value;
+};
 
 _IDOM.attributes.checked = function (el:any, name:string, value:any) {
-  el.checked = !!value
-}
+  el.checked = !!value;
+};
 
 class ComponentFactory{
 	private _$content$_:Function;
@@ -65,9 +65,9 @@ class ComponentFactory{
 		}
 
 		//append method content to prototype
-		if(!config.classFactory.prototype.content){
+		//if(!config.classFactory.prototype.content){
 			//config.classFactory.prototype.content = ComponentFactory.prototype.content;
-		}
+		//}
 
 		//lookup for old inst
 		if(_key && inst_watched[_key]){
@@ -130,7 +130,7 @@ class ComponentFactory{
 		                    prop = propOrign.toLowerCase().replace(/-(.)/g, function(match, group1) {
 		                        return group1.toUpperCase();
 		                    });  
-		                };
+		                }
 						let newValue:any = attrs_vars[propOrign];
 						let regx = /(\w*)+\.if$/g;
 						if(regx.test(prop)){
@@ -152,7 +152,7 @@ class ComponentFactory{
 			            }					
 					}
 				}
-			};	        
+			}	        
 		}
 	}
 	public reDraw(){
@@ -181,7 +181,7 @@ class ComponentFactory{
 			_inst_.inst.render(_inst_.inst);			
 		_IDOM.elementClose(_inst_.tag);
 	}
-	public refresh(props?:{}):void{
+	public refresh(props?:{} | Function):void{
 		let _$key$_:string = this._capture$KeyId ? this._capture$KeyId() : "";
 		let _inst_:IInstWatched =  inst_watched[_$key$_]||<any>{inst:this};
 		
@@ -190,7 +190,11 @@ class ComponentFactory{
 		if(_inst_.inst.shouldUpdateCallback){
 			shouldUpdate = _inst_.inst.shouldUpdateCallback(Object.assign({},_inst_.inst,props));
 		}
-		if(props){
+		if(props && typeof props === "function"){
+			ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[
+				props(_inst_.inst)
+			]);
+		}else if(props){
 			ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
 		}
 		if(shouldUpdate){
