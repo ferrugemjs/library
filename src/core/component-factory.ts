@@ -121,9 +121,10 @@ class ComponentFactory{
 	public changeAttrs(attrs_vars:{},isStatics?:boolean):void{
 		if(attrs_vars){		
 			let forbiddenAttrList:string[] = ["key-id","is"];
+			// console.dir(attrs_vars);
 			for(let propOrign in attrs_vars){
 				if(forbiddenAttrList.indexOf(propOrign) < 0 ){			
-					let notAccepted:boolean = isStatics && (propOrign==="id" || propOrign==="is");
+					let notAccepted:boolean = isStatics && (propOrign === "id" || propOrign === "is");
 					if(!notAccepted){
 		                let prop:string = propOrign;
 		                if(prop.indexOf("-") > -1){
@@ -198,9 +199,9 @@ class ComponentFactory{
 			ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
 		}
 		if(shouldUpdate){
-			if((_inst_.loaded||_inst_.alias=="compose-view") && _inst_.target && document.getElementById(_inst_.target)){
+			if((_inst_.loaded || _inst_.alias === "compose-view") && _inst_.target && document.getElementById(_inst_.target)){
 				let elementDom = document.getElementById(_inst_.target);
-				if(_inst_.extHostVars&&_inst_.extHostVars!=='""'){
+				if(_inst_.extHostVars && _inst_.extHostVars!=='""'){
 					let converted_to_array:string[] = new Function(
 						'$_this_$'
 						,'return ['+_inst_.extHostVars+']'
@@ -212,11 +213,17 @@ class ComponentFactory{
 						}					
 					});
 				}
+				// console.log(_inst_);
+				if(_inst_["is"]){
+					elementDom.setAttribute("is",_inst_["is"]);
+				}				
 				_IDOM.patch(elementDom,_inst_.inst.render,_inst_.inst);	
 			}
 		}
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{
+		//console.log(static_vars["is"],":",path, path.substring(path.lastIndexOf("/")+1,path.length));
+		//static_vars["is"] = static_vars["is"]+ " " + path.substring(path.lastIndexOf("/")+1,path.length);
 		const handlerLoad = (mod:any) => {
 			let _inst_ = this.build({
 					classFactory:mod.default
@@ -229,13 +236,19 @@ class ComponentFactory{
 			let _$key$_:string = _inst_._capture$KeyId ? _inst_._capture$KeyId() : "";
 			//console.log(inst_watched[_inst_._$key$_]);
 			//emprestando metodo content e anexando ao watch e nao a instancia
+			inst_watched[_$key$_]["is"] = path.substring(path.lastIndexOf("/")+1,path.length);
+			
 			ComponentFactory.prototype.content.call(
 				inst_watched[_$key$_]
 				,contentfn
 			);
 			_inst_.refresh();
-
+			// _inst_.
 			if(_inst_.connectedCallback && (!inst_watched[_$key$_].loaded)){
+				// let elementDom = document.getElementById(_inst_.id);
+				// console.log(_inst_,inst_watched[_$key$_]);
+				// let isVar = path.substring(path.lastIndexOf("/")+1,path.length);
+				// elementDom.setAttribute("is",isVar);
 				_inst_.connectedCallback();
 			}
 			if(_$key$_ && inst_watched[_$key$_]){

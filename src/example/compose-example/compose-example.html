@@ -3,6 +3,7 @@
 	<div>
 		<script type="text/javascript">
 			this.foolArray = ["one","two","three","four","five","six","seven","eight","nine","ten"];
+			this.path = "dist/example/simple-comp"; 
 		</script>
 		<a href="#" click.trigger="this.toogle">Click here to reload all ${this.toogleShow}</a>
 		<!--
@@ -10,23 +11,24 @@
 		-->
 		
 		<compose 
-		    if="this.toogleShow"
 			view:from="dist/example/component-with-subcomponent/compo-one"
-			id="test_id"
-			key:id="test_id"
+			key:id="test_id001"
 		/>
 		
 		<compose 
-		    if="this.toogleShow"
 			view:from="dist/example/simple-comp"
-			id="test_id2"
-			key:id="test_id2"
 		/>
+		<compose
+			view:from="${this.path}"
+			key:id="test_id003"
+		/>
+		
 		<compose 
 			each="item in this.foolArray"
 			view:from="dist/example/simple-comp"
-			id="${'cse_eg_'+item}"
+			
 			key:id="${'cse_eg_'+item}"
 		/>
+		
 	</div>
 </template>
