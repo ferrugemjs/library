@@ -3,8 +3,9 @@ import _fjs_ from "ferrugemjs/component-factory";
 
 class PlatformBootstrap{
 	private _module:any;
-	bootstrap(pmodule:any):PlatformBootstrap{
+	bootstrap(pmodule:any,option?:{templateExtension:string}):PlatformBootstrap{
 		this._module = pmodule;
+		_fjs_.config.templateExtension = option && option.templateExtension ? option.templateExtension : ".html";
 		return this;
 	}
 	at(domRender:HTMLElement):void{

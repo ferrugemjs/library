@@ -11,7 +11,7 @@
 		,"removeComments":true
 		,"noEmitHelpers":true 
 		,"suppressImplicitAnyIndexErrors": true
-        ,"lib":["dom","es6"]
+        ,"lib":["dom","es2015"]
     },
     "exclude": [
         "node_modules"

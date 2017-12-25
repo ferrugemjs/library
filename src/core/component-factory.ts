@@ -32,6 +32,7 @@ class ComponentFactory{
 	private connectedCallback:Function;
 	private disconnectedCallback:Function;
 	private attributeChangedCallback:(attrName:string, oldVal:any, newVal:any) => void;
+	public config:{templateExtension:string} = {templateExtension:".html"};
 	/*
 	 Factory of class
 	*/
@@ -257,9 +258,9 @@ class ComponentFactory{
 		};
 
 		if(typeof __webpack_require__ === 'function'){
-			require(["root_app/"+path+".html"],handlerLoad.bind(this));
+			require([`root_app/${path}${this.config.templateExtension}`],handlerLoad.bind(this));
 		}else{
-			require([path+".html"],handlerLoad.bind(this));
+			require([`${path}${this.config.templateExtension}`],handlerLoad.bind(this));
 		}
 	}
 }
