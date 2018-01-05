@@ -14,19 +14,19 @@ if(app_html_s.length === 0){
 app_html_s = null;
 
 let app_url:string = app_html.getAttribute("app")||"app";
-let app_template_extension = app_html.getAttribute("template-extension") || ".html";
+let templateExtension = app_html.getAttribute("template-extension") || ".html";
 
 
 if(typeof __webpack_require__ === 'function'){
-	require([`root_app/${app_url}${app_template_extension}`],(_mod_init_app:any) => {
+	require([`root_app/${app_url}${templateExtension}`],(_mod_init_app:any) => {
 	platform
-		.bootstrap(_mod_init_app)
+		.bootstrap(_mod_init_app,{templateExtension})
 		.at(app_html);
 	});
 }else{
-	require([`${app_url}${app_template_extension}`],(_mod_init_app:any) => {
+	require([`${app_url}${templateExtension}`],(_mod_init_app:any) => {
 	platform
-		.bootstrap(_mod_init_app)
+		.bootstrap(_mod_init_app,{templateExtension})
 		.at(app_html);
 	});
 }
