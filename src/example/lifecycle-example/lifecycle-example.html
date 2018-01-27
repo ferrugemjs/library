@@ -1,0 +1,14 @@
+<template>
+	<div>
+		<span>${this.name}</span>
+		<input type="text" change.bind="this.name"/>
+		<h3>Actual Value '${this.stageValue}'</h3>
+		<h4>Logs</h4>
+		<ol>
+			<li each="log in this.logs">
+				stage: ${log.stage} , value: ${log.value}
+			</li>
+		</ol>
+		<button click.trigger="this.refresh({stageValue:'attr change with refresh'})">Change with refresh</button>
+	</div>
+</template>

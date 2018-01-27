@@ -192,14 +192,14 @@ class ComponentFactory{
 		if(_inst_.inst.shouldUpdateCallback){
 			shouldUpdate = _inst_.inst.shouldUpdateCallback(Object.assign({},_inst_.inst,props));
 		}
-		if(props && typeof props === "function"){
-			ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[
-				props(_inst_.inst)
-			]);
-		}else if(props){
-			ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
-		}
 		if(shouldUpdate){
+			if(props && typeof props === "function"){
+				ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[
+				props(_inst_.inst)
+				]);
+			}else if(props){
+				ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
+			}
 			if((_inst_.loaded || _inst_.alias === "compose-view") && _inst_.target && document.getElementById(_inst_.target)){
 				let elementDom = document.getElementById(_inst_.target);
 				if(_inst_.extHostVars && _inst_.extHostVars!=='""'){

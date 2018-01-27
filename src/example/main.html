@@ -15,8 +15,8 @@
 	<require from="./for-each-example/for-each-example"/>
 	-->
 	<require from="./compose-example/compose-example"/>
-	<require from="./attribute-changed-callback/attribute-changed"/>
 	<require from="./refresh-function/refresh-function"/>
+	<require from="./lifecycle-example/lifecycle-example"/>
 	<style>
 		.box-examples{
 			border:1px solid #123;
@@ -59,8 +59,22 @@
 			text-decoration:none;
 		}
 	</style>
-	<form class="box-examples">
+	<div class="box-examples">
 		<h3 style="text-indent:10px">BASIC TESTS</h3>
+		<div class="box-example">
+			<span class="title" click.trigger="this.refresh({dinamicValue:'changed by event'})">
+				lifecycle
+			</span>	
+			<div class="content">
+				<script if="!this.dinamicValue" type="text/javascript">
+					this.dinamicValue = 'changed by bind';
+				</script>
+				<lifecycle-example 
+				stage-value="${this.dinamicValue}"
+				stage-value-alias="other value"
+				/>
+			</div>
+		</div>
 		<div class="box-example">
 			<span class="title">
 				for each
@@ -172,7 +186,6 @@
 				<h5>complete lifecycle</h5>
 				<h5>with tag content</h5>
 				<h5>attributeChangedCallback</h5>
-				<attribute-changed name="13456"/>
 			</div>			
 		</div>								
 	<!--
@@ -233,6 +246,6 @@
 		<span if="1 < 4">Caso simples!</span>
 		<span if="this.count > 3">FIRM DO MAIN</span>
 	-->
-	</form>
+	</div>
 </template>
 

@@ -24,10 +24,10 @@ export class SubComp implements ISubComp{
 		this.refresh({"hummmm":123465});
 	}
 	private detached():void{
-		console.log('compose out of dom!');
+		//console.log('compose out of dom!');
 	}
 	private attached():void{
-		console.log('compose can be attached');
+		//console.log('compose can be attached');
 	}
 	private shouldUpdate(new_props:ISubComp = {}):boolean{
 		return this.name != new_props.name;

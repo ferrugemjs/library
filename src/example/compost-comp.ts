@@ -19,7 +19,7 @@ export class CompostComp{
 		this.composeHidden = false;
 	}
 	setEspecialname2(n:string):void{
-		console.log(n);
+		//console.log(n);
 	}
 	private attached():void{
 		//console.log(this.onEventMsg);
