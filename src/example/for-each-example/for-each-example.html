@@ -1,4 +1,4 @@
-<template no-view-model="true">
+<template no-model>
 	<require from="../simple-comp"/>
 	<div>
 		<script type="text/javascript">
@@ -10,7 +10,6 @@
 		<simple-comp 
 			each="item in this.foolArray"
 			id="${item}"
-			key:id="${'for_each_example'+item}"
 		/>
 	</div>
 </template>
