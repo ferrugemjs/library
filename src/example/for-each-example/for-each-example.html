@@ -7,9 +7,11 @@
 		<simple-comp id="ppovid">
 					no loop
 		</simple-comp>
-		<simple-comp 
-			each="item in this.foolArray"
-			id="${item}"
-		/>
+		<for each="item in this.foolArray">
+			<if condition="1 === 1">
+				<simple-comp id="${item}"/>
+			</if>
+		</for>
+		<simple-comp each="item in this.foolArray" if="1 === 1" id="${item}"/>
 	</div>
 </template>
