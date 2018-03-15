@@ -1,6 +1,6 @@
 {
   "name": "ferrugemjs",
-  "version": "0.24.0",
+  "version": "0.25.0",
   "description": "A reactive library.",
   "main": false,
   "files": [
@@ -22,7 +22,7 @@
     "url": "https://github.com/ferrugemjs/library"
   },
   "devDependencies": {
-    "ferrugemjs-node": "^0.25.1",
+    "ferrugemjs-node": "^0.26.0",
     "gulp": "^3.9.1",
     "gulp-beautify": "^2.0.1",
     "gulp-concat": "^2.6.0",
@@ -30,10 +30,11 @@
     "gulp-ferrugemjs": "^0.17.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
-    "gulp-typescript": "^2.11.0",
+    "gulp-typescript": "^4.0.1",
     "gulp-uglify": "^1.5.2",
     "require-dir": "^0.3.0",
-    "requirejs": "^2.3.3"
+    "requirejs": "^2.3.3",
+    "typescript": "^2.7.2"
   },
   "dependencies": {
     "incremental-dom": "^0.5.1"

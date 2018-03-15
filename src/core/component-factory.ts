@@ -183,44 +183,54 @@ class ComponentFactory{
 			_inst_.inst.render(_inst_.inst);			
 		_IDOM.elementClose(_inst_.tag);
 	}
-	public refresh(props?:{} | Function):void{
+	public refresh(props?:{} | Function | Promise<any>){
 		let _$key$_:string = this._capture$KeyId ? this._capture$KeyId() : "";
 		let _inst_:IInstWatched =  inst_watched[_$key$_]||<any>{inst:this};
 		
 		let shouldUpdate:boolean = true;
 
-		if(_inst_.inst.shouldUpdateCallback){
-			shouldUpdate = _inst_.inst.shouldUpdateCallback(Object.assign({},_inst_.inst,props));
-		}
-		if(shouldUpdate){
-			if(props && typeof props === "function"){
-				ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[
-				props(_inst_.inst)
-				]);
-			}else if(props){
-				ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[props]);
+		const handlerRefresh = (propsResolved?:{}) =>{
+			if(_inst_.inst.shouldUpdateCallback){
+				shouldUpdate = _inst_.inst.shouldUpdateCallback(propsResolved);
 			}
-			if((_inst_.loaded || _inst_.alias === "compose-view") && _inst_.target && document.getElementById(_inst_.target)){
-				let elementDom = document.getElementById(_inst_.target);
-				if(_inst_.extHostVars && _inst_.extHostVars!=='""'){
-					let converted_to_array:string[] = new Function(
-						'$_this_$'
-						,'return ['+_inst_.extHostVars+']'
-					)(_inst_.inst);	
-					converted_to_array.forEach((attrkey,$indx)=>{
-						let skypeZero = $indx||2;
-						if(skypeZero % 2 === 0){
-							elementDom.setAttribute(attrkey,converted_to_array[$indx+1]);
-						}					
-					});
+			if(shouldUpdate){
+				if(propsResolved && typeof propsResolved === "object"){
+					ComponentFactory.prototype.changeAttrs.apply(_inst_.inst,[propsResolved]);
 				}
-				// console.log(_inst_);
-				if(_inst_["is"]){
-					elementDom.setAttribute("is",_inst_["is"]);
-				}				
-				_IDOM.patch(elementDom,_inst_.inst.render,_inst_.inst);	
+				if((_inst_.loaded || _inst_.alias === "compose-view") && _inst_.target && document.getElementById(_inst_.target)){
+					let elementDom = document.getElementById(_inst_.target);
+					if(_inst_.extHostVars && _inst_.extHostVars!=='""'){
+						let converted_to_array:string[] = new Function(
+							'$_this_$'
+							,'return ['+_inst_.extHostVars+']'
+						)(_inst_.inst);	
+						converted_to_array.forEach((attrkey,$indx)=>{
+							let skypeZero = $indx||2;
+							if(skypeZero % 2 === 0){
+								elementDom.setAttribute(attrkey,converted_to_array[$indx+1]);
+							}					
+						});
+					}
+					// console.log(_inst_);
+					if(_inst_["is"]){
+						elementDom.setAttribute("is",_inst_["is"]);
+					}				
+					_IDOM.patch(elementDom,_inst_.inst.render,_inst_.inst);	
+				}
 			}
+			return propsResolved;
 		}
+
+
+		if(props && typeof props === "function"){
+			return handlerRefresh(props(_inst_.inst));
+		}else if(props && typeof props["then"] === "function" && typeof props["catch"] === "function"){
+			return (<Promise<any>>props)
+				.then(handlerRefresh);
+		}else if(props){
+			return handlerRefresh(props);
+		}
+		return handlerRefresh();
 	}
 	public compose(path:string,target:string,host_vars:{},static_vars:{},contentfn:Function):void{
 		//console.log(static_vars["is"],":",path, path.substring(path.lastIndexOf("/")+1,path.length));

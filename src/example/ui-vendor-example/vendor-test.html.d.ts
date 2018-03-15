@@ -1,1 +1,2 @@
-export default {};
+declare let obj:{};
+export default obj;
