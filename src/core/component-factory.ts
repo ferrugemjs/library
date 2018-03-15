@@ -29,9 +29,9 @@ class ComponentFactory{
 	private _$content$_:Function;
 	private _capture$KeyId:() => string;
 	private render:Function;
-	private connectedCallback:Function;
-	private disconnectedCallback:Function;
-	private attributeChangedCallback:(attrName:string, oldVal:any, newVal:any) => void;
+	private attached:Function;
+	private detached:Function;
+	private attributeChanged:(attrName:string, oldVal:any, newVal:any) => void;
 	public config:{templateExtension:string} = {templateExtension:".html"};
 	/*
 	 Factory of class
@@ -148,8 +148,8 @@ class ComponentFactory{
 						}else{
 							let oldValue = this[prop];
 							this[prop] = newValue;
-							if(this.attributeChangedCallback){						
-								this.attributeChangedCallback(prop,oldValue,newValue);
+							if(this.attributeChanged){						
+								this.attributeChanged(prop,oldValue,newValue);
 							}
 			            }					
 					}
@@ -190,8 +190,8 @@ class ComponentFactory{
 		let shouldUpdate:boolean = true;
 
 		const handlerRefresh = (propsResolved?:{}) =>{
-			if(_inst_.inst.shouldUpdateCallback){
-				shouldUpdate = _inst_.inst.shouldUpdateCallback(propsResolved);
+			if(_inst_.inst.shouldUpdate){
+				shouldUpdate = _inst_.inst.shouldUpdate(propsResolved);
 			}
 			if(shouldUpdate){
 				if(propsResolved && typeof propsResolved === "object"){
@@ -255,12 +255,12 @@ class ComponentFactory{
 			);
 			_inst_.refresh();
 			// _inst_.
-			if(_inst_.connectedCallback && (!inst_watched[_$key$_].loaded)){
+			if(_inst_.attached && (!inst_watched[_$key$_].loaded)){
 				// let elementDom = document.getElementById(_inst_.id);
 				// console.log(_inst_,inst_watched[_$key$_]);
 				// let isVar = path.substring(path.lastIndexOf("/")+1,path.length);
 				// elementDom.setAttribute("is",isVar);
-				_inst_.connectedCallback();
+				_inst_.attached();
 			}
 			if(_$key$_ && inst_watched[_$key$_]){
 				inst_watched[_$key$_].loaded = true;

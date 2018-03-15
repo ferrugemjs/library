@@ -9,20 +9,20 @@ export class LifecycleExample{
 		});
 		this.name = 132;
 	}
-	private shouldUpdateCallback(objCopy:LifecycleExample){
+	private shouldUpdate(objCopy:LifecycleExample){
 		if(objCopy.stageValue === 'attr change with refresh'){
 			this.logs.push({
-				stage:'shouldUpdateCallback:false',
+				stage:'shouldUpdate:false',
 				value:this.stageValue
 			});
 		}
 		this.logs.push({
-			stage:'shouldUpdateCallback:true',
+			stage:'shouldUpdate:true',
 			value:this.stageValue
 		});
 		return true;
 	}
-	private attributeChangedCallback(attr:string,newvl:string,oldvl:string){
+	private attributeChanged(attr:string,newvl:string,oldvl:string){
 		if(attr === 'stageValue'){
 			this.logs.push({
 				stage:'attrChangedCallback',
@@ -30,9 +30,9 @@ export class LifecycleExample{
 			});
 		}
 	}
-	private connectedCallback(){
+	private attached(){
 		this.logs.push({
-			stage:'connectedCallback',
+			stage:'attached',
 			value:this.stageValue
 		});
 	}

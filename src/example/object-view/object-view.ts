@@ -4,7 +4,7 @@ export default {
 		//this.desc = "changed desc";
 		this.refresh();
 	}
-	,connectedCallback(){
+	,attached(){
 		this.desc = "changed by connected!";
 		console.log("evt:connected!");
 	}

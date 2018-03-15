@@ -1,9 +1,9 @@
 export interface IInstWatched{	
 	inst?:{
-		connectedCallback:Function
-		,disconnectedCallback?:Function
-		,shouldUpdateCallback?:(prop:{}) => boolean
-		,attributeChangedCallback?:(attrName:string, oldVal:any, newVal:string) => void
+		attached:Function
+		,detached?:Function
+		,shouldUpdate?:(prop:{}) => boolean
+		,attributeChanged?:(attrName:string, oldVal:any, newVal:string) => void
 		,_$key$_:string
 		,render:Function
 		,_capture$KeyId?:() => string

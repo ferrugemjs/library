@@ -10,8 +10,8 @@ export const detacheNode = (node:HTMLDivElement) => {
 	let key_id:string = node.getAttribute?node.getAttribute("key-id"):""; 
   	//console.log(node);
 	let inst_captured = inst_watched[key_id];
-  	if(key_id && inst_captured && inst_captured.inst.disconnectedCallback){
-  		inst_captured.inst.disconnectedCallback();
+  	if(key_id && inst_captured && inst_captured.inst.detached){
+  		inst_captured.inst.detached();
   	} 
   	//ajudando o guarbage collector do javascript
   	if(key_id && inst_captured){
@@ -30,8 +30,8 @@ export const attacheNode = (node:HTMLDivElement) => {
 	let inst_captured = inst_watched[key_id];
   	if(key_id && inst_captured){		
 	  	//console.log(inst_watched[key_id])	
-	  	if(inst_captured.inst.connectedCallback && (!inst_captured.loaded)){
-			inst_captured.inst.connectedCallback();
+	  	if(inst_captured.inst.attached && (!inst_captured.loaded)){
+			inst_captured.inst.attached();
 		}
 		inst_captured.loaded = true;
 	}
