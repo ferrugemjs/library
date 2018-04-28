@@ -1,4 +1,6 @@
-import vendor_test from "./vendor-test.html";
-import vendor_sub_comp from "./vendor-sub-comp.html";
-export {vendor_sub_comp};
-export {vendor_test};
+import vendorTest from "./vendor-test.html";
+import vendorSubComp from "./vendor-sub-comp.html";
+import { replaceBasicColors } from "./replace-basic-colors";
+export { vendorSubComp };
+export { vendorTest };
+export { replaceBasicColors };

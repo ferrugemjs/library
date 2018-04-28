@@ -14,12 +14,14 @@
 	<!--
 	<require from="./for-each-example/for-each-example"/>
 	-->
+	<require from="./ui-vendor-example/index as ui" type="namespace"></require>
 	<require from="./compose-example/compose-example"/>
 	<require from="./refresh-function/refresh-function"/>
 	<require from="./lifecycle-example/lifecycle-example"/>
 	<require from="./for-each-example/for-each-example"/>
 	<require from="./const-view/const-view"/>
 	<require from="./object-view/object-view"/>
+	<require from="./long-component-name/long-comp-name-test"/>
 	<style>
 		.box-examples{
 			border:1px solid #123;
@@ -117,8 +119,10 @@
 				require-namespace
 			</span>
 			<div class="content">
-				<h5>if</h5>
-				<h5>skip</h5>
+				<h5>component into namespace</h5>
+				<ui:vendor-test/>
+				<h4>directive</h4>
+				<span ui:replace-basic-colors="caju">This is a teste ops with red, blue and white colors</span>
 			</div>			
 		</div>
 		<div class="box-example">
@@ -203,6 +207,8 @@
 				<h5>complete lifecycle</h5>
 				<h5>with tag content</h5>
 				<h5>attributeChanged</h5>
+				<h5>long name</h5>
+				<long-comp-name-test/>
 			</div>			
 		</div>								
 	<!--
