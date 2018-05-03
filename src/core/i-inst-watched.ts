@@ -19,4 +19,4 @@ export interface IInstWatched {
   extHostVars?: string;
   loaded?: boolean;
   content?: Function;
-};
+}
