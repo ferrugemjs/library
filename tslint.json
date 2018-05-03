@@ -1,0 +1,35 @@
+{
+	"rulesDirectory": [],
+	"rules": {
+		"max-line-length": {
+			"options": [220]
+		},
+		"member-access": true,
+		"no-any": false,
+		"triple-equals": true,
+		"class-name": true,
+		"prefer-template": true,
+		"indent": [true, "spaces", 2],
+		"quotemark": [true, "single"],
+		"no-unnecessary-callback-wrapper": true,
+		"semicolon": [true, "always"],
+		"space-before-function-paren": [true, {"anonymous": "always", "named": "always", "asyncArrow": "always","method":"never","constructor":"never"}],
+		"curly": true,
+		"one-variable-per-declaration": [true, "ignore-for-loop"],
+		"interface-name": [true, "always-prefix"],
+		"new-parens": true,
+		"no-arg": true,
+		"no-bitwise": true,
+		"no-conditional-assignment": true,
+		"no-consecutive-blank-lines": true,
+		"no-console": {
+			"options": [
+				"debug",
+				"info",
+				"time",
+				"timeEnd",
+				"trace"
+			]
+		}
+	}
+}

@@ -1,6 +1,6 @@
 {
   "name": "ferrugemjs",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A reactive library.",
   "main": false,
   "files": [
@@ -13,7 +13,8 @@
     "convert": "gulp template",
     "postinstall2": "jspm install",
     "prepublish": "npm run compile",
-    "build": "gulp build"
+    "build": "gulp build",
+    "tslint": "./node_modules/.bin/tslint -c tslint.json ./src/**/*.ts"
   },
   "author": "ferrugemjs",
   "license": "ISC",
@@ -22,7 +23,7 @@
     "url": "https://github.com/ferrugemjs/library"
   },
   "devDependencies": {
-    "ferrugemjs-node": "0.28.0",
+    "ferrugemjs-node": "0.28.1",
     "gulp": "^3.9.1",
     "gulp-beautify": "^2.0.1",
     "gulp-concat": "^2.6.0",
@@ -34,6 +35,7 @@
     "gulp-uglify": "^1.5.2",
     "require-dir": "1.0.0",
     "requirejs": "2.3.5",
+    "tslint": "^5.9.1",
     "typescript": "^2.7.2"
   },
   "dependencies": {

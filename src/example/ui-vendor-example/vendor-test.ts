@@ -1,3 +1,3 @@
-export class VendorTest{
-	private expe:number = 1233;
+export class VendorTest {
+  private expe: number = 1233;
 }
