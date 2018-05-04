@@ -256,9 +256,11 @@ class ComponentFactory {
       );
       _inst_.refresh();
       if (!inst_watched[_$key$_].loaded) {
+        /*
         if (_inst_.beforeAttached) {
           _inst_.beforeAttached();
         }
+        */
         if (_inst_.attached) {
           _inst_.attached();
         }

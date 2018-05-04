@@ -11,9 +11,11 @@ export const detacheNode = (node: HTMLDivElement) => {
   //console.log(node);
   let inst_captured = inst_watched[key_id];
   if (key_id && inst_captured) {
+    /*
     if(inst_captured.inst.beforeDetached){
       inst_captured.inst.beforeDetached();
     }
+    */
     if(inst_captured.inst.detached){
       inst_captured.inst.detached();
     }    
@@ -36,9 +38,11 @@ export const attacheNode = (node: HTMLDivElement) => {
   if (key_id && inst_captured) {
     //console.log(inst_watched[key_id])
     if(!inst_captured.loaded){
+      /*
       if(inst_captured.inst.beforeAttached){
         inst_captured.inst.beforeAttached();
       }
+      */
       if(inst_captured.inst.attached){
         inst_captured.inst.attached();
       }

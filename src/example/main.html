@@ -14,6 +14,7 @@
 	<!--
 	<require from="./for-each-example/for-each-example"/>
 	-->
+	<require from="./fn-view/fn-view as log-system" type="script"></require>
 	<require from="./ui-vendor-example/index as ui" type="namespace"></require>
 	<require from="./compose-example/compose-example"/>
 	<require from="./refresh-function/refresh-function"/>
@@ -22,6 +23,7 @@
 	<require from="./const-view/const-view"/>
 	<require from="./object-view/object-view"/>
 	<require from="./long-component-name/long-comp-name-test"/>
+	<require from="./script-example/script-example as scriptExample" type="script"/>
 	<style>
 		.box-examples{
 			border:1px solid #123;
@@ -102,7 +104,7 @@
 			</span>
 			<div class="content">
 				<h5>with function</h5>
-				<refresh-function/>
+				<refresh-function/>				
 			</div>			
 		</div>
 		<div class="box-example">
@@ -131,7 +133,9 @@
 			</span>
 			<div class="content">
 				<h5>in-line script</h5>
-				<h5>function representation</h5>
+				<span> ${ scriptExample.toUpper('Text to UpperCase') } </span>
+				<h5>function representation</h5>				
+				<log-system msg="to you!!!"/>
 			</div>			
 		</div>
 		<div class="box-example">
