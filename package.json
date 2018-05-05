@@ -1,11 +1,8 @@
 {
   "name": "ferrugemjs",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "A reactive library.",
-  "main": false,
-  "files": [
-    "dist/core"
-  ],
+  "main": "dist/core/",
   "scripts": {
     "gulp": "./node_modules/.bin/gulp",
     "watch": "gulp watch",
@@ -40,5 +37,8 @@
   },
   "dependencies": {
     "incremental-dom": "^0.5.1"
+  },
+  "jspm": {
+    "format": "amd"
   }
 }
