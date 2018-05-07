@@ -1,4 +1,4 @@
-import inst_watched from 'ferrugemjs/nodes-watched';
+import inst_watched from './nodes-watched';
 
 export const detacheNode = (node: HTMLDivElement) => {
   //detacheNode(node.children);

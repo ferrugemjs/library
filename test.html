@@ -13,18 +13,29 @@
     <script src="node_modules/requirejs/require.js"></script>
   </head>
   <body>    
-    <div app="dist/example/main"></div>
+    <div app="@/example/main"></div>
     <div id="example"></div>
     <script>
       requirejs.config({
         baseUrl: '.',
+        packages: [
+            {
+                name: "ferrugemjs",
+                location: "./dist/core",
+                main: "index"
+            }
+        ],        
         paths: {
-          "ferrugemjs":"dist/core"
-          ,"ui-vendor":"dist/example/ui-vendor-example/index"
-          ,"incremental-dom":"node_modules/incremental-dom/dist/incremental-dom-min"
+          "@":"./dist/",
+          "ui-vendor":"./dist/example/ui-vendor-example/index",
+          "incremental-dom":"node_modules/incremental-dom/dist/incremental-dom-min",
         }
       });
-      require(["ferrugemjs/bootstrapper"],function(_mod){});
+      
+      require(["ferrugemjs/bootstrapper"],function(_bootstrapper){
+		    _bootstrapper.default();
+      });
+      
     </script>
   </body>
 </html>

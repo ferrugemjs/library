@@ -1,11 +1,11 @@
 import _IDOM = require('incremental-dom');
-import _fjs_ from 'ferrugemjs/component-factory';
+import componentFactory from './component-factory';
 
 class PlatformBootstrap {
   private _module: any;
   public bootstrap(pmodule: any, option?: { templateExtension: string }): PlatformBootstrap {
     this._module = pmodule;
-    _fjs_.config.templateExtension = option && option.templateExtension ? option.templateExtension : '.html';
+    componentFactory.config.templateExtension = option && option.templateExtension ? option.templateExtension : '.html';
     return this;
   }
   public at(domRender: HTMLElement): void {
@@ -14,7 +14,7 @@ class PlatformBootstrap {
       app_uid = `uid_${ new Date().getTime() }`;
       domRender.setAttribute('id', app_uid);
     }
-    let _tmp_inst = _fjs_.build({
+    let _tmp_inst = componentFactory.build({
       classFactory: this._module.default
       , staticVars: {
         'key:id': app_uid
@@ -24,7 +24,7 @@ class PlatformBootstrap {
       , alias: 'init-app-tag'
       //,target:app_uid
     });
-    _IDOM.patch(document.getElementById(app_uid), _fjs_.reDraw.bind(_tmp_inst), _tmp_inst);
+    _IDOM.patch(document.getElementById(app_uid), componentFactory.reDraw.bind(_tmp_inst), _tmp_inst);
     delete this._module;
   }
 }

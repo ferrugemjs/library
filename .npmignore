@@ -4,8 +4,12 @@ src
 assets
 tasks
 package-lock.json
+tslint.json
+tsconfig.json
+editor.config
+Gulpfile.js
 
 #dist dir
 dist/example
 dist/incremental-dom.js
-
+dist/index.js
