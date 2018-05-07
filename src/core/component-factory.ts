@@ -4,8 +4,8 @@ import { IInstWatched } from './i-inst-watched';
 import inst_watched from './nodes-watched';
 import { detacheNode, attacheNode } from './nodes-action';
 
-//declare let require: Function;
-//declare let __webpack_require__: Function;
+declare let require: Function;
+declare let __webpack_require__: Function;
 
 let uid_generated: number = new Date().getTime() + 1298;
 
@@ -269,14 +269,12 @@ class ComponentFactory {
         inst_watched[_$key$_].loaded = true;
       }
     };
-    import(`${path}${this.config.templateExtension}`).then(handlerLoad.bind(this));
-    /*
+    //import(`${path}${this.config.templateExtension}`).then(handlerLoad.bind(this));
     if (typeof __webpack_require__ === 'function') {
       require([`@/${path}${this.config.templateExtension}`], handlerLoad.bind(this));
     } else {
       require([`${path}${this.config.templateExtension}`], handlerLoad.bind(this));
-    }
-    */
+    }    
   }
 }
 

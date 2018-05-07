@@ -21,7 +21,7 @@
         packages: [
             {
                 name: "ferrugemjs",
-                location: "./dist/core",
+                location: "./",
                 main: "index"
             }
         ],        
@@ -32,7 +32,7 @@
         }
       });
       
-      require(["ferrugemjs/bootstrapper"],function(_bootstrapper){
+      require(["ferrugemjs/dist/core/bootstrapper"],function(_bootstrapper){
 		    _bootstrapper.default();
       });
       

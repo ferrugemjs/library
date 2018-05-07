@@ -1,8 +1,7 @@
 import platform from './platform';
 
-//declare let require: Function;
-//declare let __webpack_require__: Function;
-//declare let import: Function;
+declare let require: Function;
+declare let __webpack_require__: Function;
 
 export default () => {
   let app_html_s = document.querySelectorAll('[app]');
@@ -18,26 +17,17 @@ export default () => {
   let app_url: string = app_html.getAttribute('app') || 'app';
   let templateExtension = app_html.getAttribute('template-extension') || '.html';
   
-  //if (typeof __webpack_require__ === 'function') {
-    import(`${app_url}${templateExtension}`).then((_mod_init_app: any) => {
-      platform
-        .bootstrap(_mod_init_app, { templateExtension })
-        .at(app_html);      
-    });
-    /*
+  if (typeof __webpack_require__ === 'function') {
     require([`@/${app_url}${templateExtension}`], (_mod_init_app: any) => {
       platform
         .bootstrap(_mod_init_app, { templateExtension })
         .at(app_html);
     });
-    */
-  //} else {
-    /*
+  } else {
     require([`${app_url}${templateExtension}`], (_mod_init_app: any) => {
       platform
         .bootstrap(_mod_init_app, { templateExtension })
         .at(app_html);
     });
-    */
-  //}
+  }
 };
