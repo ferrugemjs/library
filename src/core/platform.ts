@@ -1,7 +1,7 @@
 import _IDOM = require('incremental-dom');
 import componentFactory from './component-factory';
 
-class PlatformBootstrap {
+export class PlatformBootstrap {
   private _module: any;
   public bootstrap(pmodule: any, option?: { templateExtension: string }): PlatformBootstrap {
     this._module = pmodule;

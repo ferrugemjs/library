@@ -25,7 +25,7 @@ _IDOM.attributes.checked = function (el: any, name: string, value: any) {
   el.checked = !!value;
 };
 
-class ComponentFactory {
+export class ComponentFactory {
   private _$content$_: Function;
   private _capture$KeyId: () => string;
   private render: Function;

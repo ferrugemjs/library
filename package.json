@@ -1,6 +1,6 @@
 {
   "name": "ferrugemjs",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A reactive library.",
   "main": "dist/core/index.js",
   "scripts": {

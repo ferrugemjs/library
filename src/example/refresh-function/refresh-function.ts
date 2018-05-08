@@ -1,4 +1,4 @@
-interface IRefFunction {
+export interface IRefFunction {
   inc: number;
 }
 

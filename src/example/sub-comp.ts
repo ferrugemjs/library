@@ -1,4 +1,4 @@
-interface ISubComp {
+export interface ISubComp {
   name?: string;
   born?: Date;
 }

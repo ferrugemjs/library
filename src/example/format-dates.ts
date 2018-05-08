@@ -1,4 +1,4 @@
-class FormatDate {
+export class FormatDate {
   private dte: Date = new Date();
   private set(dte: Date): FormatDate {
     this.dte = dte;
