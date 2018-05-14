@@ -30,7 +30,9 @@ export class LifecycleExample {
       });
     }
   }
-  private attached() {
+  private attached(element:HTMLDivElement) {
+    element.style.backgroundColor = "#222";
+    console.log(element);
     this.logs.push({
       stage: 'attached',
       value: this.stageValue

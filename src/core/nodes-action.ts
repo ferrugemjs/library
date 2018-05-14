@@ -44,7 +44,7 @@ export const attacheNode = (node: HTMLDivElement) => {
       }
       */
       if(inst_captured.inst.attached){
-        inst_captured.inst.attached();
+        inst_captured.inst.attached(node);
       }
     }
     inst_captured.loaded = true;

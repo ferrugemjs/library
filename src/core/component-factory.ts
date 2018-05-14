@@ -262,7 +262,7 @@ export class ComponentFactory {
         }
         */
         if (_inst_.attached) {
-          _inst_.attached();
+          _inst_.attached(document.body.querySelector(`[key-id=${_$key$_}]`));
         }
       }
       if (_$key$_ && inst_watched[_$key$_]) {
