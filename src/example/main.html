@@ -67,7 +67,7 @@
 		}
 	</style>
 	<div class="box-examples">
-		<h3 style="text-indent:10px">BASIC TESTS</h3>
+		<h3 style="text-indent:10px" click.trigger="this.showId123">BASIC TESTS</h3>
 		<div class="box-example">
 			<span class="title" click.trigger="this.refresh({dinamicValue:'changed by event'})">
 				lifecycle
@@ -95,7 +95,7 @@
 				composition
 			</span>
 			<div class="content">
-				<compose-example/>
+				<compose-example example.init="this.showAlert"/>
 			</div>
 		</div>
 		<div class="box-example">

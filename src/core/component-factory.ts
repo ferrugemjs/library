@@ -146,7 +146,12 @@ export class ComponentFactory {
               }
             } else if (prop.indexOf('.') > -1) {
               let prop_splited: string[] = prop.split('.');
-              this[prop_splited[0]][prop_splited[1]](newValue);
+              if(this[prop_splited[0]] && this[prop_splited[0]][prop_splited[1]] && typeof this[prop_splited[0]][prop_splited[1]] === 'function'){
+                this[prop_splited[0]][prop_splited[1]](newValue);
+              }else{
+                let {alias: compName} = inst_watched[this._capture$KeyId()];
+                console.warn(`There is no method '${prop}' in component '${compName}'!`);
+              }
             } else {
               let oldValue = this[prop];
               this[prop] = newValue;
