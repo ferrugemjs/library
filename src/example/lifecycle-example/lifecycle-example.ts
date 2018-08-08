@@ -2,12 +2,21 @@ export class LifecycleExample {
   private name: number;
   private stageValue: string = 'default';
   private logs: { stage: string, value: string }[] = [];
+  private init: {};
   constructor() {
     this.logs.push({
       stage: 'constructor',
       value: this.stageValue
     });
     this.name = 132;
+    this.init = {
+      once(fn:Function){
+        console.log('new function add!!!!');
+      },
+      unsubscribeAll(){
+        console.log('i can die ???');
+      }
+    };
   }
   private shouldUpdate(objCopy: LifecycleExample) {
     if (objCopy.stageValue === 'attr change with refresh') {
@@ -37,6 +46,9 @@ export class LifecycleExample {
       stage: 'attached',
       value: this.stageValue
     });
+  }
+  private detached(){
+    console.warn('i die!!!!');
   }
   private set stageValueAlias(value: string) {
     this.logs.push({

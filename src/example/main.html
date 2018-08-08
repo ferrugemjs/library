@@ -76,7 +76,9 @@
 				<script if="!this.dinamicValue" type="text/javascript">
 					this.dinamicValue = 'changed by bind';
 				</script>
-				<lifecycle-example 
+				<lifecycle-example
+				if="this.dinamicValue !== 'changed by event'"
+				init.once="this.showId123"
 				stage-value="${this.dinamicValue}"
 				stage-value-alias="other value"
 				/>

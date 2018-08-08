@@ -146,8 +146,25 @@ export class ComponentFactory {
               }
             } else if (prop.indexOf('.') > -1) {
               let prop_splited: string[] = prop.split('.');
-              if(this[prop_splited[0]] && this[prop_splited[0]][prop_splited[1]] && typeof this[prop_splited[0]][prop_splited[1]] === 'function'){
+              if(this[prop_splited[0]] && typeof this[prop_splited[0]][prop_splited[1]] === 'function'){
                 this[prop_splited[0]][prop_splited[1]](newValue);
+                if(typeof this[prop_splited[0]]['unsubscribeAll'] === 'function'){
+                  let {inst: compInst} = inst_watched[this._capture$KeyId()];
+                  if(!compInst._$unsubs$_){
+                    compInst._$unsubs$_ = [];
+                  }
+                  compInst._$unsubs$_.push(this[prop_splited[0]]);
+
+                  if(typeof compInst.afterDetached !== 'function'){
+                    compInst.afterDetached = function () {
+                      compInst._$unsubs$_.forEach(insSub => {
+                        insSub.unsubscribeAll();
+                      });
+                      this._$unsubs$_.length = 0;
+                      delete this._$unsubs$_;
+                    };
+                  }
+                }
               }else{
                 let {alias: compName} = inst_watched[this._capture$KeyId()];
                 console.warn(`There is no method '${prop}' in component '${compName}'!`);

@@ -10,15 +10,13 @@ export const detacheNode = (node: HTMLDivElement) => {
   let key_id: string = node.getAttribute ? node.getAttribute('key-id') : '';
   //console.log(node);
   let inst_captured = inst_watched[key_id];
-  if (key_id && inst_captured) {
-    /*
-    if(inst_captured.inst.beforeDetached){
-      inst_captured.inst.beforeDetached();
-    }
-    */
+  if (key_id && inst_captured) {  
     if(inst_captured.inst.detached){
       inst_captured.inst.detached();
     }    
+    if(inst_captured.inst.afterDetached){
+      inst_captured.inst.afterDetached();
+    }
   }
   //ajudando o guarbage collector do javascript
   if (key_id && inst_captured) {
