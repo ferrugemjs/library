@@ -10,7 +10,9 @@ gulp.task('template',function(){
     return gulp.src([
         "./src/**/*.html"
     ])
-    .pipe(ferrugemjs({}))
+    .pipe(ferrugemjs({
+        env:"development"
+    }))
     .pipe(beautify({indent_size: 2}))
     .pipe(rename({
         extname: ".html.js"

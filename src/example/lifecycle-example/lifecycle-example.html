@@ -1,5 +1,10 @@
 <template>
-	<div>
+	<style>
+		.lifecycle-example{
+			color:#fefefe;
+		}	
+	</style>
+	<div class="lifecycle-example">
 		<span>${this.name}</span>
 		<input type="text" change.bind="this.name"/>
 		<h3>Actual Value '${this.stageValue}'</h3>
