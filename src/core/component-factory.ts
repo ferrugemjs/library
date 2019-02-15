@@ -83,11 +83,12 @@ export class ComponentFactory {
         }
       }
       //update dinamics vars from view
-      this.changeAttrs.call(inst_watched[_key].inst, config.hostVars);
+      //this.changeAttrs.call(inst_watched[_key].inst, config.hostVars);
       return <any>inst_watched[_key].inst;
     }
     //save the new inst in watched insts
-    inst_watched[_key] = <any>{ inst: new config.classFactory() };
+    console.log(config.classFactory);
+    inst_watched[_key] = <any>{ inst: new config.classFactory({...config.hostVars, ...config.staticVars}) };
     inst_watched[_key].target = config.target;
     //inst_watched[_key].inst["_$key$_"] = _key;
     if (!inst_watched[_key].inst._capture$KeyId) {
@@ -102,8 +103,8 @@ export class ComponentFactory {
     inst_watched[_key].tag = config.tag || 'div';
     inst_watched[_key].tag = inst_watched[_key].inst['_$attrs$_'] ? inst_watched[_key].inst['_$attrs$_']['name'] : inst_watched[_key].tag;
 
-    this.changeAttrs.call(inst_watched[_key].inst, config.hostVars);
-    this.changeAttrs.call(inst_watched[_key].inst, config.staticVars);
+    //this.changeAttrs.call(inst_watched[_key].inst, config.hostVars);
+    //this.changeAttrs.call(inst_watched[_key].inst, config.staticVars);
 
     if (inst_watched[_key].inst['_$attrs$_']) {
       inst_watched[_key].extHostVars = inst_watched[_key].inst['_$attrs$_']['dinamic'];
@@ -277,7 +278,7 @@ export class ComponentFactory {
         , contentfn
       );
       _inst_.refresh();
-      if (nodes_watched_1.default[_$key$_] && !inst_watched[_$key$_].loaded) {
+      if (inst_watched[_$key$_] && !inst_watched[_$key$_].loaded) {
         /*
         if (_inst_.beforeAttached) {
           _inst_.beforeAttached();

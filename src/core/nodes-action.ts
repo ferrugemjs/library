@@ -36,11 +36,6 @@ export const attacheNode = (node: HTMLDivElement) => {
   if (key_id && inst_captured) {
     //console.log(inst_watched[key_id])
     if(!inst_captured.loaded){
-      /*
-      if(inst_captured.inst.beforeAttached){
-        inst_captured.inst.beforeAttached();
-      }
-      */
       if(inst_captured.inst.attached){
         inst_captured.inst.attached(node);
       }

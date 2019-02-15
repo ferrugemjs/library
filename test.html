@@ -29,13 +29,19 @@
           "@":"./dist/",
           "ui-vendor":"./dist/example/ui-vendor-example/index",
           "incremental-dom":"node_modules/incremental-dom/dist/incremental-dom-min",
+          "tslib":"node_modules/tslib/tslib",
         }
       });
       
+
+      require(['ferrugemjs/dist/core/index'],function(_fjs_wrapper_class){
+        _fjs_wrapper_class.default({'key_id':'ksh12','is':'test-comp','id':'ksh12'},{z:444});
+      });
+      /*
       require(["ferrugemjs/dist/core/bootstrapper"],function(_bootstrapper){
 		    _bootstrapper.default();
       });
-      
+      */
     </script>
   </body>
 </html>

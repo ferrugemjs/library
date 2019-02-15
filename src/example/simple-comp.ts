@@ -1,4 +1,7 @@
 export class SimpleComp {
+  constructor(props:any){
+    console.log('props',props);
+  }
   private text: string = 'text default';
   private refresh: Function;
   private attached(): void {
