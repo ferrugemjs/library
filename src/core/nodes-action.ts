@@ -13,16 +13,11 @@ export const detacheNode = (node: HTMLDivElement) => {
   if (key_id && inst_captured) {  
     if(inst_captured.inst.detached){
       inst_captured.inst.detached();
-    }    
-    if(inst_captured.inst.afterDetached){
-      inst_captured.inst.afterDetached();
-    }
+    } 
   }
   //ajudando o guarbage collector do javascript
   if (key_id && inst_captured) {
     //evitando usar o refresh em um no morto
-    inst_captured.inst._capture$KeyId = null;
-    delete inst_captured.inst._capture$KeyId;
     inst_captured.loaded = false;
     inst_captured.inst = null;
     inst_captured = null;
