@@ -6,11 +6,38 @@
 			margin-left:5%;
 		}
 	</style>
-	<div>
-		<div class="simple-comp">	
-			<p>${this.id} *- ${this.text}</p>
-			<a style="color:#ffffff" href="#" click.trigger="this.setText('text:'+this.id+':'+new Date().getSeconds())">click here to change text</a>
-			<content></content>	
-		</div>
-	</div>
+	<nav class="simple-comp">
+		<h5>A help please!!!</h5>
+		<p>${this.id} *- ${this.text} + ${this.cound}</p>
+		<input value="${this.text}" keyup.bind="this.text"/>
+
+		<content></content>
+
+
+		<button click.trigger="this.setText('zxdz')">A button</button>
+
+
+
+		<h2>Hello World, ${this.name}</h2>
+		<input type="checkbox" value="y" change.bind="this.name"/>
+		<select change.bind="this.name">
+		  <option value="A">A</option>
+		  <option value="B">B</option>
+		  <option value="C">C</option>
+		</select>
+		<br/>
+		<label>
+		  <input name="rdgroup" type="radio" value="RED" change.bind="this.name"/> Red
+		</label>
+		<label>
+		  <input name="rdgroup" type="radio" value="GREEN" change.bind="this.name"/> Green
+		</label>
+		<label>
+		  <input name="rdgroup" type="radio" value="BLUE" change.bind="this.name"/> Blue
+		</label>
+
+		<compose view:from="@/example/no-view-model/no-view-model">
+		</compose>
+
+	</nav>
 </template>

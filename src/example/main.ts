@@ -5,35 +5,35 @@ export class Main {
   private foolArray: string[] = ['ops', 'humm', 'interesting'];
   private count: number;
   private childValues: {};
-  constructor() {
+  private a = 'a test';
+  private z = 369;
+  constructor({z}:any) {
+    this.z = z;
     this.count = 0;
     this.foolArray = ['ops', 'humm', 'interesting'];
     this.childValues = {
       msg: 'modificado via parente'
       , idMsg: 458
     };
+    console.log('main:props', z);
   }
-  private showId(): void {
+  private showId(idp:string) {
+    this.a = idp;
     this.foolArray.forEach((txt: string, inxd: number) => {
       this.foolArray[inxd] = `${txt} ${new Date().getSeconds()} `;
     });
-    alert(`NOW with ${this.id} and ${this.title}`);
+    //alert(`NOW with ${this.id} and ${this.title}`);
     this.childValues = {
       msg: 'modificado via parente2'
     };
-    (<any>this).refresh();
+    this.count++;
   }
-  private attached(): void {
+  private attached() {
     //console.log('main attached!');	
     //console.log(`IM attached with ${this.id} and ${this.title} `);
   }
-  private showAlert(): void {
+  private showAlert() {
     alert('show cara!!!!');
   }
 
 }
-/*
- <require from='dist/example/simple-comp as simple-comp-plus'></require>
- <simple-comp-plus each='fool in $this.foolArray' texto='{fool}'>{fool}</simple-comp-plus>
- <simple-comp-plus texto='opa my friend humm'></simple-comp-plus>
- */

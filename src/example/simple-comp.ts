@@ -1,15 +1,19 @@
 export class SimpleComp {
-  constructor(props:any){
-    console.log('props',props);
+  private text = 'text default';
+  private id = '';
+  private cound = 1;
+  constructor({id}:any){
+    console.log('c-props:',id);
+    this.id = `my provide id ${id}`;
+    this.cound++;
   }
-  private text: string = 'text default';
-  private refresh: Function;
   private attached(): void {
     //console.log(`on attached: my texto is: ${this.text} `);
   }
   private setText(text: string): void {
+    //console.log('ops',this);
     this.text = text;
-    this.refresh();
+    this.cound++;
   }
   private detached() {
     //console.log('out of dom!!!')

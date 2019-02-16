@@ -4,5 +4,5 @@ export interface IInstWatched {
     detached?: Function;
     shouldUpdate?: (prop: {}) => boolean;
   };
-  loaded?: boolean;
+  $loaded?: boolean;
 }
