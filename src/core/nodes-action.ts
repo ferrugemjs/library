@@ -13,7 +13,10 @@ export const detacheNode = (node: HTMLDivElement) => {
   if (key_id && inst_captured) {  
     if(inst_captured.inst.detached){
       inst_captured.inst.detached();
-    } 
+    }
+    if(inst_captured.inst.afterDetached){
+      inst_captured.inst.afterDetached();
+    }
   }
   //ajudando o guarbage collector do javascript
   if (key_id && inst_captured) {
@@ -31,6 +34,33 @@ export const attacheNode = (node: HTMLDivElement) => {
   if (key_id && inst_captured) {
     //console.log(inst_watched[key_id])
     if(!inst_captured.$loaded){
+      const $inst = inst_captured.inst;
+      for (let propOrign in inst_captured.$propsAfterAttached) {
+        let prop_splited: string[] = propOrign.split('.');
+        if($inst[prop_splited[0]] && typeof $inst[prop_splited[0]][prop_splited[1]] === 'function'){
+          $inst[prop_splited[0]][prop_splited[1]]($inst[propOrign]);
+          if(typeof $inst[prop_splited[0]]['unsubscribeAll'] === 'function'){
+            if(!$inst._$unsubs$_){
+              $inst._$unsubs$_ = [];
+            }
+            $inst._$unsubs$_.push($inst[prop_splited[0]]);
+  
+            if(typeof $inst.afterDetached !== 'function'){
+              $inst.afterDetached = function () {
+                $inst._$unsubs$_.forEach(insSub => {
+                  insSub.unsubscribeAll();
+                });
+                $inst._$unsubs$_.length = 0;
+                delete $inst._$unsubs$_;
+              };
+            }
+          }
+        }else{
+          let {$is: compName} = inst_captured;
+          console.warn(`There is no method '${propOrign}' in component '${compName}'!`);
+        }
+      }
+      delete inst_captured.$propsAfterAttached;
       if(inst_captured.inst.attached){
         inst_captured.inst.attached(node);
       }
