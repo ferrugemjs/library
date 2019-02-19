@@ -1,24 +1,87 @@
 <template class="init-app">
 	<require from="./simple-comp" />
+	<require from="./fn-view/fn-view as log-system" type="script"></require>
+	<require from="./script-example/script-example as scriptExample" type="script"/>
+	<require from="./ui-vendor-example/index as ui" type="namespace"></require>
 	<style>
-		.box-examples{
-			border:1px solid #123;
-			padding:5px;
+		.box-examples {
+			border: 1px solid #123;
+			padding: 5px;
 			float: left;
 			width: 100%;
 		}
+
+		.box-examples > .box-example {
+			border: 2px solid #123;
+			border-radius: 4px;
+			width: 31%;
+			height: auto;
+			float: left;
+			margin-left: 1%;
+			margin-bottom: 15px;
+		}
+
+		.box-examples > .box-example > span.title {
+			border-bottom: 2px solid #fefefe;
+			width: 100%;
+			float: left;
+			margin-bottom: 15px;
+			text-indent: 10px;
+		}
+
+		.box-examples > .box-example > div.content {
+			border-bottom: 2px solid #fefefe;
+			width: 100%;
+			float: left;
+			margin-bottom: 15px;
+		}
+
+		.box-examples > .box-example > span.title > strong {
+			border-bottom: 2px solid #fefefe;
+			width: 10px;
+			float: right;
+			margin-right: 10px;
+			text-decoration: none;
+		}
 	</style>
 	<div class="box-examples">
-		<h3 style="text-indent:10px" click.trigger="this.showId(321)">BASIC TESTS</h3>
-		<p>${this.a} : ${this.z}</p>
-		<ul>
-			<li each="child in this.foolArray">
-				${child}
-			</li>
-		</ul>
-		<simple-comp id="opaopa" obs="ophayy" awqqw="${this.a}">
-			<h1>Inside the sea!!! ${this.count}</h1>
-		</simple-comp>
+		<div class="box-example">
+			<span class="title" style="text-indent:10px" click.trigger="this.showId(321)">BASIC TESTS</span>
+			<div class="content">
+				<span>${this.a} : ${this.z} : ${this.count}</span>
+				<ol>
+					<li each="child in this.foolArray">
+						${child}
+					</li>
+				</ol>
+				<simple-comp id="opaopa" obs="ophayy" awqqw="${this.a}">
+					<h1>Inside the sea!!! ${this.count}</h1>
+				</simple-comp>
+			</div>
+		</div>
+
+		<div class="box-example">
+				<span class="title">
+					require-script
+				</span>
+				<div class="content">
+					<h5>in-line script</h5>
+					<span> ${ scriptExample.toUpper('Text to UpperCase') } </span>
+					<h5>function representation</h5>				
+					<log-system msg="to you!!!"/>
+				</div>			
+		</div>
+
+		<div class="box-example">
+				<span class="title">
+					require-namespace
+				</span>
+				<div class="content">
+					<h5>component into namespace</h5>
+					<ui:vendor-test prop-a="zoao" dtesA="opshz"/>
+					<h4>directive</h4>
+					<span ui:replace-basic-colors="caju">This is a teste ops with red, blue and white colors</span>
+				</div>			
+		</div>
 	</div>
 </template>
-

@@ -10,14 +10,8 @@
 		<h5>A help please!!!</h5>
 		<p>${this.id} *- ${this.text} + ${this.cound}</p>
 		<input value="${this.text}" keyup.bind="this.text"/>
-
 		<content></content>
-
-
 		<button click.trigger="this.setText('zxdz')">A button</button>
-
-
-
 		<h2>Hello World, ${this.name}</h2>
 		<input type="checkbox" value="y" change.bind="this.name"/>
 		<select change.bind="this.name">
@@ -35,9 +29,10 @@
 		<label>
 		  <input name="rdgroup" type="radio" value="BLUE" change.bind="this.name"/> Blue
 		</label>
-
+		<label>
+			<input type="checkbox" checked.if="this.name === 'B'"/>
+		</label>
 		<compose view:from="@/example/no-view-model/no-view-model">
 		</compose>
-
 	</nav>
 </template>

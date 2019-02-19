@@ -16,32 +16,46 @@ attributes.checked = function (el: any, name: string, value: any) {
   el.checked = !!value;
 };
 
-export default (p_module:any , props_inst:{[key:string]:any}, {key_id,is}:{is:string, key_id:string}, parent_ele?: HTMLElement, content?:Function) => {
-    const inst = new p_module(props_inst);
-    inst.$content = content || function(){};
-    let $draw = () => { };
+export default (p_module:any , props_inst:{[key:string]:any}, {key_id,is}:{is:string, key_id:string}) => {
+  
+  return {
+    content : (cont?: Function) => {
+      if(key_id && !inst_watched[key_id]){
+        delete props_inst['key_id'];
+        delete props_inst['is'];
+        delete props_inst['key:id'];
+        const inst = new p_module(props_inst);
 
-    const proxy_inst = new Proxy(inst, {
-      set: function (target, prop, value) {
-        // console.log(`'${String(prop)}' change from '${target[prop]}' to '${value}'`);
-        target[prop] = value;
-        setTimeout($draw, 0);
-        return true;
+        const proxy_inst = new Proxy(inst, {
+          set: function (target, prop, value) {
+            //console.log(`'${String(prop)}' change from '${target[prop]}' to '${value}'`);
+            target[prop] = value;
+            
+            setTimeout( 
+              proxy_inst.$draw.bind(proxy_inst, {key_id,is}),
+              0
+            );
+            
+            return true;
+          }
+        });
+
+        proxy_inst.$draw = function({key_id,is}:any){
+          //console.log(key_id,is,this);
+          patch(
+            document.getElementById(key_id),
+            this.$render.bind(this,{key_id, is, loaded:true}),
+            this
+          )
+        }
+        inst_watched[key_id] = { inst: proxy_inst };
       }
-    });
+      
+      if(cont){
+        inst_watched[key_id].inst.$content = cont;
+      }
 
-    if (key_id && !inst_watched[key_id]) {
-      inst_watched[key_id] = { inst: proxy_inst };
-    } else if (inst_watched[key_id]) {
-      // already in dom ?
-    } else {
-      console.warn(`key id not provide to ${is}`);
+      return inst_watched[key_id].inst;
     }
-
-    if(parent_ele){
-      patch(parent_ele, proxy_inst.$render.bind(proxy_inst,{key_id,is}), proxy_inst);
-    }else{
-      proxy_inst.$render.call(proxy_inst,{key_id,is});
-    }
-    $draw = () => patch(document.getElementById(key_id), proxy_inst.$render.bind(proxy_inst,{key_id, is, loaded:true}), proxy_inst);
+  }
 }

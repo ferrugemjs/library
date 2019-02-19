@@ -18,7 +18,7 @@ export class Main {
     console.log('main:props', z);
   }
   private showId(idp:string) {
-    this.a = idp;
+    this.a = `${new Date().getTime()} ${idp}`;
     this.foolArray.forEach((txt: string, inxd: number) => {
       this.foolArray[inxd] = `${txt} ${new Date().getSeconds()} `;
     });
