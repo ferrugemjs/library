@@ -8,7 +8,9 @@
 		}
 	</style>
 	<div class="especial-no-view-model no-view-model-b">
-		<script type="text/javascript">
+		<script if="!this.loaded" type="text/javascript">
+			console.log('props:',$props);
+			this.loaded = true;
 			this.ixi = "I say no, no, no."+new Date().getTime();
 		</script>
 		<h6>No View Model example - ${this.ixi}</h6>
