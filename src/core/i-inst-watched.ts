@@ -3,7 +3,7 @@ export interface IInstWatched {
     attached?: Function;
     detached?: Function;
     afterDetached?: Function;
-    shouldUpdate?: (prop: {}) => boolean;
+    propsChanged?: (props: {}) => void;
     $content?: Function;
     $render?: Function;
     _$unsubs$_: {unsubscribeAll:Function}[];
