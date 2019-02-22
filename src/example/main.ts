@@ -28,10 +28,6 @@ export class Main {
     };
     this.count++;
   }
-  private attached() {
-    //console.log('main attached!');	
-    //console.log(`IM attached with ${this.id} and ${this.title} `);
-  }
   private showAlert() {
     alert('show cara!!!!');
   }

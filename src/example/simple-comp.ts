@@ -7,9 +7,6 @@ export class SimpleComp {
     this.id = `my provide id ${id}`;
     this.cound++;
   }
-  private attached(): void {
-    //console.log(`on attached: my texto is: ${this.text} `);
-  }
   private setText(text: string): void {
     //console.log('ops',this);
     this.text = text;

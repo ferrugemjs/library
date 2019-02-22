@@ -7,7 +7,7 @@ export const detacheNode = (node: HTMLDivElement) => {
     let node_array = Array.prototype.slice.call(node.children);
     node_array.forEach( detacheNode );
   }
-  let key_id: string = node.getAttribute ? node.getAttribute('key-id') : '';
+  let key_id: string = node.getAttribute ? node.getAttribute('id') : '';
   //console.log(node);
   let inst_captured = inst_watched[key_id];
   if (key_id && inst_captured) {  
@@ -29,10 +29,9 @@ export const detacheNode = (node: HTMLDivElement) => {
 };
 
 export const attacheNode = (node: HTMLDivElement) => {
-  let key_id: string = node.getAttribute ? node.getAttribute('key-id') : '';
+  let key_id: string = node.getAttribute ? node.getAttribute('id') : '';
   let inst_captured = inst_watched[key_id];
   if (key_id && inst_captured) {
-    //console.log(inst_watched[key_id])
     if(!inst_captured.$loaded){
       const $inst = inst_captured.inst;
       for (let propOrign in inst_captured.$propsAfterAttached) {
@@ -61,8 +60,8 @@ export const attacheNode = (node: HTMLDivElement) => {
         }
       }
       delete inst_captured.$propsAfterAttached;
-      if(inst_captured.inst.attached){
-        inst_captured.inst.attached(node);
+      if($inst.attached){
+        $inst.attached(node);
       }
     }
     inst_captured.$loaded = true;

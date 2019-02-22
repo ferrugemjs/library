@@ -4,6 +4,7 @@
 	<require from="./script-example/script-example as scriptExample" type="script"/>
 	<require from="./ui-vendor-example/index as ui" type="namespace"></require>
 	<require from="./no-view-model/no-view-model"></require>
+	<require from="./fire-works/fire-works"></require>
 	<style>
 		.box-examples {
 			border: 1px solid #123;
@@ -94,6 +95,16 @@
 				<no-view-model log="oxe" kkkk="test"/>
 				<h4>directive</h4>
 				<span ui:replace-basic-colors="caju">This is a teste ops with red, blue and white colors</span>
+			</div>
+		</div>
+
+		<div class="box-example">
+			<span class="title">
+				fireworks
+			</span>
+			<div class="content">
+				<h5>component without model</h5>
+				<fire-works width="${32}" height="${60}"></fire-works>
 			</div>
 		</div>
 
