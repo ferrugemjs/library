@@ -1,5 +1,4 @@
-<template no-view-model="true">	
-	<require from="../my-css-test.css!"></require>
+<template no-model>
 	<style>
 		.no-view-model{
 			border:2px solid black;
@@ -9,8 +8,12 @@
 		}
 	</style>
 	<div class="especial-no-view-model no-view-model-b">
-		<script type="text/javascript">
-			this.ixi = "I say no, no, no.";
+		<script type="text/javascript" constructor="init">
+			function init($props){
+				//console.log('props222:',$props);
+				this.loaded = true;
+				this.ixi = "I say no, no, no."+new Date().getTime();
+			}
 		</script>
 		<h6>No View Model example - ${this.ixi}</h6>
 	</div>	

@@ -32,7 +32,7 @@ export class CompostComp {
     this.refresh();
   }
   private detached(): void {
-    console.log('compost-comp out of dom!');
+    //console.log('compost-comp out of dom!');
     this.myfnext = null;
   }
   private triggerFn(): void {
@@ -44,7 +44,7 @@ export class CompostComp {
   }
   private getNewId(): void {
     let nid = new Date().getSeconds();
-    console.log(this.id, nid, this['id33']);
+    //console.log(this.id, nid, this['id33']);
     this.id = nid;
     this.refresh({ version: this.id++ });
   }

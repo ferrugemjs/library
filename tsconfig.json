@@ -9,9 +9,14 @@
         ,"sourceMap": false        
 		,"declaration": true
 		,"removeComments":true
-		,"noEmitHelpers":true 
-		,"suppressImplicitAnyIndexErrors": true
+        ,"noEmitHelpers":true
+        ,"importHelpers":true 
+        ,"suppressImplicitAnyIndexErrors": true
+        ,"baseUrl": "./"
         ,"lib":["es2015", "dom","es5","scripthost","es6"]
+        ,"paths": {
+            "tslib" : ["node_modules/tslib/tslib.d.ts"]
+        }
     },
     "exclude": [
         "node_modules"

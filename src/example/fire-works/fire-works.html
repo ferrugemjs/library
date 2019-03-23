@@ -1,0 +1,178 @@
+<template>
+    <style>
+        .fire-works {
+            background-color: #000;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #000;
+            position: relative;
+        }
+        .fire-works > .supername{
+            position: absolute;
+            bottom: 0;
+            color: #000;
+        }
+        .fire-works>.row>.cell {
+            width: 7px;
+            height: 7px;
+            float: left;
+        }
+
+        .fire-works>.row>.cell.intensity-0 {
+            background-color: rgb(7, 7, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-1 {
+            background-color: rgb(31, 7, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-2 {
+            background-color: rgb(47, 15, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-3 {
+            background-color: rgb(71, 15, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-4 {
+            background-color: rgb(87, 23, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-5 {
+            background-color: rgb(103, 31, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-6 {
+            background-color: rgb(119, 31, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-7 {
+            background-color: rgb(143, 39, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-8 {
+            background-color: rgb(159, 47, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-9 {
+            background-color: rgb(175, 63, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-10 {
+            background-color: rgb(191, 71, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-11 {
+            background-color: rgb(199, 71, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-12 {
+            background-color: rgb(223, 79, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-13 {
+            background-color: rgb(223, 87, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-14 {
+            background-color: rgb(223, 87, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-15 {
+            background-color: rgb(215, 95, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-16 {
+            background-color: rgb(215, 95, 7);
+        }
+
+        .fire-works>.row>.cell.intensity-17 {
+            background-color: rgb(215, 103, 15);
+        }
+
+        .fire-works>.row>.cell.intensity-18 {
+            background-color: rgb(207, 111, 15);
+        }
+
+        .fire-works>.row>.cell.intensity-19 {
+            background-color: rgb(207, 119, 15);
+        }
+
+        .fire-works>.row>.cell.intensity-20 {
+            background-color: rgb(207, 127, 15);
+        }
+
+        .fire-works>.row>.cell.intensity-21 {
+            background-color: rgb(207, 135, 23);
+        }
+
+        .fire-works>.row>.cell.intensity-22 {
+            background-color: rgb(199, 135, 23);
+        }
+
+        .fire-works>.row>.cell.intensity-23 {
+            background-color: rgb(199, 143, 23);
+        }
+
+        .fire-works>.row>.cell.intensity-24 {
+            background-color: rgb(199, 151, 31);
+        }
+
+        .fire-works>.row>.cell.intensity-25 {
+            background-color: rgb(191, 159, 31);
+        }
+
+        .fire-works>.row>.cell.intensity-26 {
+            background-color: rgb(191, 159, 31);
+        }
+
+        .fire-works>.row>.cell.intensity-27 {
+            background-color: rgb(191, 167, 39);
+        }
+
+        .fire-works>.row>.cell.intensity-28 {
+            background-color: rgb(191, 167, 39);
+        }
+
+        .fire-works>.row>.cell.intensity-29 {
+            background-color: rgb(191, 175, 47);
+        }
+
+        .fire-works>.row>.cell.intensity-30 {
+            background-color: rgb(183, 175, 47);
+        }
+
+        .fire-works>.row>.cell.intensity-31 {
+            background-color: rgb(183, 183, 47);
+        }
+
+        .fire-works>.row>.cell.intensity-32 {
+            background-color: rgb(183, 183, 55);
+        }
+
+        .fire-works>.row>.cell.intensity-33 {
+            background-color: rgb(207, 207, 111);
+        }
+
+        .fire-works>.row>.cell.intensity-34 {
+            background-color: rgb(223, 223, 159);
+        }
+
+        .fire-works>.row>.cell.intensity-35 {
+            background-color: rgb(239, 239, 199);
+        }
+
+        .fire-works>.row>.cell.intensity-36 {
+            background-color: rgb(255, 255, 255);
+        }
+    </style>
+    <div class="fire-works">
+        <div class="row" each="let row = 0, height = this.height; row < height ; row++">
+            <div each="let col = 0,width = this.width, matrix = this.matrix; col < width; col++" class="${'cell intensity-' + matrix[col + (width * row)].intensity}"
+                data-index="${col}"></div>
+        </div>
+        <h1 class="supername">FireMan</h1>
+    </div>
+</template>

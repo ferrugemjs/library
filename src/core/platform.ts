@@ -1,31 +1,21 @@
-import _IDOM = require('incremental-dom');
 import componentFactory from './component-factory';
+import { patch } from 'incremental-dom';
 
 export class PlatformBootstrap {
-  private _module: any;
-  public bootstrap(pmodule: any, option?: { templateExtension: string }): PlatformBootstrap {
-    this._module = pmodule;
-    componentFactory.config.templateExtension = option && option.templateExtension ? option.templateExtension : '.html';
-    return this;
+  public bootstrap(pmodule: any, option?: { templateExtension: string }): any {
+    // componentFactory.config.templateExtension = option && option.templateExtension ? option.templateExtension : '.html';
+    return { at:(domRender: HTMLElement) => this.at(domRender,pmodule) };
   }
-  public at(domRender: HTMLElement): void {
-    let app_uid: string = domRender.getAttribute('id');
-    if (!app_uid) {
-      app_uid = `uid_${ new Date().getTime() }`;
-      domRender.setAttribute('id', app_uid);
-    }
-    let _tmp_inst = componentFactory.build({
-      classFactory: this._module.default
-      , staticVars: {
-        'key:id': app_uid
-      }
-      , hostVars: {}
-      , tag: 'div'
-      , alias: 'init-app-tag'
-      //,target:app_uid
-    });
-    _IDOM.patch(document.getElementById(app_uid), componentFactory.reDraw.bind(_tmp_inst), _tmp_inst);
-    delete this._module;
+  public at(domRender: HTMLElement, pmodule?: any): void {
+    //let key_id: string = domRender.getAttribute('id');
+    //if (!key_id) {
+    const key_id = `uid_${new Date().getTime()}`;
+      //domRender.setAttribute('id', key_id);
+    //}
+    const is = 'init-app-tag';
+    const proxyInst = componentFactory(pmodule.default,{z: 1000},{is, key_id}).content(function(){});
+    patch(domRender, proxyInst.$render.bind(proxyInst,{is, key_id}), proxyInst);
+    //patch(domRender, proxy_inst.$render.bind(proxy_inst,{key_id, is, loaded:true}), proxy_inst);
   }
 }
 

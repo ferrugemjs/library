@@ -1,3 +1,7 @@
 export class VendorTest {
-  private expe: number = 1233;
+  private expe: string = 'z100123';
+  constructor(props:any){
+    //console.log(props);
+    //this.expe = props;
+  }
 }

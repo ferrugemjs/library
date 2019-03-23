@@ -3,7 +3,8 @@ export class LifecycleExample {
   private stageValue: string = 'default';
   private logs: { stage: string, value: string }[] = [];
   private init: {};
-  constructor() {
+  constructor(props:{}) {
+    //console.log('myprops', props);
     this.logs.push({
       stage: 'constructor',
       value: this.stageValue

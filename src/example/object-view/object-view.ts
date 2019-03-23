@@ -6,6 +6,6 @@ export default {
   }
   , attached() {
     this.desc = 'changed by connected!';
-    console.log('evt:connected!');
+    //console.log('evt:connected!');
   }
 };

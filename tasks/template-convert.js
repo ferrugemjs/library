@@ -11,7 +11,7 @@ gulp.task('template',function(){
         "./src/**/*.html"
     ])
     .pipe(ferrugemjs({
-        env:"development"
+        env:"production"
     }))
     .pipe(beautify({indent_size: 2}))
     .pipe(rename({
