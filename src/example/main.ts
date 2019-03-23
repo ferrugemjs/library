@@ -15,7 +15,7 @@ export class Main {
       msg: 'modificado via parente'
       , idMsg: 458
     };
-    console.log('main:props', z);
+    //console.log('main:props', z);
   }
   private showId(idp:string) {
     this.a = `${new Date().getTime()} ${idp}`;

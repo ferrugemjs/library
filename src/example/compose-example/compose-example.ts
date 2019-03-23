@@ -4,7 +4,7 @@ export class ComposeExample {
   private example2:{init:(fn:Function) => void};
   constructor(){
     this.example2 = {init: fn => {
-      console.log(typeof fn);
+      //console.log(typeof fn);
     }};
   }
   private toogle() {

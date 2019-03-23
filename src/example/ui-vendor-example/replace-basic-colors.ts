@@ -1,5 +1,5 @@
 export const replaceBasicColors = (p_node: Node, p_value: string) => {
-  console.log(p_value);
+  //console.log(p_value);
   if(p_node.nodeValue){
     p_node.nodeValue = p_node
     .nodeValue

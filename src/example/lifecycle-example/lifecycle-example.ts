@@ -4,7 +4,7 @@ export class LifecycleExample {
   private logs: { stage: string, value: string }[] = [];
   private init: {};
   constructor(props:{}) {
-    console.log('myprops', props);
+    //console.log('myprops', props);
     this.logs.push({
       stage: 'constructor',
       value: this.stageValue
