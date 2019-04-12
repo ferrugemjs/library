@@ -45,7 +45,19 @@ export default (p_module:any , props_inst:{[key:string]:any}, {key_id,is}:{is:st
       }
 
       if(key_id && !inst_watched[key_id]){
+        if(!p_module.prototype.$draw){
+          p_module.prototype.$draw = function({key_id,is}:any){
+            //console.log(key_id,is,this);
+            patch(
+              document.getElementById(key_id),
+              this.$render.bind(this,{key_id, is, loaded:true}),
+              this
+            )
+          }
+        }
+
         const inst = new p_module(props_inst);
+        inst['$props'] = {key_id, is};
         const proxy_inst = new Proxy(inst, {
           set: function (target, prop, value) {
             //console.log(`'${String(prop)}' change from '${target[prop]}' to '${value}'`);
@@ -60,14 +72,7 @@ export default (p_module:any , props_inst:{[key:string]:any}, {key_id,is}:{is:st
           }
         });
 
-        proxy_inst.$draw = function({key_id,is}:any){
-          //console.log(key_id,is,this);
-          patch(
-            document.getElementById(key_id),
-            this.$render.bind(this,{key_id, is, loaded:true}),
-            this
-          )
-        }
+
         inst_watched[key_id] = {$loaded: false, inst: proxy_inst, $is:is, $propsAfterAttached:propsAfterAttached};
       }
       
