@@ -16,7 +16,7 @@
 		.box-examples > .box-example {
 			border: 2px solid #123;
 			border-radius: 4px;
-			width: 31%;
+			width: 23%;
 			height: auto;
 			float: left;
 			margin-left: 1%;
@@ -63,6 +63,16 @@
 		</div>
 
 		<div class="box-example">
+			<span class="title">
+				compose
+			</span>
+			<div class="content">
+				<h5>component with compose</h5>
+				<compose view:from="../example/compose-example/compose-example" />
+			</div>
+		</div>
+
+		<div class="box-example">
 				<span class="title">
 					require-script
 				</span>
@@ -103,8 +113,7 @@
 				fireworks
 			</span>
 			<div class="content">
-				<h5>component without model</h5>
-				<fire-works width="${32}" height="${60}"></fire-works>
+				<fire-works width="${32}" height="${60}" />
 			</div>
 		</div>
 

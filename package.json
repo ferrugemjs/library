@@ -1,6 +1,6 @@
 {
   "name": "ferrugemjs",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A reactive library.",
   "main": "dist/core/index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "url": "https://github.com/ferrugemjs/library"
   },
   "devDependencies": {
-    "ferrugemjs-node": "2.1.3",
+    "ferrugemjs-node": "2.1.5",
     "gulp": "^3.9.1",
     "gulp-beautify": "^2.0.1",
     "gulp-concat": "^2.6.0",
