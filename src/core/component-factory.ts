@@ -47,11 +47,14 @@ export default (p_module:any , props_inst:{[key:string]:any}, {key_id,is}:{is:st
       if(key_id && !inst_watched[key_id]){
         if(typeof p_module.prototype.$draw !== 'function'){
           p_module.prototype.$draw = function({key_id,is}:any){
-            patch(
-              document.getElementById(key_id),
-              this.$render.bind(this,{key_id, is, loaded:true}),
-              this
-            )
+            const element = document.getElementById(key_id);
+            if(!!element){
+                patch(
+                  element,
+                  this.$render.bind(this,{key_id, is, loaded:true}),
+                  this
+                )            
+            }
           }
         }
 
