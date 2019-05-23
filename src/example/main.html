@@ -1,10 +1,11 @@
 <template class="init-app">
 	<require from="./simple-comp" />
-	<require from="./fn-view/fn-view as log-system" type="script"></require>
-	<require from="./script-example/script-example as scriptExample" type="script"/>
-	<require from="./ui-vendor-example/index as ui" type="namespace"></require>
-	<require from="./no-view-model/no-view-model"></require>
-	<require from="./fire-works/fire-works"></require>
+	<require from="./fn-view/fn-view as log-system" type="script" />
+	<require from="./script-example/script-example as scriptExample" type="script" />
+	<require from="./ui-vendor-example/index as ui" type="namespace" />
+	<require from="./no-view-model/no-view-model" />
+	<require from="./fire-works/fire-works" />
+	<require from="./lifecycle-example/lifecycle-example" />
 	<style>
 		.box-examples {
 			border: 1px solid #123;
@@ -68,7 +69,10 @@
 			</span>
 			<div class="content">
 				<h5>component with compose</h5>
-				<compose view:from="../example/compose-example/compose-example" />
+				<compose if="!this.destroyCompose" view:from="../example/compose-example/compose-example" />
+				<simple-comp id="opaopa" obs="ophayy" awqqw="${this.a}">
+					<lifecycle-example />
+				</simple-comp>
 			</div>
 		</div>
 

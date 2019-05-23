@@ -7,6 +7,8 @@ export class Main {
   private childValues: {};
   private a = 'a test';
   private z = 369;
+  private destroyCompose:boolean;
+
   constructor({z}:any) {
     this.z = z;
     this.count = 0;
@@ -31,5 +33,12 @@ export class Main {
   private showAlert() {
     alert('show cara!!!!');
   }
-
+  private attached(){
+    setTimeout(() => {
+      this.destroyCompose = true;
+      setTimeout(() => {
+        this.destroyCompose = false;
+      },5000);
+    },5000);
+  }
 }

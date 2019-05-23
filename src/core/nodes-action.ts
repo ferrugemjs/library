@@ -11,10 +11,10 @@ export const detacheNode = (node: HTMLDivElement) => {
   //console.log(node);
   let inst_captured = inst_watched[key_id];
   if (key_id && inst_captured) {  
-    if(inst_captured.inst.detached){
+    if(typeof inst_captured.inst.detached === 'function'){
       inst_captured.inst.detached();
     }
-    if(inst_captured.inst.afterDetached){
+    if(typeof inst_captured.inst.afterDetached === 'function'){
       inst_captured.inst.afterDetached();
     }
   }
@@ -31,6 +31,7 @@ export const detacheNode = (node: HTMLDivElement) => {
 export const attacheNode = (node: HTMLDivElement) => {
   let key_id: string = node.getAttribute ? node.getAttribute('id') : '';
   let inst_captured = inst_watched[key_id];
+  // console.log(key_id, inst_captured);
   if (key_id && inst_captured) {
     if(!inst_captured.$loaded){
       const $inst = inst_captured.inst;
@@ -38,29 +39,13 @@ export const attacheNode = (node: HTMLDivElement) => {
         let prop_splited: string[] = propOrign.split('.');
         if($inst[prop_splited[0]] && typeof $inst[prop_splited[0]][prop_splited[1]] === 'function'){
           $inst[prop_splited[0]][prop_splited[1]]($inst[propOrign]);
-          if(typeof $inst[prop_splited[0]]['unsubscribeAll'] === 'function'){
-            if(!$inst._$unsubs$_){
-              $inst._$unsubs$_ = [];
-            }
-            $inst._$unsubs$_.push($inst[prop_splited[0]]);
-  
-            if(typeof $inst.afterDetached !== 'function'){
-              $inst.afterDetached = function () {
-                $inst._$unsubs$_.forEach(insSub => {
-                  insSub.unsubscribeAll();
-                });
-                $inst._$unsubs$_.length = 0;
-                delete $inst._$unsubs$_;
-              };
-            }
-          }
         }else{
           let {$is: compName} = inst_captured;
           console.warn(`There is no method '${propOrign}' in component '${compName}'!`);
         }
       }
       delete inst_captured.$propsAfterAttached;
-      if($inst.attached){
+      if(typeof $inst.attached === 'function'){
         $inst.attached(node);
       }
     }

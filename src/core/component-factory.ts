@@ -45,9 +45,8 @@ export default (p_module:any , props_inst:{[key:string]:any}, {key_id,is}:{is:st
       }
 
       if(key_id && !inst_watched[key_id]){
-        if(!p_module.prototype.$draw){
+        if(typeof p_module.prototype.$draw !== 'function'){
           p_module.prototype.$draw = function({key_id,is}:any){
-            //console.log(key_id,is,this);
             patch(
               document.getElementById(key_id),
               this.$render.bind(this,{key_id, is, loaded:true}),
@@ -74,6 +73,11 @@ export default (p_module:any , props_inst:{[key:string]:any}, {key_id,is}:{is:st
 
 
         inst_watched[key_id] = {$loaded: false, inst: proxy_inst, $is:is, $propsAfterAttached:propsAfterAttached};
+
+        if(is === 'compose-view' && !inst_watched[key_id].$loaded && typeof proxy_inst.attached === 'function'){
+          inst_watched[key_id].$loaded = true;
+          proxy_inst.attached();
+        }
       }
       
       if(cont){
