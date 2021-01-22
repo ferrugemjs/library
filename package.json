@@ -1,17 +1,17 @@
 {
-  "name": "ferrugemjs",
+  "name": "@ferrugemjs/library",
   "version": "2.0.1",
   "description": "A reactive library.",
   "main": "dist/core/index.js",
   "scripts": {
     "build": "node node_modules/.bin/tsc --p tsconfig.json",
-    "eslint": "./node_modules/.bin/eslint -c eslint.json ./src/**/*.ts"
+    "eslint": "eslint -c eslint.json ./src/**/*.ts"
   },
   "author": "ferrugemjs",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ferrugemjs/library"
+    "url": "git+https://github.com/ferrugemjs/library.git"
   },
   "devDependencies": {
     "eslint": "7.18.0",
@@ -23,5 +23,9 @@
   },
   "jspm": {
     "format": "amd"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/ferrugemjs/library/issues"
+  },
+  "homepage": "https://github.com/ferrugemjs/library#readme"
 }
