@@ -12,4 +12,7 @@ Gulpfile.js
 #dist dir
 dist/example
 dist/incremental-dom.js
-dist/index.js
+# dist/index.js
+
+test
+test/node_modules

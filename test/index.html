@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test Project</title>
+    <style>
+        .especial {
+            background-color: red;
+        }
+    </style>
+    <script src="node_modules/requirejs/require.js"></script>
+</head>
+
+<body>
+    <!-- <div app="app/main-app.html"></div> -->
+    <div id="example"></div>
+    <script>
+        requirejs.config({
+            baseUrl: '.',
+            packages: [
+                // {
+                //     name: "@ferrugemjs",
+                //     location: "./node_modules/@ferrugemjs/library/dist/core",
+                //     // main: "index"
+                // }
+            ],
+            paths: {
+                // "@": "./",
+                // "ui-vendor": "./dist/example/ui-vendor-example/index",
+                "incremental-dom": "node_modules/incremental-dom/dist/incremental-dom",
+                "tslib": "node_modules/tslib/tslib",
+                // "@ferrugemjs": "node_modules/@ferrugemjs/library/dist",
+
+                "@ferrugemjs": "node_modules/@ferrugemjs",
+
+                // @ferrugemjs/library/dist/core/component-factory
+
+                // "ferrugemjs": "node_modules/@ferrugemjs/library/dist/core/index",
+                // "@ferrugemjs": "node_modules/@ferrugemjs/library/dist/core/component-factory",
+
+                // @ferrugemjs/library/dist/core/component-factory
+            }
+        });
+
+        /*
+        require(['ferrugemjs/dist/core/index'],function(_fjs_wrapper_class){
+          _fjs_wrapper_class.default({'key_id':'ksh12','is':'test-comp','id':'ksh12'},{z:444});
+        });
+        */
+        // require(["ferrugemjs/dist/core/bootstrapper"], function (_bootstrapper) {
+        //     _bootstrapper.default();
+        // });
+        require([
+            "@ferrugemjs/library/dist/core/platform",
+            "./app/main-app.html"
+        ], function (
+            _fjs,
+            _init_app,
+        ) {
+            console.log('ops:', _fjs)
+            // _bootstrapper();
+            // console.log(_init_app);
+            _fjs.default.at(document.getElementById("example"), _init_app.default);
+        });
+    </script>
+</body>
+
+</html>
