@@ -1,45 +1,38 @@
 {
-  "name": "ferrugemjs",
-  "version": "2.0.0",
+  "name": "@ferrugemjs/library",
+  "version": "3.0.0",
   "description": "A reactive library.",
   "main": "dist/core/index.js",
   "scripts": {
-    "gulp": "./node_modules/.bin/gulp",
-    "watch": "gulp watch",
-    "compile": "gulp compile",
-    "convert": "gulp template",
-    "postinstall2": "jspm install",
-    "prepublish": "npm run compile",
-    "build": "gulp build",
-    "tslint": "./node_modules/.bin/tslint -c tslint.json ./src/**/*.ts"
+    "build": "node node_modules/.bin/tsc --p tsconfig.json",
+    "eslint": "eslint -c eslint.json ./src/**/*.ts",
+    "copy:dist": "copyfiles -a ./dist/**/*.js test/node_modules/@ferrugemjs/library",
+    "copy:requirejs": "copyfiles  ./node_modules/requirejs/require.js test/",
+    "copy:idom": "copyfiles  ./node_modules/incremental-dom/dist/incremental-dom.js test/",
+    "copy:tslib": "copyfiles  ./node_modules/tslib/tslib.js test/",
+    "compile": "node ./compile.js",
+    "preview": "npm run compile && npm run copy:dist && npm run copy:requirejs && npm run copy:idom && http-server -p 8114 test/"
   },
   "author": "ferrugemjs",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ferrugemjs/library"
+    "url": "git+https://github.com/ferrugemjs/library.git"
   },
   "devDependencies": {
-    "ferrugemjs-node": "2.1.1",
-    "gulp": "^3.9.1",
-    "gulp-beautify": "^2.0.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-connect": "^2.3.1",
-    "gulp-ferrugemjs": "^0.19.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-replace": "^0.5.4",
-    "gulp-typescript": "^4.0.1",
-    "gulp-uglify": "^1.5.2",
-    "require-dir": "1.0.0",
-    "requirejs": "2.3.5",
-    "tslint": "^5.9.1",
-    "typescript": "^2.7.2"
+    "@ferrugemjs/compile": "3.0.2",
+    "copyfiles": "2.4.1",
+    "eslint": "8.34.0",
+    "http-server": "14.1.1",
+    "requirejs": "2.3.6",
+    "typescript": "4.9.5"
   },
   "dependencies": {
-    "incremental-dom": "^0.5.1",
-    "tslib": "^1.9.3"
+    "incremental-dom": "0.7.0",
+    "tslib": "2.5.0"
   },
-  "jspm": {
-    "format": "amd"
-  }
+  "bugs": {
+    "url": "https://github.com/ferrugemjs/library/issues"
+  },
+  "homepage": "https://github.com/ferrugemjs/library#readme"
 }

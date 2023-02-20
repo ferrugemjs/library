@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es5"
+        "target": "es6"
         ,"module": "amd"
         ,"moduleResolution": "classic"
         ,"outDir": "./dist"
@@ -13,7 +13,7 @@
         ,"importHelpers":true 
         ,"suppressImplicitAnyIndexErrors": true
         ,"baseUrl": "./"
-        ,"lib":["es2015", "dom","es5","scripthost","es6"]
+        ,"lib":["ESNext", "dom","es6","scripthost"]
         ,"paths": {
             "tslib" : ["node_modules/tslib/tslib.d.ts"]
         }
