@@ -1,4 +1,5 @@
 
+import componentFactory from './component-factory';
 import platform from './platform';
 
-export { platform };
+export { platform, componentFactory };
