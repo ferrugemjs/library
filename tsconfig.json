@@ -1,26 +1,33 @@
 {
     "compilerOptions": {
-        "target": "es6"
-        ,"module": "amd"
-        ,"moduleResolution": "classic"
-        ,"outDir": "./dist"
-        ,"experimentalDecorators": true
-        ,"noImplicitAny":true		
-        ,"sourceMap": false        
-		,"declaration": true
-		,"removeComments":true
-        ,"noEmitHelpers":true
-        ,"importHelpers":true 
-        ,"suppressImplicitAnyIndexErrors": true
-        ,"baseUrl": "./"
-        ,"lib":["ESNext", "dom","es6","scripthost"]
-        ,"paths": {
-            "tslib" : ["node_modules/tslib/tslib.d.ts"]
+        "target": "es6",
+        "module": "amd",
+        "moduleResolution": "classic",
+        "outDir": "./dist",
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "sourceMap": false,
+        "declaration": true,
+        "removeComments": true,
+        "noEmitHelpers": true,
+        "importHelpers": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "baseUrl": "./",
+        "lib": [
+            "ESNext",
+            "dom",
+            "es6",
+            "scripthost"
+        ],
+        "paths": {
+            "tslib": [
+                "node_modules/tslib/tslib.d.ts"
+            ]
         }
     },
     "exclude": [
-        "node_modules"
-		,"dist"
+        "node_modules",
+        "dist"
     ],
     "compileOnSave": false
 }

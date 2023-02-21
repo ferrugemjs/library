@@ -1,12 +1,15 @@
 {
   "name": "@ferrugemjs/library",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "A reactive library.",
-  "main": "dist/core/index.js",
+  "files": [
+    "dist/**"
+  ],
+  "main": "dist/index.js",
   "scripts": {
     "build": "node node_modules/.bin/tsc --p tsconfig.json",
     "eslint": "eslint -c eslint.json ./src/**/*.ts",
-    "copy:dist": "copyfiles -a ./dist/**/*.js test/node_modules/@ferrugemjs/library",
+    "copy:dist": "copyfiles -u 1 ./dist/*.js test/node_modules/@ferrugemjs/library",
     "copy:requirejs": "copyfiles  ./node_modules/requirejs/require.js test/",
     "copy:idom": "copyfiles  ./node_modules/incremental-dom/dist/incremental-dom.js test/",
     "copy:tslib": "copyfiles  ./node_modules/tslib/tslib.js test/",
@@ -20,7 +23,7 @@
     "url": "git+https://github.com/ferrugemjs/library.git"
   },
   "devDependencies": {
-    "@ferrugemjs/compile": "3.0.2",
+    "@ferrugemjs/compile": "3.0.5",
     "copyfiles": "2.4.1",
     "eslint": "8.34.0",
     "http-server": "14.1.1",
