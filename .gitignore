@@ -40,7 +40,8 @@ jspm_packages
 #dist dir
 dist
 test/node_modules
-test/app/*.html.js
+test/app/*.js
+test/app/*.map
 #.npmrc
 .npmrc
 

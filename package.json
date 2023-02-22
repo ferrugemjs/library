@@ -8,13 +8,11 @@
   "browser": "dist/index.js",
   "scripts": {
     "build": "node node_modules/.bin/tsc --p tsconfig.json",
+    "build:test": "node node_modules/.bin/tsc --p tsconfig.test.json",
     "eslint": "eslint -c eslint.json ./src/**/*.ts",
-    "copy:dist": "copyfiles -u 1 ./dist/*.js test/node_modules/@ferrugemjs/library",
-    "copy:requirejs": "copyfiles  ./node_modules/requirejs/require.js test/",
-    "copy:idom": "copyfiles  ./node_modules/incremental-dom/dist/incremental-dom.js test/",
-    "copy:tslib": "copyfiles  ./node_modules/tslib/tslib.js test/",
+    "copy:dist": "copyfiles -u 1 ./dist/*.js node_modules/@ferrugemjs/library/dist",
     "compile": "node ./compile.js",
-    "preview": "npm run compile && npm run copy:dist && npm run copy:requirejs && npm run copy:idom && http-server -p 8114 test/"
+    "preview": "npm run compile && npm run copy:dist && http-server -p 8114 ./"
   },
   "author": "ferrugemjs",
   "license": "ISC",

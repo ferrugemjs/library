@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "module": "amd",
         "moduleResolution": "classic",
-        "outDir": "./dist",
+        "outDir": "./test/app",
         "experimentalDecorators": true,
         "noImplicitAny": true,
-        "sourceMap": false,
-        "declaration": true,
+        "sourceMap": true,
+        "declaration": false,
         "removeComments": true,
         "noEmitHelpers": true,
         "importHelpers": true,
@@ -28,7 +28,7 @@
     "exclude": [
         "node_modules",
         "dist",
-        "test"
+        "src"
     ],
     "compileOnSave": false
 }
